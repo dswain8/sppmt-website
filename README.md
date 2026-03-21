@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shri Prasanna Pattnaik Memorial Trust - Website
 
-## Getting Started
+Official website for the Shri Prasanna Pattnaik Memorial Trust, established 2025 in Bhuban, Dhenkanal District, Odisha.
 
-First, run the development server:
+## Tech stack
+
+- **Next.js 16** (React 19) with App Router
+- **Tailwind CSS 4** for styling
+- **Formspree** for contact/donate/volunteer forms (email-based, free tier)
+- **Static site generation** (SSG) for fast loading and free hosting
+
+## Getting started locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Page             | Path               |
+|------------------|--------------------|
+| Homepage         | `/`                |
+| Our Founder      | `/founder`         |
+| About Us         | `/about`           |
+| Healthcare       | `/healthcare`      |
+| Education        | `/education`       |
+| Infrastructure   | `/infrastructure`  |
+| Community        | `/community`       |
+| Gallery          | `/gallery`         |
+| Contact          | `/contact`         |
+| Donate           | `/donate`          |
+| Volunteer        | `/join`            |
 
-## Learn More
+## Setting up form submissions
 
-To learn more about Next.js, take a look at the following resources:
+The contact, donate, and volunteer forms use [Formspree](https://formspree.io) (free, 50 submissions/month).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Go to [formspree.io](https://formspree.io) and create a free account
+2. Create a new form and copy the form ID (looks like `xyzabcde`)
+3. Replace `YOUR_FORMSPREE_ID` in these files:
+   - `src/app/contact/ContactForm.tsx`
+   - `src/app/donate/DonateForm.tsx`
+   - `src/app/join/JoinForm.tsx`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploying to Vercel (recommended)
 
-## Deploy on Vercel
+1. Push this code to a GitHub repository
+2. Go to [vercel.com](https://vercel.com) and sign in with GitHub
+3. Click "Import Project" and select your repository
+4. Vercel auto-detects Next.js — click "Deploy"
+5. Your site is live at `your-project.vercel.app`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Connecting a custom domain
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. In Vercel dashboard, go to Settings > Domains
+2. Add your domain (e.g., `sppmt.org`)
+3. Update your domain's DNS records as instructed by Vercel
+
+## Updating content
+
+- **Images**: Replace files in `public/images/`
+- **Text content**: Edit the corresponding `page.tsx` file in `src/app/`
+- **Trustee details**: Update the `TRUSTEES` array in `src/app/about/page.tsx`
+- **Contact info**: Update the Footer component in `src/components/Footer.tsx` and the Contact page
+- **Navigation**: Update `NAV_ITEMS` in `src/components/Navbar.tsx`
+
+## Color palette
+
+| Color         | Hex       | Usage                     |
+|---------------|-----------|---------------------------|
+| Orange        | `#E65100` | Primary buttons, accents  |
+| Forest Green  | `#1B5E20` | Headings, footer          |
+| Gold          | `#D4A017` | Highlights, borders       |
+| Cream         | `#FFF8E7` | Light backgrounds         |
+| Navy          | `#1A237E` | Text accents              |
