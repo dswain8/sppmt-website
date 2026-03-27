@@ -6,53 +6,23 @@ import ImageCarousel from "@/components/ImageCarousel";
 const CORE_AREAS = [
   {
     title: "Education",
-    href: "/education",
     image: "/images/vocational-block.png",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" />
-      </svg>
-    ),
   },
   {
     title: "Healthcare",
-    href: "/healthcare",
     image: "/images/students-classroom.png",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-      </svg>
-    ),
   },
   {
     title: "Agriculture",
-    href: "/agriculture",
     image: "/images/agriculture-odisha-paddy.png",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-      </svg>
-    ),
   },
   {
     title: "Civic Sense",
-    href: "/civic-sense",
     image: "/images/civic-sense-odisha.png",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
-      </svg>
-    ),
   },
   {
     title: "Employment",
-    href: "/employment",
     image: "/images/health-centre-signboard.png",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
-      </svg>
-    ),
   },
 ];
 
@@ -123,7 +93,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/donate"
+              href="/contact"
               className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors text-lg"
             >
               Support Our Mission
@@ -175,13 +145,10 @@ export default function Home() {
       {/* Core areas row */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
             {CORE_AREAS.map((area, i) => (
               <AnimateOnScroll key={area.title} delay={i * 100}>
-                <Link
-                  href={area.href}
-                  className="group relative h-56 rounded-xl overflow-hidden block shadow-md"
-                >
+                <div className="group relative h-56 rounded-xl overflow-hidden shadow-md">
                   <Image
                     src={area.image}
                     alt={area.title}
@@ -190,10 +157,9 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                    <div className="mb-2">{area.icon}</div>
                     <h3 className="text-lg font-bold">{area.title}</h3>
                   </div>
-                </Link>
+                </div>
               </AnimateOnScroll>
             ))}
           </div>
@@ -255,9 +221,13 @@ export default function Home() {
       {/* Focus areas grid */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-green mb-12">
+          <h2 className="text-3xl font-bold text-center text-green mb-4">
             Our Focus Areas
           </h2>
+          <p className="text-center text-gray-500 mb-12 max-w-2xl mx-auto">
+            The Trust will focus on these five areas, building on the
+            institutions and values that Shri Prasanna Pattnaik established.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {FOCUS_AREAS.map((area, i) => (
               <AnimateOnScroll key={area.title} delay={i * 100}>
@@ -273,10 +243,18 @@ export default function Home() {
               </AnimateOnScroll>
             ))}
           </div>
+          <div className="text-center mt-10">
+            <Link
+              href="/programs"
+              className="bg-green hover:bg-green-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
+            >
+              View Our Programs
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Get involved CTA */}
+      {/* CTA */}
       <section className="relative py-20 overflow-hidden">
         <Image
           src="/images/prasanna-patnaik-memorial-portrait.png"
@@ -292,16 +270,10 @@ export default function Home() {
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <Link
-                href="/donate"
+                href="/contact"
                 className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors text-lg"
               >
-                Donate
-              </Link>
-              <Link
-                href="/join"
-                className="border-2 border-white text-white hover:bg-white/10 font-semibold px-8 py-3 rounded-md transition-colors text-lg"
-              >
-                Join the Trust
+                Reach Out to Us
               </Link>
             </div>
           </AnimateOnScroll>

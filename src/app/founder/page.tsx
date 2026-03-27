@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import HisWorkTabs from "@/components/HisWorkTabs";
 
 export const metadata: Metadata = {
   title: "About Shri Prasanna Pattnaik",
@@ -94,26 +95,6 @@ const LEGACY_CARDS = [
   },
 ];
 
-const LEGISLATIVE_RECORD = [
-  {
-    term: "7th Vidhan Sabha",
-    constituency: "Kamakhyanagar",
-    years: "1977 - 1980",
-    party: "Janata Party",
-  },
-  {
-    term: "9th Vidhan Sabha",
-    constituency: "Kamakhyanagar",
-    years: "1985 - 1990",
-    party: "BJP (First BJP MLA in Odisha)",
-  },
-  {
-    term: "10th Vidhan Sabha",
-    constituency: "Kamakhyanagar",
-    years: "1990 - 1995",
-    party: "Janata Dal",
-  },
-];
 
 export default function FounderPage() {
   return (
@@ -245,58 +226,6 @@ export default function FounderPage() {
         </div>
       </section>
 
-      {/* Legislative record */}
-      <AnimateOnScroll>
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-green mb-8">
-              Legislative Record
-            </h2>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse bg-white rounded-xl overflow-hidden shadow-sm">
-                <thead>
-                  <tr className="bg-green text-white">
-                    <th className="px-6 py-3 text-left text-sm font-semibold">
-                      Term
-                    </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold">
-                      Constituency
-                    </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold">
-                      Years
-                    </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold">
-                      Party
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {LEGISLATIVE_RECORD.map((row, i) => (
-                    <tr
-                      key={row.term}
-                      className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}
-                    >
-                      <td className="px-6 py-4 text-sm text-gray-700">
-                        {row.term}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
-                        {row.constituency}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
-                        {row.years}
-                      </td>
-                      <td className="px-6 py-4 text-sm font-medium text-gray-800">
-                        {row.party}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-      </AnimateOnScroll>
-
       {/* Quote */}
       <AnimateOnScroll>
         <section className="py-16 bg-cream">
@@ -312,6 +241,23 @@ export default function FounderPage() {
           </div>
         </section>
       </AnimateOnScroll>
+
+      {/* His Work */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimateOnScroll>
+            <h2 className="text-3xl font-bold text-center text-green mb-3">
+              His Work
+            </h2>
+            <p className="text-center text-gray-500 mb-10 max-w-2xl mx-auto">
+              A lifetime of building institutions, founding healthcare centres,
+              empowering farmers, and transforming rural communities across
+              Odisha.
+            </p>
+          </AnimateOnScroll>
+          <HisWorkTabs />
+        </div>
+      </section>
 
       {/* Trust connection */}
       <AnimateOnScroll>
@@ -331,7 +277,7 @@ export default function FounderPage() {
               href="/about"
               className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
             >
-              Explore Our Work
+              Learn About the Trust
             </Link>
           </div>
         </section>

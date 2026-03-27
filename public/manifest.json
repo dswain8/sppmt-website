@@ -1,0 +1,21 @@
+{
+  "name": "Shri Prasanna Pattnaik Memorial Trust",
+  "short_name": "SPPMT",
+  "description": "Official website of the Shri Prasanna Pattnaik Memorial Trust (SPPMT), working in education, healthcare, agriculture, civic sense, and employment across India.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1B5E20",
+  "icons": [
+    {
+      "src": "/images/trust-logo-large.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/trust-logo-small.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
