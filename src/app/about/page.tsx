@@ -101,38 +101,37 @@ export default function AboutPage() {
 
       {/* Trustees */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-green mb-12">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center text-green mb-4">
             Board of Trustees
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <p className="text-center text-gray-500 mb-10">
+            The Trust is governed by a dedicated Board committed to
+            transparency, accountability, and service.
+          </p>
+
+          <div className="divide-y divide-gray-100">
             {TRUSTEES.map((trustee, i) => (
-              <AnimateOnScroll key={i} delay={i * 100}>
-                <div className="bg-gray-50 rounded-xl p-6 text-center border border-gray-100 hover:shadow-md transition-shadow">
-                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-green-light flex items-center justify-center">
-                    <svg
-                      className="w-10 h-10 text-green"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                      />
+              <AnimateOnScroll key={i} delay={i * 80}>
+                <div className="flex items-center gap-5 py-5">
+                  <div className="w-10 h-10 shrink-0 rounded-full bg-green flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                     </svg>
                   </div>
-                  <h3 className="font-semibold text-gray-800">
-                    {trustee.name}
-                  </h3>
-                  <p className="text-sm font-medium text-orange mt-1">
-                    {trustee.role}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-2">
-                    {trustee.relation}
-                  </p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                      <h3 className="font-semibold text-gray-800">
+                        {trustee.name}
+                      </h3>
+                      <span className="inline-flex items-center text-xs font-semibold text-orange bg-orange/10 px-3 py-1 rounded-full w-fit">
+                        {trustee.role}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-500 mt-0.5">
+                      {trustee.relation}
+                    </p>
+                  </div>
                 </div>
               </AnimateOnScroll>
             ))}
@@ -185,16 +184,16 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/donate"
+                href="/contact"
                 className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
               >
-                Donate
+                Reach Out to Us
               </Link>
               <Link
-                href="/join"
+                href="/programs"
                 className="bg-green hover:bg-green-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
               >
-                Volunteer
+                View Our Programs
               </Link>
             </div>
           </div>
