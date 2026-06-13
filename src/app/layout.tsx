@@ -4,64 +4,48 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import JsonLd from "@/components/JsonLd";
-
-const SITE_URL = "https://sppmt.org";
+import {
+  ORGANIZATION_ALTERNATE_NAMES,
+  SCHOLARSHIP_NAME,
+  SEO_KEYWORDS,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Shri Prasanna Pattnaik Memorial Trust | SPPMT",
-    template: "%s | Shri Prasanna Pattnaik Memorial Trust",
+    default: `${SITE_NAME} | SPPMT`,
+    template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Shri Prasanna Pattnaik Memorial Trust (SPPMT), established 2025 in Bhubaneswar, Odisha. Continuing the legacy of Shri Prasanna Pattnaik through education, healthcare, agriculture, civic sense, and employment across India.",
-  keywords: [
-    "Shri Prasanna Pattnaik",
-    "Shri Prasanna Pattnaik Memorial Trust",
-    "SPPMT",
-    "sppmt.org",
-    "Prasanna Pattnaik trust",
-    "Bhuban",
-    "Dhenkanal",
-    "Kamakhyanagar",
-    "Odisha",
-    "Odisha trust",
-    "education Odisha",
-    "healthcare Odisha",
-    "agriculture Odisha",
-    "civic sense",
-    "employment Odisha",
-    "BJP MLA Odisha",
-    "first BJP MLA Odisha",
-    "community development India",
-    "memorial trust India",
-    "nonprofit Odisha",
-  ],
-  authors: [{ name: "Shri Prasanna Pattnaik Memorial Trust" }],
-  creator: "Shri Prasanna Pattnaik Memorial Trust",
-  publisher: "Shri Prasanna Pattnaik Memorial Trust",
+    "Official website of the Shri Prasanna Pattnaik Memorial Trust (Prasanna Patnaik Trust). Apply for the Shri Prasanna Pattnaik Merit Scholarship. Education, healthcare, skill development, agriculture, and civic sense across Odisha.",
+  keywords: SEO_KEYWORDS,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: SITE_URL,
-    siteName: "Shri Prasanna Pattnaik Memorial Trust",
-    title: "Shri Prasanna Pattnaik Memorial Trust | SPPMT",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | ${SCHOLARSHIP_NAME}`,
     description:
-      "Honoring the legacy of Shri Prasanna Pattnaik (1948-2025), the first BJP MLA of Odisha. The trust works in education, healthcare, agriculture, civic sense, and employment across India.",
+      "Honoring Shri Prasanna Pattnaik (1948–2025). Apply for the Prasanna Patnaik Merit Scholarship. Official website of the Prasanna Patnaik Trust in Bhubaneswar, Odisha.",
     images: [
       {
         url: "/images/trust-logo-large.png",
         width: 512,
         height: 512,
-        alt: "Shri Prasanna Pattnaik Memorial Trust logo",
+        alt: `${SITE_NAME} logo`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shri Prasanna Pattnaik Memorial Trust | SPPMT",
+    title: `${SITE_NAME} | ${SCHOLARSHIP_NAME}`,
     description:
-      "Continuing the legacy of Shri Prasanna Pattnaik through education, healthcare, agriculture, civic sense, and employment across India.",
+      "Official Prasanna Patnaik Trust website. Shri Prasanna Pattnaik Merit Scholarship applications open for Odisha students.",
     images: ["/images/trust-logo-large.png"],
   },
   alternates: {
@@ -97,6 +81,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="min-h-full flex flex-col">
         <JsonLd />

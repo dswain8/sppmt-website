@@ -3,11 +3,13 @@ import Image from "next/image";
 
 const QUICK_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About Shri Prasanna Pattnaik", href: "/founder" },
   { label: "About Us", href: "/about" },
-  { label: "Our Programs", href: "/programs" },
+  { label: "Our Inspiration", href: "/founder" },
+  { label: "Activities", href: "/activities" },
+  { label: "Scholarship", href: "/scholarship" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Contact Us", href: "/contact" },
+  { label: "Donate", href: "/donate" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Footer() {
@@ -15,7 +17,6 @@ export default function Footer() {
     <footer className="bg-green text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Trust info */}
           <div>
             <div className="flex items-center gap-3 mb-4">
               <Image
@@ -35,15 +36,14 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-green-light/80 text-sm leading-relaxed">
+              Educate &bull; Empower &bull; Elevate
+              <br />
               Estd. 2025
               <br />
-              Bhubaneswar, Odisha
-              <br />
-              India
+              Bhubaneswar, Odisha, India
             </p>
           </div>
 
-          {/* Quick links */}
           <div>
             <h3 className="font-semibold mb-4 text-gold">Quick Links</h3>
             <ul className="space-y-2">
@@ -60,16 +60,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h3 className="font-semibold mb-4 text-gold">Contact Us</h3>
             <div className="space-y-3 text-sm text-white/80">
               <p>
-                Shri Prasanna Pattnaik Memorial Trust
+                Sri Prasanna Pattnaik Memorial Trust
                 <br />
-                Bhubaneswar, Odisha
-                <br />
-                India
+                Bhubaneswar, Odisha, India
               </p>
               <p>
                 <span className="text-gold">Email:</span>{" "}
@@ -105,7 +102,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Memorial ribbon */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <p className="text-center text-sm text-white/60 italic">

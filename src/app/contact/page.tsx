@@ -3,16 +3,23 @@ import PageBanner from "@/components/PageBanner";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact & Volunteer",
   description:
-    "Get in touch with the Shri Prasanna Pattnaik Memorial Trust to donate, volunteer, or learn more about our work in Odisha.",
+    "Contact the Shri Prasanna Pattnaik Memorial Trust to donate, volunteer, or learn more about our work across Odisha.",
 };
+
+const VOLUNTEER_AREAS = [
+  "Education Support & Scholarships",
+  "Cleanliness Drive & Tree Plantation",
+  "Women's Livelihood & Handicraft",
+  "Healthcare & Medical Assistance",
+];
 
 export default function ContactPage() {
   return (
     <>
       <PageBanner
-        title="Reach Out to Us"
+        title="Contact & Volunteer"
         subtitle="Get in touch to donate, volunteer, or learn more"
         imageSrc="/images/brahmani-bridge-2.png"
         imageAlt="Brahmani Setu bridge"
@@ -30,7 +37,6 @@ export default function ContactPage() {
 
           <AnimateOnScroll delay={100}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Address */}
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 flex gap-4">
                 <div className="w-11 h-11 shrink-0 rounded-full bg-green-light flex items-center justify-center">
                   <svg className="w-5 h-5 text-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -48,7 +54,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Email */}
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 flex gap-4">
                 <div className="w-11 h-11 shrink-0 rounded-full bg-green-light flex items-center justify-center">
                   <svg className="w-5 h-5 text-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -66,7 +71,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Phone */}
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 flex gap-4">
                 <div className="w-11 h-11 shrink-0 rounded-full bg-green-light flex items-center justify-center">
                   <svg className="w-5 h-5 text-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -83,7 +87,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Instagram */}
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 flex gap-4">
                 <div className="w-11 h-11 shrink-0 rounded-full bg-green-light flex items-center justify-center">
                   <svg className="w-5 h-5 text-green" fill="currentColor" viewBox="0 0 24 24">
@@ -107,7 +110,61 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map */}
+      <section id="volunteer" className="py-16 bg-cream scroll-mt-20">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimateOnScroll>
+            <h2 className="text-2xl font-bold text-green mb-4 text-center">
+              Volunteer With Us
+            </h2>
+            <p className="text-center text-gray-600 leading-relaxed mb-8">
+              Whether you can help at a tree plantation drive, support an education
+              distribution, assist at a health camp, or contribute your skills remotely —
+              we welcome volunteers who share our commitment to Odisha&apos;s communities.
+            </p>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={100}>
+            <ul className="space-y-2 mb-8">
+              {VOLUNTEER_AREAS.map((area) => (
+                <li
+                  key={area}
+                  className="flex items-center gap-3 text-gray-700 text-sm bg-white rounded-lg px-4 py-3 border border-gray-100"
+                >
+                  <svg className="w-4 h-4 text-orange shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {area}
+                </li>
+              ))}
+            </ul>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={200}>
+            <div className="bg-white rounded-xl p-8 border border-orange/10 text-center">
+              <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                Email or call us with your name, location, skills, and which
+                programs you&apos;d like to support. We&apos;ll reach out when
+                opportunities come up in your area.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="mailto:prasannapattnaiktrust@gmail.com?subject=Volunteer%20Registration"
+                  className="bg-orange hover:bg-orange-dark text-white font-semibold px-6 py-3 rounded-md transition-colors text-sm"
+                >
+                  Email to Volunteer
+                </a>
+                <a
+                  href="tel:+919439725460"
+                  className="bg-green hover:bg-green-dark text-white font-semibold px-6 py-3 rounded-md transition-colors text-sm"
+                >
+                  Call +91 9439725460
+                </a>
+              </div>
+            </div>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
       <section className="h-96">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59834.06!2d85.82!3d20.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1b5c3e3e36b2f7%3A0x4c6a4f4d0e5e2b0e!2sBhuban%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"

@@ -1,16 +1,22 @@
-const SITE_URL = "https://sppmt.org";
+import {
+  ORGANIZATION_ALTERNATE_NAMES,
+  PERSON_ALTERNATE_NAMES,
+  SCHOLARSHIP_NAME,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
 
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "NGO",
   "@id": `${SITE_URL}/#organization`,
-  name: "Shri Prasanna Pattnaik Memorial Trust",
-  alternateName: ["SPPMT", "Prasanna Pattnaik Memorial Trust", "Prasanna Pattnaik Trust"],
+  name: SITE_NAME,
+  alternateName: ORGANIZATION_ALTERNATE_NAMES,
   url: SITE_URL,
   logo: `${SITE_URL}/images/trust-logo-large.png`,
   image: `${SITE_URL}/images/trust-logo-large.png`,
   description:
-    "The Shri Prasanna Pattnaik Memorial Trust (SPPMT) was established in 2025 in Bhubaneswar, Odisha, to carry forward the lifelong vision of Shri Prasanna Pattnaik (1948-2025), the first BJP MLA of Odisha. The trust works in education, healthcare, agriculture, civic sense, and employment.",
+    "The Sri Prasanna Patnaik Memorial Trust (Prasanna Patnaik Trust / SPPMT) was established in 2025 in Bhubaneswar, Odisha, to carry forward the lifelong vision of Shri Prasanna Pattnaik (1948–2025). The trust runs the Shri Prasanna Pattnaik Merit Scholarship and works in education, healthcare, skill development, agriculture, and civic sense.",
   foundingDate: "2025",
   foundingLocation: {
     "@type": "Place",
@@ -41,11 +47,16 @@ const organizationSchema = {
       contactType: "general",
       availableLanguage: ["English", "Hindi", "Odia"],
     },
+    {
+      "@type": "ContactPoint",
+      telephone: "+91-9972366933",
+      contactType: "customer support",
+      availableLanguage: ["English", "Hindi", "Odia"],
+      description: "Scholarship applications via WhatsApp",
+    },
   ],
   email: "prasannapattnaiktrust@gmail.com",
-  sameAs: [
-    "https://www.instagram.com/prasannapattnaiktrust",
-  ],
+  sameAs: ["https://www.instagram.com/prasannapattnaiktrust"],
   areaServed: [
     {
       "@type": "Place",
@@ -57,12 +68,14 @@ const organizationSchema = {
     },
   ],
   knowsAbout: [
-    "Education in Odisha",
-    "Healthcare in rural India",
-    "Agriculture development",
-    "Civic engagement",
-    "Employment and vocational training",
-    "Community development in Dhenkanal district",
+    "Shri Prasanna Pattnaik Merit Scholarship",
+    "Sri Prasanna Patnaik Merit Scholarship",
+    "Prasanna Patnaik Merit Scholarship",
+    "Healthcare in Odisha",
+    "Education and scholarships in Odisha",
+    "Skill development and livelihood",
+    "Agriculture in Odisha",
+    "Civic sense and environment",
   ],
 };
 
@@ -71,10 +84,10 @@ const websiteSchema = {
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
   url: SITE_URL,
-  name: "Shri Prasanna Pattnaik Memorial Trust",
-  alternateName: "SPPMT",
+  name: SITE_NAME,
+  alternateName: ORGANIZATION_ALTERNATE_NAMES,
   description:
-    "Official website of the Shri Prasanna Pattnaik Memorial Trust (SPPMT), honoring the legacy of the first BJP MLA of Odisha through education, healthcare, and community development.",
+    "Official website of the Shri Prasanna Pattnaik Memorial Trust (Prasanna Patnaik Trust). Home of the Shri Prasanna Pattnaik Merit Scholarship and community programs across Odisha.",
   publisher: {
     "@id": `${SITE_URL}/#organization`,
   },
@@ -86,7 +99,7 @@ const founderSchema = {
   "@type": "Person",
   "@id": `${SITE_URL}/#founder`,
   name: "Shri Prasanna Pattnaik",
-  alternateName: ["Prasanna Pattnaik", "Prasanna Patnaik"],
+  alternateName: PERSON_ALTERNATE_NAMES,
   birthDate: "1948-06-01",
   deathDate: "2025-05-30",
   birthPlace: {
@@ -98,7 +111,7 @@ const founderSchema = {
     name: "India",
   },
   description:
-    "Shri Prasanna Pattnaik (1948-2025) was a social worker, legislator, and the first BJP MLA of Odisha. A three-time MLA from Kamakhyanagar, he was detained under MISA during the Emergency. He founded schools, colleges, healthcare centres, and a blood bank across Dhenkanal district, Odisha.",
+    "Shri Prasanna Patnaik (1948–2025), also known as Prasanna Patnaik, was a social worker, legislator, and the first BJP MLA of Odisha. A three-time MLA from Kamakhyanagar, he founded schools, colleges, healthcare centres, and a blood bank across Dhenkanal district. The Shri Prasanna Patnaik Memorial Trust honors his legacy.",
   jobTitle: "Social Worker and Legislator",
   knowsAbout: [
     "Education in Odisha",
@@ -116,6 +129,38 @@ const founderSchema = {
   ],
   image: `${SITE_URL}/images/prasanna-patnaik-bw-portrait.png`,
   sameAs: [],
+  mainEntityOfPage: `${SITE_URL}/founder`,
+};
+
+const scholarshipSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOccupationalProgram",
+  "@id": `${SITE_URL}/scholarship#program`,
+  name: SCHOLARSHIP_NAME,
+  alternateName: [
+    "Prasanna Patnaik Merit Scholarship",
+    "Prasanna Pattnaik Merit Scholarship",
+    "Sri Prasanna Patnaik Merit Scholarship",
+    "SPPMT Merit Scholarship",
+  ],
+  description:
+    "Merit and need-based scholarship for school and college students across Odisha, offered by the Shri Prasanna Patnaik Memorial Trust. Applications accepted until 30 June each year.",
+  url: `${SITE_URL}/scholarship`,
+  provider: {
+    "@id": `${SITE_URL}/#organization`,
+  },
+  occupationalCategory: "Student scholarship",
+  educationalProgramMode: "full-time",
+  applicationDeadline: "2026-06-30",
+  offers: {
+    "@type": "Offer",
+    url: `${SITE_URL}/scholarship`,
+    eligibleRegion: {
+      "@type": "Place",
+      name: "Odisha, India",
+    },
+    availability: "https://schema.org/InStock",
+  },
 };
 
 export default function JsonLd() {
@@ -137,6 +182,12 @@ export default function JsonLd() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(founderSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(scholarshipSchema),
         }}
       />
     </>

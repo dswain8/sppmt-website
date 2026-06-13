@@ -7,7 +7,7 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about the Shri Prasanna Pattnaik Memorial Trust, established in 2025 in Bhubaneswar, Odisha. Dedicated to education, healthcare, agriculture, civic sense, and employment.",
+    "Learn about the Sri Prasanna Pattnaik Memorial Trust, established in 2025 in Bhubaneswar, Odisha. Healthcare, education, livelihood, environment, and community development.",
 };
 
 const TRUSTEES = [
@@ -63,9 +63,9 @@ export default function AboutPage() {
                   started by Shri Prasanna Pattnaik during his lifetime.
                 </p>
                 <p className="text-gray-600 leading-relaxed mb-4">
-                  Based in Bhubaneswar, Odisha, the trust focuses on education,
-                  healthcare, agriculture, civic sense, and employment
-                  generation across India, starting from the communities that
+                  Based in Bhubaneswar, Odisha, the trust focuses on healthcare,
+                  women&apos;s livelihood, education, environmental sustainability,
+                  and community development across the communities that
                   Shri Pattnaik served for over five decades.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
@@ -89,10 +89,10 @@ export default function AboutPage() {
                 Our Mission
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed">
-                To uplift communities across India through sustainable
-                initiatives in education, healthcare, agriculture, civic sense,
-                and employment; honoring the legacy of Shri Prasanna Pattnaik
-                by starting from Odisha and expanding nationwide.
+                To uplift communities across Odisha through sustainable
+                initiatives in healthcare, women&apos;s livelihood, education,
+                environmental sustainability, and community development;
+                honoring the legacy of Shri Prasanna Pattnaik.
               </p>
             </div>
           </div>
@@ -184,16 +184,16 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/contact"
+                href="/donate"
                 className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
               >
-                Reach Out to Us
+                Donate
               </Link>
               <Link
-                href="/programs"
+                href="/activities"
                 className="bg-green hover:bg-green-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
               >
-                View Our Programs
+                View Our Activities
               </Link>
             </div>
           </div>

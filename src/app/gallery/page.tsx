@@ -5,7 +5,8 @@ import GalleryGrid from "./GalleryGrid";
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "Photo gallery of the Shri Prasanna Pattnaik Memorial Trust's work in education, healthcare, infrastructure, and community development across Dhenkanal, Odisha.",
+    "Photo gallery of Sri Prasanna Pattnaik Memorial Trust activities — healthcare, education, livelihood, environment, and community development across Odisha.",
+  keywords: ["Odisha NGO", "Community Development Odisha", "Tree Plantation Odisha"],
 };
 
 export default function GalleryPage() {
@@ -14,7 +15,7 @@ export default function GalleryPage() {
       <PageBanner
         title="Gallery"
         subtitle="Our Work in Pictures"
-        imageSrc="/images/students-assembly-outdoor.png"
+        imageSrc="/images/activities/DSC09450.jpg"
         imageAlt="Students at a school assembly"
       />
       <GalleryGrid />

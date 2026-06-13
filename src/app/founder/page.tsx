@@ -6,9 +6,21 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 import HisWorkTabs from "@/components/HisWorkTabs";
 
 export const metadata: Metadata = {
-  title: "About Shri Prasanna Pattnaik",
+  title: "Shri Prasanna Patnaik | Our Inspiration",
   description:
-    "Tribute to Shri Prasanna Pattnaik (1948-2025), the first BJP MLA of Odisha, three-time legislator from Kamakhyanagar, and founder of schools and colleges in Odisha.",
+    "Biography of Shri Prasanna Patnaik (1948–2025) — social worker, first BJP MLA of Odisha, founder of schools, colleges, and healthcare centres. Honored by the Shri Prasanna Pattnaik Memorial Trust.",
+  keywords: [
+    "Sri Prasanna Patnaik",
+    "Shri Prasanna Patnaik",
+    "Prasanna Patnaik",
+    "Prasanna Pattnaik",
+    "first BJP MLA Odisha",
+    "Kamakhyanagar MLA",
+    "Dhenkanal",
+  ],
+  alternates: {
+    canonical: "https://sppmt.org/founder",
+  },
 };
 
 const TIMELINE = [

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function JoinPage() {
-  redirect("/donate");
+  redirect("/contact#volunteer");
 }
