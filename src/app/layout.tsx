@@ -5,8 +5,6 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import JsonLd from "@/components/JsonLd";
 import {
-  ORGANIZATION_ALTERNATE_NAMES,
-  SCHOLARSHIP_NAME,
   SEO_KEYWORDS,
   SITE_NAME,
   SITE_URL,
@@ -19,7 +17,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Official website of the Shri Prasanna Pattnaik Memorial Trust (Prasanna Patnaik Trust). Apply for the Shri Prasanna Pattnaik Merit Scholarship. Education, healthcare, skill development, agriculture, and civic sense across Odisha.",
+    "Official website of the Shri Prasanna Pattnaik Memorial Trust (Prasanna Patnaik Trust). Donations eligible for tax deduction under Section 80G. Education, healthcare, skill development, agriculture, and civic sense across Odisha.",
   keywords: SEO_KEYWORDS,
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,
@@ -29,9 +27,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} | ${SCHOLARSHIP_NAME}`,
+    title: `${SITE_NAME} | SPPMT`,
     description:
-      "Honoring Shri Prasanna Pattnaik (1948–2025). Apply for the Prasanna Patnaik Merit Scholarship. Official website of the Prasanna Patnaik Trust in Bhubaneswar, Odisha.",
+      "Honoring Shri Prasanna Pattnaik (1948–2025). Donate with Section 80G tax benefits. Education, healthcare, and community programs across Odisha.",
     images: [
       {
         url: "/images/trust-logo-large.png",
@@ -43,9 +41,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | ${SCHOLARSHIP_NAME}`,
+    title: `${SITE_NAME} | SPPMT`,
     description:
-      "Official Prasanna Patnaik Trust website. Shri Prasanna Pattnaik Merit Scholarship applications open for Odisha students.",
+      "Official Prasanna Patnaik Trust website. Donations eligible under Section 80G.",
     images: ["/images/trust-logo-large.png"],
   },
   alternates: {

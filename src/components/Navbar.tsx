@@ -24,7 +24,6 @@ const NAV_ITEMS: NavItem[] = [
       href: `/activities/${area.slug}`,
     })),
   },
-  { label: "Scholarship", href: "/scholarship" },
   { label: "Gallery", href: "/gallery" },
   { label: "Donate", href: "/donate" },
   { label: "Contact", href: "/contact" },

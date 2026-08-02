@@ -17,7 +17,7 @@ export const FOCUS_AREAS: FocusArea[] = [
     href: "/education",
     icon: "🎓",
     description:
-      "Scholarships, educational kit distribution, school support, and student mentorship to help children across Odisha learn with dignity.",
+      "Educational kit distribution, school support, and student mentorship to help children across Odisha learn with dignity.",
     bannerImage: `${IMAGE_BASE}/activities/DSC09450.jpg`,
     bannerAlt: "Students receiving educational kits from the trust",
   },

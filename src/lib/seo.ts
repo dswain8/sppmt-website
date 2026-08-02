@@ -11,16 +11,12 @@ export const SEO_KEYWORDS = [
   "Prasanna Pattnaik Trust",
   "Shri Prasanna Pattnaik Memorial Trust",
   "Sri Prasanna Patnaik Memorial Trust",
-  "Shri Prasanna Pattnaik Merit Scholarship",
-  "Sri Prasanna Patnaik Merit Scholarship",
-  "Prasanna Patnaik Merit Scholarship",
-  "Prasanna Pattnaik Merit Scholarship",
   "SPPMT",
   "sppmt.org",
   "Odisha NGO",
-  "Scholarship Trust Odisha",
-  "Merit scholarship Odisha",
-  "Odisha scholarship",
+  "Section 80G donation",
+  "80G tax deduction Odisha",
+  "Donate Odisha trust",
   "Bhubaneswar",
   "Dhenkanal",
   "Odisha trust",
@@ -39,9 +35,7 @@ export const ORGANIZATION_ALTERNATE_NAMES = [
 
 export const PERSON_ALTERNATE_NAMES = [
   "Sri Prasanna Patnaik",
-  "Shri Prasanna Pattnaik",
+  "Shri Prasanna Patnaik",
   "Prasanna Patnaik",
   "Prasanna Pattnaik",
 ];
-
-export const SCHOLARSHIP_NAME = "Shri Prasanna Pattnaik Merit Scholarship";

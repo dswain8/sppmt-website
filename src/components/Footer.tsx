@@ -6,7 +6,6 @@ const QUICK_LINKS = [
   { label: "About Us", href: "/about" },
   { label: "Our Inspiration", href: "/founder" },
   { label: "Activities", href: "/activities" },
-  { label: "Scholarship", href: "/scholarship" },
   { label: "Gallery", href: "/gallery" },
   { label: "Donate", href: "/donate" },
   { label: "Contact", href: "/contact" },
@@ -42,6 +41,12 @@ export default function Footer() {
               <br />
               Bhubaneswar, Odisha, India
             </p>
+            <Link
+              href="/donate"
+              className="inline-flex mt-4 items-center gap-2 rounded-md bg-white/15 hover:bg-white/25 border border-white/25 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors"
+            >
+              80G Tax Benefits · Donate
+            </Link>
           </div>
 
           <div>

@@ -11,7 +11,6 @@ const SEGMENT_LABELS: Record<string, string> = {
   cleanliness: "Cleanliness",
   livelihood: "Livelihood",
   healthcare: "Healthcare",
-  scholarship: "Scholarship",
   gallery: "Gallery",
   donate: "Donate",
   contact: "Contact",

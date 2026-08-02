@@ -5,20 +5,20 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 import ImageCarousel from "@/components/ImageCarousel";
 import HomeHero from "@/components/HomeHero";
 import { FOCUS_AREAS } from "@/lib/focus-areas";
-import { SCHOLARSHIP_NAME, SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: `${SITE_NAME} | ${SCHOLARSHIP_NAME}`,
+  title: SITE_NAME,
   description:
-    "Official website of the Shri Prasanna Pattnaik Memorial Trust (Prasanna Patnaik Trust). Apply for the Shri Prasanna Pattnaik Merit Scholarship for meritorious school and college students across Odisha.",
+    "Official website of the Shri Prasanna Pattnaik Memorial Trust (Prasanna Patnaik Trust). Donations eligible for tax deduction under Section 80G. Education, healthcare, skill development, agriculture, and civic sense across Odisha.",
   keywords: SEO_KEYWORDS,
   alternates: {
     canonical: SITE_URL,
   },
   openGraph: {
-    title: `${SITE_NAME} | ${SCHOLARSHIP_NAME}`,
+    title: SITE_NAME,
     description:
-      "Honoring Shri Prasanna Pattnaik. Apply for the Prasanna Patnaik Merit Scholarship. Education, healthcare, skill development, agriculture, and civic sense across Odisha.",
+      "Honoring Shri Prasanna Pattnaik. Donate with Section 80G tax benefits. Education, healthcare, skill development, agriculture, and civic sense across Odisha.",
     url: SITE_URL,
   },
 };
@@ -144,7 +144,7 @@ export default function Home() {
                 </p>
                 <div className="space-y-3 mb-6">
                   {[
-                    "Education support & scholarship programs",
+                    "Educational kit distribution & student support",
                     "Healthcare & patient assistance",
                     "Skill development & livelihood training",
                     "Agricultural support for rural farmers",
@@ -171,39 +171,6 @@ export default function Home() {
         </section>
       </AnimateOnScroll>
 
-      {/* Scholarship CTA */}
-      <AnimateOnScroll>
-        <section className="py-16 bg-cream border-y border-orange/10">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <p className="text-orange font-semibold text-sm uppercase tracking-wide mb-2">
-              Now Accepting Applications
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-green mb-4">
-              {SCHOLARSHIP_NAME}
-            </h2>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              The Prasanna Patnaik Merit Scholarship supports deserving students
-              across Odisha. Download the form, fill it in, and submit via
-              WhatsApp before 30 June.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/scholarship"
-                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
-              >
-                Scholarship Details &amp; Apply
-              </Link>
-              <a
-                href="https://wa.me/919972366933"
-                className="border-2 border-green text-green hover:bg-green-light font-semibold px-8 py-3 rounded-md transition-colors"
-              >
-                WhatsApp: 99723 66933
-              </a>
-            </div>
-          </div>
-        </section>
-      </AnimateOnScroll>
-
       {/* Donation CTA */}
       <section className="relative py-20 overflow-hidden">
         <Image
@@ -218,9 +185,13 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Help Us Continue His Legacy
             </h2>
+            <p className="inline-flex items-center gap-2 rounded-md bg-white text-green text-xs font-bold uppercase tracking-wide px-3 py-1.5 mb-4">
+              Section 80G · Tax benefits on donations
+            </p>
             <p className="text-white/80 mb-8">
               Your donation supports education, healthcare, skill development,
-              agriculture, and civic sense programs across Odisha.
+              agriculture, and civic sense programs across Odisha. Eligible
+              contributions qualify for tax deduction under Section 80G.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

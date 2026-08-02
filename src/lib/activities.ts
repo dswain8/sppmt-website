@@ -28,18 +28,18 @@ const ACTIVITY_BASE = "/images/activities";
 export const ACTIVITY_AREAS: ActivityArea[] = [
   {
     slug: "education",
-    title: "Education Support & Scholarship Programs",
+    title: "Education Support Programs",
     shortTitle: "Education",
     icon: "🎓",
     description:
-      "Supporting students across Odisha through scholarship programs, educational kit distribution, student mentorship, and school support initiatives.",
+      "Supporting students across Odisha through educational kit distribution, student mentorship, and school support initiatives.",
     bannerImage: `${ACTIVITY_BASE}/DSC09450.jpg`,
     bannerAlt: "Students receiving educational kits from the trust",
     examples: [
-      "Merit and need-based scholarships",
       "Educational kit distribution",
       "Student mentorship programs",
       "School support initiatives",
+      "Community education outreach",
     ],
     galleryImages: [
       { src: `${ACTIVITY_BASE}/DSC09450.jpg`, alt: "Students with SPPMT educational kits" },

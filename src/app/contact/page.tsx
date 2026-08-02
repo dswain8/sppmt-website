@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const VOLUNTEER_AREAS = [
-  "Education Support & Scholarships",
+  "Education Support",
   "Cleanliness Drive & Tree Plantation",
   "Women's Livelihood & Handicraft",
   "Healthcare & Medical Assistance",

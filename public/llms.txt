@@ -2,14 +2,13 @@
 
 > Official website of the Shri Prasanna Pattnaik Memorial Trust (also known as the Prasanna Patnaik Trust / Sri Prasanna Patnaik Memorial Trust), a nonprofit organization established in 2025 in Bhubaneswar, Odisha, India.
 
-## Shri Prasanna Pattnaik Merit Scholarship
+## Donations (Section 80G)
 
-The trust has launched the **Shri Prasanna Pattnaik Merit Scholarship** (Prasanna Patnaik Merit Scholarship) for meritorious and financially deserving school and college students across Odisha.
+The trust accepts donations eligible for tax deduction under Section 80G of the Income Tax Act (subject to registration and approvals). Official donation receipts are issued after payment verification.
 
-- Scholarship page: https://sppmt.org/scholarship
-- Application deadline: 30 June each year
-- Apply via WhatsApp: +91 99723 66933
-- Download forms: https://sppmt.org/documents/scholarship-english.docx
+- Donate: https://sppmt.org/donate
+- Bank transfer to UCO Bank, Saheed Nagar, Bhubaneswar
+- Confirm payment on the donate page to request a receipt
 
 ## About the Trust
 
@@ -28,24 +27,22 @@ Shri Prasanna Pattnaik (also spelled Prasanna Patnaik; 1 June 1948 – 30 May 20
 - Location: Bhubaneswar, Odisha, India
 - Email: prasannapattnaiktrust@gmail.com
 - Phone: +91 9439725460, +91 9178256179
-- Scholarship WhatsApp: +91 99723 66933
 - Instagram: @prasannapattnaiktrust
 
 ## Focus Areas
 
-1. Education: Scholarships, school infrastructure, e-libraries, vocational training
-2. Healthcare: Health camps, blood donation drives, maternal care, rural health
+1. Education: Educational kits, school support, student mentorship
+2. Healthcare: Health camps, patient assistance, women's health awareness
 3. Skill Development: Vocational training, handicraft, women empowerment
 4. Agriculture: Sustainable farming, crop diversification, farmer training
 5. Civic Sense: Environmental awareness, cleanliness drives, tree plantation
 
 ## Pages
 
-- / — Home (includes Shri Prasanna Pattnaik Merit Scholarship banner)
-- /scholarship — Shri Prasanna Pattnaik Merit Scholarship (apply, download forms, FAQs)
+- / — Home
+- /donate — Section 80G donations and receipt confirmation
 - /founder — About Shri Prasanna Pattnaik (biography, timeline, his work)
 - /about — About the Trust (mission, vision, board of trustees)
 - /activities — Trust activities and photo galleries
 - /gallery — Photo Gallery
-- /donate — Donate to the trust
 - /contact — Contact Us (email, phone, address, Instagram)

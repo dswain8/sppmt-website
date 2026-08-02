@@ -26,10 +26,12 @@ Open [http://localhost:3000](http://localhost:3000).
 | Our Founder | `/founder` |
 | Activities | `/activities` |
 | Scholarship | `/scholarship` |
-| Donate | `/donate` |
-| Volunteer | `/volunteer` |
+| Donate (Section 80G) | `/donate` |
+| Volunteer | `/volunteer` → `/contact#volunteer` |
 | Gallery | `/gallery` |
 | Contact | `/contact` |
+
+`/scholarship` redirects to `/activities/education` (applications closed after 30 June).
 
 Old URLs (e.g. `/programs`, `/healthcare`) redirect to the new activity pages.
 
@@ -37,15 +39,13 @@ Old URLs (e.g. `/programs`, `/healthcare`) redirect to the new activity pages.
 
 - **Activity photos**: Add to `public/images/activities/`, then update `src/lib/activities.ts`
 - **Page text**: Edit the corresponding `page.tsx` in `src/app/`
-- **Scholarship forms**: Replace files in `public/documents/`
-- **Bank details**: Edit defaults in `src/lib/donation.ts` or set env vars (see `.env.example`)
+- **Bank details / PAN / 80G numbers**: Edit defaults in `src/lib/donation.ts` or set env vars (see `.env.example`)
 - **Navigation**: Update `src/components/Navbar.tsx` and `src/components/Footer.tsx`
 
 ## Forms (no backend)
 
-- **Scholarship**: Download form → submit via WhatsApp (99723 66933)
-- **Donations**: Bank transfer → email confirmation to prasannapattnaiktrust@gmail.com
-- **Volunteers**: Email or phone via `/volunteer` or `/contact`
+- **Donations**: Bank transfer → confirm via form on `/donate` (WhatsApp + email) → official receipt within 7 working days
+- **Volunteers**: Email or phone via `/contact`
 
 ## Deploying to Vercel
 
@@ -53,4 +53,4 @@ Old URLs (e.g. `/programs`, `/healthcare`) redirect to the new activity pages.
 2. Import in [vercel.com](https://vercel.com) — auto-detects Next.js
 3. Deploy — site goes live at your domain (e.g. sppmt.org)
 
-Optional: add donation env vars in Vercel if bank details change without a code update.
+Optional: add donation env vars in Vercel if bank details or registration numbers change without a code update.
