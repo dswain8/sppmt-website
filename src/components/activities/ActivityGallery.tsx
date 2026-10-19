@@ -22,12 +22,9 @@ export default function ActivityGallery({
 
   return (
     <>
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-12">
-            {title}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <section className="section shell">
+        <div className="eyebrow">{title}</div>
+        <div className="notes-grid" style={{ marginTop: 24 }}>
             {images.map((img, i) => (
               <AnimateOnScroll key={img.src} delay={i * 60}>
                 <button
@@ -47,7 +44,6 @@ export default function ActivityGallery({
                 </button>
               </AnimateOnScroll>
             ))}
-          </div>
         </div>
       </section>
 
