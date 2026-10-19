@@ -136,11 +136,18 @@ export default function Navbar() {
             )}
           </div>
 
-          <button
-            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-orange"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle navigation menu"
-          >
+          <div className="flex items-center gap-2 lg:hidden">
+            <Link
+              href="/donate"
+              className="bg-orange text-white text-sm font-semibold px-3 py-1.5"
+            >
+              Donate
+            </Link>
+            <button
+              className="p-2 rounded-md text-gray-700 hover:text-orange"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle navigation menu"
+            >
             {mobileOpen ? (
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

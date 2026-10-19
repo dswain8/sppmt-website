@@ -51,6 +51,7 @@ export default function BackNav({
       aria-label="Page navigation"
       className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 ${className}`}
     >
+      {breadcrumbs.length <= 1 && (
       <button
         type="button"
         onClick={handleBack}
@@ -72,6 +73,7 @@ export default function BackNav({
         </svg>
         {backLabel}
       </button>
+      )}
 
       {breadcrumbs.length > 1 && (
         <ol className="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm">

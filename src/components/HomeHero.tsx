@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function HomeHero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-end overflow-hidden">
+    <section className="relative min-h-[70vh] flex items-end overflow-hidden">
       <Image
         src="/images/brahmani-bridge-1.png"
         alt="Brahmani Setu bridge over the river in Dhenkanal"
@@ -11,7 +11,7 @@ export default function HomeHero() {
         className="object-cover object-bottom"
         priority
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/25 to-transparent" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-14 sm:pb-20">
         <p className="text-white text-sm tracking-[0.18em] uppercase mb-4">
@@ -25,10 +25,12 @@ export default function HomeHero() {
           In Loving Memory of Shri Prasanna Pattnaik, A True Son of the Soil
         </p>
         <p className="mt-4 text-sm tracking-[0.14em] uppercase text-white/85">
-          Educate · Empower · Elevate · Estd. 2025
+          Educate · Empower · Elevate
         </p>
-        <p className="mt-5 text-sm text-white/90">
-          Eligible donations qualify for tax deduction under Section 80G.
+        <p className="mt-3 text-sm text-white/90">
+          Education, healthcare, skill development, agriculture, and civic sense
+          across Odisha. Eligible donations qualify for tax deduction under
+          Section 80G.
         </p>
         <div className="mt-8 flex flex-col items-start gap-4">
           <Link
