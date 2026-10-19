@@ -77,7 +77,6 @@ export default function Home() {
             </span>
             <strong>School bags and learning supplies, distributed in rural Odisha.</strong>
           </div>
-          <span className="visual-index">01 / Students with SPPMT school bags.</span>
         </div>
       </section>
 
