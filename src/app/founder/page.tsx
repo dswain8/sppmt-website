@@ -130,7 +130,7 @@ export default function FounderPage() {
               className="w-full h-auto border border-black/15 bg-white"
             />
             <div>
-              <ul className="space-y-2 text-lg text-gray-700">
+              <ul className="space-y-3 font-serif text-2xl text-green-dark">
                 <li>Social Worker</li>
                 <li>Legislator</li>
                 <li>First BJP MLA of Odisha</li>
