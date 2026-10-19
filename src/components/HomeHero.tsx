@@ -21,8 +21,10 @@ export default function HomeHero() {
           </p>
           <p className="mt-4 max-w-md text-sm sm:text-base text-gray-700 leading-relaxed">
             Education, healthcare, skill development, agriculture, and civic
-            sense across Odisha. Eligible donations qualify for tax deduction
-            under Section 80G.
+            sense across Odisha.
+          </p>
+          <p className="mt-2 max-w-md text-sm sm:text-base text-gray-700 leading-relaxed">
+            Eligible donations qualify for tax deduction under Section 80G.
           </p>
           <div className="mt-8 flex flex-col items-start gap-4">
             <Link
