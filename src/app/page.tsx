@@ -29,13 +29,13 @@ export default function Home() {
 
       <section className="bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 md:gap-14 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[minmax(16rem,22rem)_1fr] gap-8 md:gap-16 items-end">
             <Image
               src="/images/prasanna-patnaik-bw-portrait.png"
               alt="Shri Prasanna Pattnaik portrait"
-              width={440}
-              height={528}
-              className="w-full max-w-[220px] h-auto"
+              width={640}
+              height={768}
+              className="w-full h-auto border border-black/15 bg-white"
             />
             <div>
               <p className="text-[11px] uppercase tracking-[0.22em] text-gold font-semibold mb-4">

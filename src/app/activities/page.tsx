@@ -22,7 +22,7 @@ export default function ActivitiesPage() {
       <PageBanner
         title="Our Activities"
         subtitle="Four pillars of community impact in Odisha"
-        imageSrc="/images/activities/DSC09450.jpg"
+        imageSrc="/images/students-assembly-outdoor.png"
         imageAlt="Trust activities across Odisha"
       />
 

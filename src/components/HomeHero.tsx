@@ -8,35 +8,29 @@ export default function HomeHero() {
         src="/images/brahmani-bridge-1.png"
         alt="Brahmani Setu bridge over the river in Dhenkanal"
         fill
-        className="object-cover object-[center_70%]"
+        className="object-cover object-bottom"
         priority
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12 sm:pb-16">
-        <p className="text-white/80 text-sm tracking-[0.18em] uppercase mb-4">
-          1948 — 2025
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-14 sm:pb-20">
+        <p className="text-white text-sm tracking-[0.18em] uppercase mb-4">
+          1948 — 2025 · Bhubaneswar, Odisha
         </p>
-        <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-medium text-white leading-[1.02] max-w-4xl">
+        <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-medium text-white leading-[1.02] max-w-3xl">
           Shri Prasanna Pattnaik
           <span className="block">Memorial Trust</span>
         </h1>
-        <p className="mt-5 max-w-xl text-base sm:text-lg text-white/90 italic font-serif">
+        <p className="mt-5 max-w-xl text-lg sm:text-xl text-white italic font-serif">
           In Loving Memory of Shri Prasanna Pattnaik, A True Son of the Soil
         </p>
-        <p className="mt-4 text-xs sm:text-sm tracking-[0.16em] uppercase text-white/70">
-          Educate · Empower · Elevate
-          <span className="mx-2 text-white/30">/</span>
-          Estd. 2025
-          <span className="mx-2 text-white/30">/</span>
-          Bhubaneswar, Odisha
+        <p className="mt-4 text-sm tracking-[0.14em] uppercase text-white/85">
+          Educate · Empower · Elevate · Estd. 2025
         </p>
-        <p className="mt-6 max-w-xl text-sm sm:text-base text-white/80 leading-relaxed">
-          Your contribution funds education, healthcare, skill development,
-          agriculture, and civic sense programs. Eligible donations qualify
-          for tax deduction under Section 80G.
+        <p className="mt-5 text-sm text-white/90">
+          Eligible donations qualify for tax deduction under Section 80G.
         </p>
-        <div className="mt-8 flex flex-col sm:flex-row gap-3">
+        <div className="mt-8 flex flex-col items-start gap-4">
           <Link
             href="/donate"
             className="inline-flex items-center justify-center bg-orange hover:bg-orange-dark text-white font-semibold px-7 py-3 text-sm sm:text-base transition-colors"
@@ -45,7 +39,7 @@ export default function HomeHero() {
           </Link>
           <Link
             href="/about"
-            className="inline-flex items-center justify-center border border-white/50 text-white hover:bg-white/10 font-semibold px-7 py-3 text-sm sm:text-base transition-colors"
+            className="text-white font-semibold underline underline-offset-4 decoration-white/40 hover:decoration-white"
           >
             Learn About Us
           </Link>

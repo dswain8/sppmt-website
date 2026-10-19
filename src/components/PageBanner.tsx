@@ -4,6 +4,7 @@ import BackNav from "@/components/BackNav";
 interface PageBannerProps {
   title: string;
   subtitle?: string;
+  eyebrow?: string;
   imageSrc?: string;
   imageAlt?: string;
 }
@@ -11,6 +12,7 @@ interface PageBannerProps {
 export default function PageBanner({
   title,
   subtitle,
+  eyebrow = "Shri Prasanna Pattnaik Memorial Trust",
   imageSrc,
   imageAlt,
 }: PageBannerProps) {
@@ -20,7 +22,7 @@ export default function PageBanner({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <BackNav variant="dark" className="mb-8" />
           <p className="text-[11px] uppercase tracking-[0.22em] text-gold font-semibold mb-3">
-            Shri Prasanna Pattnaik Memorial Trust
+            {eyebrow}
           </p>
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium text-green-dark leading-[1.05] max-w-3xl">
             {title}
@@ -36,7 +38,7 @@ export default function PageBanner({
   }
 
   return (
-    <section className="relative min-h-[26rem] sm:min-h-[32rem] flex items-end overflow-hidden">
+    <section className="relative min-h-[20rem] sm:min-h-[24rem] flex items-end overflow-hidden">
       <Image
         src={imageSrc}
         alt={imageAlt ?? title}
@@ -49,7 +51,7 @@ export default function PageBanner({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <BackNav variant="light" className="mb-8" />
           <p className="text-[11px] uppercase tracking-[0.22em] text-white/80 font-semibold mb-3">
-            Shri Prasanna Pattnaik Memorial Trust
+            {eyebrow}
           </p>
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium text-white leading-[1.05] max-w-4xl">
             {title}

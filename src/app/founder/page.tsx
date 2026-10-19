@@ -114,19 +114,20 @@ export default function FounderPage() {
       <PageBanner
         title="Shri Prasanna Pattnaik"
         subtitle="1 June 1948 — 30 May 2025 · A True Son of the Soil"
+        eyebrow="Our Inspiration"
       />
 
       {/* Portrait */}
       <AnimateOnScroll>
       <section className="py-16 sm:py-24 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-[minmax(16rem,22rem)_1fr] gap-10 items-end">
+          <div className="grid grid-cols-1 md:grid-cols-[minmax(18rem,26rem)_1fr] gap-10 md:gap-16 items-end">
             <Image
               src="/images/prasanna-patnaik-bw-portrait.png"
               alt="Shri Prasanna Pattnaik"
-              width={640}
-              height={768}
-              className="w-full max-w-sm h-auto border border-green/20 bg-white"
+              width={800}
+              height={960}
+              className="w-full h-auto border border-black/15 bg-white"
             />
             <div>
               <ul className="space-y-2 text-lg text-gray-700">
