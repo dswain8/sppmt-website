@@ -13,7 +13,7 @@ export default function HomeHero() {
             Shri Prasanna Pattnaik
             <span className="block">Memorial Trust</span>
           </h1>
-          <p className="mt-5 max-w-xl text-lg sm:text-xl text-green-dark italic font-serif">
+          <p className="mt-5 max-w-xl text-lg sm:text-xl text-green-dark italic font-serif text-balance">
             In Loving Memory of Shri Prasanna Pattnaik, A True Son of the Soil
           </p>
           <p className="mt-4 text-sm tracking-[0.14em] uppercase text-orange">
@@ -41,10 +41,10 @@ export default function HomeHero() {
         </div>
         <div className="relative min-h-[38vh] lg:min-h-full order-first lg:order-last">
           <Image
-            src="/images/brahmani-bridge-1.png"
-            alt="Brahmani Setu bridge over the river in Dhenkanal"
+            src="/images/prasanna-patnaik-bw-portrait.png"
+            alt="Shri Prasanna Pattnaik"
             fill
-            className="object-cover object-bottom"
+            className="object-cover object-top"
             priority
             sizes="(max-width: 1024px) 100vw, 50vw"
           />

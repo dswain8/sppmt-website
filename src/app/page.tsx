@@ -27,17 +27,21 @@ export default function Home() {
     <>
       <HomeHero />
 
-      <section className="bg-cream">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-[minmax(16rem,22rem)_1fr] gap-8 md:gap-16 items-end">
+      <section className="bg-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2">
+          <div>
             <Image
-              src="/images/prasanna-patnaik-bw-portrait.png"
-              alt="Shri Prasanna Pattnaik portrait"
-              width={640}
-              height={768}
-              className="w-full h-auto border border-black/15 bg-white"
+              src="/images/brahmani-bridge-1.png"
+              alt="Brahmani Setu bridge over the river in Dhenkanal"
+              width={1200}
+              height={800}
+              className="w-full h-auto"
             />
-            <div>
+            <p className="px-4 sm:px-6 py-3 text-sm text-gray-600">
+              Brahmani Setu, Dhenkanal
+            </p>
+          </div>
+          <div className="px-4 sm:px-6 lg:px-10 py-10 sm:py-16 flex flex-col justify-center">
               <p className="text-[11px] uppercase tracking-[0.22em] text-gold font-semibold mb-4">
                 Our Inspiration
               </p>
@@ -53,7 +57,6 @@ export default function Home() {
               >
                 Read His Story &rarr;
               </Link>
-            </div>
           </div>
         </div>
       </section>
