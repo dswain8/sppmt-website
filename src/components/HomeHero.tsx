@@ -39,14 +39,14 @@ export default function HomeHero() {
             </Link>
           </div>
         </div>
-        <div className="relative min-h-[38vh] lg:min-h-full order-first lg:order-last">
+        <div className="flex items-end justify-center bg-cream order-first lg:order-last lg:items-stretch">
           <Image
             src="/images/prasanna-patnaik-bw-portrait.png"
             alt="Shri Prasanna Pattnaik"
-            fill
-            className="object-cover object-top"
+            width={800}
+            height={960}
+            className="w-auto max-h-[58vh] lg:max-h-[calc(100dvh-4.25rem)] lg:w-full lg:object-cover lg:object-top"
             priority
-            sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
       </div>
