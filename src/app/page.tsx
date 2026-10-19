@@ -72,9 +72,9 @@ export default function Home() {
             <span>
               <i /> From our community work
             </span>
-            <strong>Every child deserves the tools to learn.</strong>
+            <strong>School bags and learning supplies, distributed in rural Odisha.</strong>
           </div>
-          <span className="visual-index">01 / Real work. Real people.</span>
+          <span className="visual-index">01 / Students with SPPMT school bags.</span>
         </div>
       </section>
 

@@ -36,7 +36,14 @@ export default function ActivitiesPage() {
           <div className={`shell program-grid ${index % 2 ? "reverse" : ""}`}>
             <div className="program-visual">
               <div className="photo program-photo loaded">
-                <img src={area.bannerImage} alt={area.bannerAlt} />
+                <img
+                  src={
+                    area.slug === "education"
+                      ? "/images/activities/DSC09244.jpg"
+                      : area.bannerImage
+                  }
+                  alt={area.bannerAlt}
+                />
               </div>
               <span className="program-index">0{index + 1}</span>
             </div>
