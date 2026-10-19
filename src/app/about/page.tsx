@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import PageBanner from "@/components/PageBanner";
-import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "Transparency",
   description:
-    "Learn about the Sri Prasanna Pattnaik Memorial Trust, established in 2025 in Bhubaneswar, Odisha. Healthcare, education, livelihood, environment, and community development.",
+    "Trustees, registration, and Section 80G guidance for the Shri Prasanna Pattnaik Memorial Trust.",
 };
 
 const TRUSTEES = [
@@ -31,169 +28,108 @@ const TRUSTEES = [
 export default function AboutPage() {
   return (
     <>
-      <PageBanner
-        title="About the Trust"
-        subtitle="Continuing a Legacy of Service"
-        imageSrc="/images/community-gathering.png"
-        imageAlt="Community gathering"
-      />
-
-      {/* Trust overview */}
-      <AnimateOnScroll>
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="flex justify-center">
-                <Image
-                  src="/images/trust-logo-large.png"
-                  alt="Shri Prasanna Pattnaik Memorial Trust logo"
-                  width={280}
-                  height={280}
-                  className="rounded-lg"
-                />
-              </div>
-              <div>
-                <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark mb-6">
-                  Shri Prasanna Pattnaik Memorial Trust
-                </h2>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Established in 2025 and registered under the Indian Trusts Act
-                  in Bhubaneswar (Khurda), the Shri Prasanna Pattnaik Memorial
-                  Trust was created to honor and continue the development work
-                  started by Shri Prasanna Pattnaik during his lifetime.
-                </p>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Based in Bhubaneswar, Odisha, the trust focuses on healthcare,
-                  women&apos;s livelihood, education, environmental sustainability,
-                  and community development across the communities that
-                  Shri Pattnaik served for over five decades.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  The trust is managed by a Board of Trustees comprising family
-                  members and community leaders committed to realizing Shri
-                  Pattnaik&apos;s vision of an empowered, educated, and healthy
-                  rural Odisha.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </AnimateOnScroll>
-
-      {/* Mission */}
-      <AnimateOnScroll>
-        <section className="py-16 bg-cream">
-          <div className="max-w-4xl mx-auto px-4">
-            <div className="bg-orange/5 border-l-4 border-orange rounded-r-xl p-8">
-              <h2 className="text-2xl font-bold text-orange mb-4">
-                Our Mission
-              </h2>
-              <p className="text-gray-700 text-lg leading-relaxed">
-                To uplift communities across Odisha through sustainable
-                initiatives in healthcare, women&apos;s livelihood, education,
-                environmental sustainability, and community development;
-                honoring the legacy of Shri Prasanna Pattnaik.
-              </p>
-            </div>
-          </div>
-        </section>
-      </AnimateOnScroll>
-
-      {/* Trustees */}
-      <section className="py-16 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-4">
-            Board of Trustees
+      <header className="page-head shell">
+        <div className="eyebrow with-line">Transparency</div>
+        <h1>
+          Trust is built
+          <br />
+          <em>in the open.</em>
+        </h1>
+        <p>
+          Meet the people behind the organisation, understand how it operates,
+          and see which facts are currently public.
+        </p>
+      </header>
+      <section className="shell transparency-main">
+        <div className="transparency-intro">
+          <div className="eyebrow">The organisation</div>
+          <h2>
+            A young trust with
+            <br />a clear purpose.
           </h2>
-          <p className="text-center text-gray-500 mb-10">
-            The Trust is governed by a dedicated Board committed to
-            transparency, accountability, and service.
+          <p>
+            The Shri Prasanna Pattnaik Memorial Trust was established in 2025
+            in memory of Shri Pattnaik. Its work is guided by a board of
+            trustees and focused on communities in Odisha.
           </p>
-
-            <div className="divide-y-0">
-            {TRUSTEES.map((trustee, i) => (
-              <AnimateOnScroll key={i} delay={i * 80}>
-                <div className="flex items-start gap-6 py-5 border-b border-gray-100">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                      <h3 className="font-semibold text-gray-800">
-                        {trustee.name}
-                      </h3>
-                      <span className="inline-flex items-center text-xs font-semibold text-orange bg-orange/10 px-3 py-1 rounded-full w-fit">
-                        {trustee.role}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-500 mt-0.5">
-                      {trustee.relation}
-                    </p>
-                  </div>
-                </div>
-              </AnimateOnScroll>
+        </div>
+        <div className="fact-table">
+          <div>
+            <span>Trust name</span>
+            <strong>Shri Prasanna Pattnaik Memorial Trust</strong>
+          </div>
+          <div>
+            <span>Registration</span>
+            <strong>Registered under the Indian Trusts Act</strong>
+          </div>
+          <div>
+            <span>Registration office</span>
+            <strong>Sub-Registrar, Khurda (Bhubaneswar)</strong>
+          </div>
+          <div>
+            <span>Registration date</span>
+            <strong>13 October 2025</strong>
+          </div>
+          <div>
+            <span>Registered office</span>
+            <strong>Bhubaneswar, Odisha</strong>
+          </div>
+        </div>
+      </section>
+      <section className="trustees-band">
+        <div className="shell">
+          <div className="eyebrow">The people</div>
+          <h2 style={{ margin: "16px 0 28px" }}>Board of trustees</h2>
+          <p style={{ maxWidth: 520, color: "#667b6a" }}>
+            Board membership listed on the trust’s published About page.
+          </p>
+          <div className="trustees-grid" style={{ marginTop: 36 }}>
+            {TRUSTEES.map((trustee, index) => (
+              <div key={trustee.name}>
+                <div className="trustee-num">0{index + 1}</div>
+                <h3>{trustee.name}</h3>
+                <p>
+                  {trustee.role}
+                  <br />
+                  {trustee.relation}
+                </p>
+              </div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Registration details */}
-      <AnimateOnScroll>
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-3xl mx-auto px-4">
-            <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-8">
-              Registration Details
-            </h2>
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-              {[
-                ["Trust Name", "Shri Prasanna Pattnaik Memorial Trust"],
-                ["Registration", "Registered under the Indian Trusts Act"],
-                ["Registration Office", "Sub-Registrar, Khurda (Bhubaneswar)"],
-                ["Registration Date", "13 October 2025"],
-                ["Registered Office", "Bhubaneswar, Odisha"],
-              ].map(([label, value], i) => (
-                <div
-                  key={label}
-                  className={`flex flex-col sm:flex-row px-6 py-4 ${
-                    i % 2 === 0 ? "bg-white" : "bg-gray-50"
-                  }`}
-                >
-                  <span className="font-semibold text-green sm:w-48 shrink-0">
-                    {label}
-                  </span>
-                  <span className="text-gray-600 mt-1 sm:mt-0">{value}</span>
-                </div>
-              ))}
+      <section className="shell transparency-docs">
+        <div>
+          <div className="eyebrow">Documents</div>
+          <h2>What’s public.</h2>
+        </div>
+        <div className="docs-list">
+          <div>
+            <div>
+              <strong>Registration record</strong>
+              <p>Information already published by the organisation.</p>
             </div>
+            <Link href="/about">On this page</Link>
           </div>
-        </section>
-      </AnimateOnScroll>
-
-      {/* CTA */}
-      <AnimateOnScroll>
-        <section className="py-16 bg-green-light text-center">
-          <div className="max-w-3xl mx-auto px-4">
-            <h2 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-green-dark mb-4">
-              Join Us in Building Shri Pattnaik&apos;s Vision
-            </h2>
-            <p className="text-gray-600 mb-8">
-              Your support enables education, healthcare, and development for
-              communities across India.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/donate"
-                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
-              >
-                Donate
-              </Link>
-              <Link
-                href="/activities"
-                className="bg-green hover:bg-green-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
-              >
-                View Our Activities
-              </Link>
+          <div>
+            <div>
+              <strong>Section 80G guidance</strong>
+              <p>Eligibility and receipt information from the donation page.</p>
             </div>
+            <Link href="/donate">Read donation guidance ↗</Link>
           </div>
-        </section>
-      </AnimateOnScroll>
+          <div>
+            <div>
+              <strong>Annual report and audited accounts</strong>
+              <p>
+                Not represented as published until original reports are
+                available.
+              </p>
+            </div>
+            <span className="doc-pending">Not yet published</span>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

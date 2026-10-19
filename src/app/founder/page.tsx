@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import PageBanner from "@/components/PageBanner";
-import AnimateOnScroll from "@/components/AnimateOnScroll";
 import HisWorkTabs from "@/components/HisWorkTabs";
 
 export const metadata: Metadata = {
@@ -111,193 +108,97 @@ const LEGACY_CARDS = [
 export default function FounderPage() {
   return (
     <>
-      <PageBanner
-        title="Shri Prasanna Pattnaik"
-        subtitle="1 June 1948 — 30 May 2025 · A True Son of the Soil"
-        eyebrow="Our Inspiration"
-      />
-
-      {/* Portrait */}
-      <AnimateOnScroll>
-      <section className="py-16 sm:py-24 bg-cream">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-[minmax(18rem,26rem)_1fr] gap-10 md:gap-16 items-end">
-            <Image
-              src="/images/prasanna-patnaik-bw-portrait.png"
-              alt="Shri Prasanna Pattnaik"
-              width={800}
-              height={960}
-              className="w-full h-auto border border-black/15 bg-white"
+      <header className="page-head shell story-page-head">
+        <div className="eyebrow with-line">Our story</div>
+        <h1>
+          A life spent
+          <br />
+          <em>in service.</em>
+        </h1>
+        <p>
+          Shri Prasanna Pattnaik (1948–2025) believed in the power of
+          institutions, public service and opportunity.
+        </p>
+      </header>
+      <section className="shell story-hero">
+        <div className="photo story-page-portrait loaded">
+          <img
+            src="/images/prasanna-patnaik-bw-portrait.png"
+            alt="Shri Prasanna Pattnaik"
+          />
+        </div>
+        <div className="story-hero-copy">
+          <div className="eyebrow">Rooted in Bhuban</div>
+          <h2>Born in Bhuban. Remembered across Odisha.</h2>
+          <p>
+            Born on 1 June 1948 in the village of Bhuban, Dhenkanal District,
+            son of Narayana Pattnaik. He devoted his public life to expanding
+            opportunity and strengthening local institutions. The memorial
+            trust was formed in 2025 by his family.
+          </p>
+          <div className="little-rule" />
+          <p className="story-quote">
+            “He was not merely a politician; he was a builder of institutions,
+            a champion of the forgotten, and a leader who believed that true
+            public service means transforming lives at the grassroots.”
+          </p>
+          <small>From the trust’s published remembrance.</small>
+        </div>
+      </section>
+      <section className="years-section shell">
+        <div className="eyebrow">A life in public service</div>
+        <h2>The moments that shaped the work.</h2>
+        <div className="years-grid">
+          {TIMELINE.map((item) => (
+            <div key={item.year + item.title}>
+              <strong>{item.year}</strong>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="story-institutions">
+        <div className="shell story-institutions-grid">
+          <div className="photo bridge-photo loaded">
+            <img
+              src="/images/brahmani-bridge-1.png"
+              alt="Brahmani Setu bridge over the river in Dhenkanal"
             />
-            <div>
-              <ul className="space-y-3 font-serif text-2xl text-green-dark">
-                <li>Social Worker</li>
-                <li>Legislator</li>
-                <li>First BJP MLA of Odisha</li>
-                <li>Founder of Schools &amp; Colleges in Odisha</li>
-              </ul>
-            </div>
           </div>
-        </div>
-      </section>
-      </AnimateOnScroll>
-
-      {/* Early life */}
-      <AnimateOnScroll>
-        <section className="py-16 bg-white">
-          <div className="max-w-3xl mx-auto px-4">
-            <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark mb-6">Early Life</h2>
-            <p className="text-gray-600 leading-relaxed text-lg">
-              Prasanna Pattnaik was born on 1 June 1948 in the village of
-              Bhuban, in Dhenkanal District of Odisha. Son of Narayana Pattnaik,
-              his passion for public service ignited during his student years
-              when he joined the historic student movement of 1964 in Odisha. He
-              went on to join the Swatantra Party under Chief Minister R.N.
-              Singhdeo, serving as President of the Yuva Swatantra Party for
-              Dhenkanal District.
+          <div>
+            <div className="eyebrow">What he built</div>
+            <h2>Buildings, bridges, and institutions.</h2>
+            <p>
+              The trust’s published history attributes schools, health centres,
+              a blood bank and the Brahmani bridge to his development work.
+              These historic contributions belong to his lifetime. The trust,
+              established in 2025, carries that commitment forward.
             </p>
-          </div>
-        </section>
-      </AnimateOnScroll>
-
-      {/* Timeline */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-12">
-            A Life in Public Service
-          </h2>
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-6 sm:left-1/2 sm:-translate-x-px top-0 bottom-0 w-0.5 bg-green" />
-
-            {TIMELINE.map((item, i) => (
-              <AnimateOnScroll
-                key={item.year}
-                animation={i % 2 === 0 ? "slide-right" : "slide-left"}
-                delay={i * 80}
-              >
-                <div
-                  className={`relative flex items-start mb-10 ${
-                    i % 2 === 0
-                      ? "sm:flex-row-reverse sm:text-right"
-                      : "sm:flex-row"
-                  }`}
-                >
-                  {/* Dot */}
-                  <div className="absolute left-6 sm:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-orange border-4 border-white shadow z-10 mt-1.5" />
-
-                  {/* Content */}
-                  <div
-                    className={`ml-14 sm:ml-0 sm:w-[45%] ${
-                      i % 2 === 0 ? "sm:mr-auto sm:pr-8" : "sm:ml-auto sm:pl-8"
-                    }`}
-                  >
-                    <span className="block font-serif text-orange text-sm mb-2">
-                      {item.year}
-                    </span>
-                    <h3 className="text-lg font-bold text-gray-800 mb-1">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            ))}
+            <Link className="under-link" href="/activities">
+              See the trust’s work <span>↗</span>
+            </Link>
           </div>
         </div>
       </section>
-
-      {/* Legacy cards */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-12">
-            Legacy Beyond Politics
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {LEGACY_CARDS.map((card, i) => (
-              <AnimateOnScroll key={card.title} delay={i * 120}>
-                <div className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow bg-white border border-gray-100">
-                  <div className="relative h-48">
-                    <Image
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold text-green mb-3">
-                      {card.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
+      <section className="section shell">
+        <div className="notes-grid">
+          {LEGACY_CARDS.map((card) => (
+            <article key={card.title} className="note-card">
+              <div className="photo note-photo loaded">
+                <img src={card.image} alt={card.title} />
+              </div>
+              <div className="note-body">
+                <h3>{card.title}</h3>
+                <p>{card.description}</p>
+              </div>
+            </article>
+          ))}
         </div>
-      </section>
-
-      {/* Quote */}
-      <AnimateOnScroll>
-        <section className="py-16 bg-cream">
-          <div className="max-w-3xl mx-auto px-4">
-            <div className="border-l-4 border-gold pl-6 py-2">
-              <p className="font-serif text-2xl sm:text-3xl text-green-dark italic leading-snug">
-                &ldquo;He was not merely a politician; he was a builder of
-                institutions, a champion of the forgotten, and a leader who
-                believed that true public service means transforming lives at
-                the grassroots.&rdquo;
-              </p>
-            </div>
-          </div>
-        </section>
-      </AnimateOnScroll>
-
-      {/* His Work */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimateOnScroll>
-            <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-3">
-              His Work
-            </h2>
-            <p className="text-center text-gray-500 mb-10 max-w-2xl mx-auto">
-              A lifetime of building institutions, founding healthcare centres,
-              empowering farmers, and transforming rural communities across
-              Odisha.
-            </p>
-          </AnimateOnScroll>
+        <div style={{ marginTop: 48 }}>
           <HisWorkTabs />
         </div>
       </section>
-
-      {/* Trust connection */}
-      <AnimateOnScroll>
-        <section className="py-16 bg-white">
-          <div className="max-w-3xl mx-auto px-4 text-center">
-            <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark mb-6">
-              The Trust That Carries His Name
-            </h2>
-            <p className="text-gray-600 leading-relaxed text-lg mb-8">
-              The Shri Prasanna Pattnaik Memorial Trust was established in 2025
-              by his family to perpetuate his lifelong commitment to education,
-              healthcare, community development, and infrastructure in Odisha.
-              The trust works in the same villages and communities
-              that Shri Pattnaik served for over five decades.
-            </p>
-            <Link
-              href="/about"
-              className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
-            >
-              Learn About the Trust
-            </Link>
-          </div>
-        </section>
-      </AnimateOnScroll>
     </>
   );
 }
