@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ActivitiesPage() {
   return (
     <>
-      <header className="page-head shell">
+      <header className="page-head compact shell">
         <div className="eyebrow with-line">Our work</div>
         <h1>
           Practical care.
@@ -32,7 +32,7 @@ export default function ActivitiesPage() {
         ))}
       </div>
       {ACTIVITY_AREAS.map((area, index) => (
-        <section className="program-section" id={area.slug} key={area.slug}>
+        <section className={`program-section${index === 0 ? " first" : ""}`} id={area.slug} key={area.slug}>
           <div className={`shell program-grid ${index % 2 ? "reverse" : ""}`}>
             <div className="program-visual">
               <div className="photo program-photo loaded">

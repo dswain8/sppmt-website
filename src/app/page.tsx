@@ -41,6 +41,9 @@ export default function Home() {
             <br />
             <em>possibility.</em>
           </h1>
+          <p className="hero-memory">
+            In memory of Shri Prasanna Pattnaik, 1948–2025.
+          </p>
           <p>
             Honouring Shri Prasanna Pattnaik’s legacy by supporting education,
             healthcare, livelihoods and stronger communities across Odisha.
