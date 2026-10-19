@@ -1,121 +1,46 @@
 import Link from "next/link";
-import Image from "next/image";
-
-const QUICK_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Our Inspiration", href: "/founder" },
-  { label: "Activities", href: "/activities" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Donate", href: "/donate" },
-  { label: "Contact", href: "/contact" },
-];
 
 export default function Footer() {
   return (
-    <footer className="bg-green text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <Image
-                src="/images/trust-logo-small.png"
-                alt="SPPMT Logo"
-                width={48}
-                height={48}
-                className="rounded-full bg-white p-0.5"
-              />
-              <div>
-                <p className="font-semibold text-sm leading-tight">
-                  Shri Prasanna Pattnaik
-                </p>
-                <p className="font-semibold text-sm leading-tight">
-                  Memorial Trust
-                </p>
-              </div>
+    <footer className="footer">
+      <div className="shell">
+        <div className="footer-top">
+          <div className="footer-brand">
+            <div className="footer-eyebrow">
+              SHRI PRASANNA PATTNAIK MEMORIAL TRUST
             </div>
-            <p className="text-green-light/80 text-sm leading-relaxed">
-              Educate &bull; Empower &bull; Elevate
+            <h2>
+              Small acts of care.
               <br />
-              Estd. 2025
-              <br />
-              Bhubaneswar, Odisha, India
+              <em>A lasting difference.</em>
+            </h2>
+            <p>
+              Continuing a lifetime of public service through practical work
+              with communities in Odisha.
             </p>
-            <Link
-              href="/donate"
-              className="inline-flex mt-5 text-sm text-gold hover:text-white transition-colors"
-            >
-              80G Tax Benefits · Donate
-            </Link>
           </div>
-
-          <div>
-            <h3 className="font-semibold mb-4 text-gold">Quick Links</h3>
-            <ul className="space-y-2">
-              {QUICK_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/80 hover:text-gold transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-4 text-gold">Contact Us</h3>
-            <div className="space-y-3 text-sm text-white/80">
-              <p>
-                Sri Prasanna Pattnaik Memorial Trust
-                <br />
-                Bhubaneswar, Odisha, India
-              </p>
-              <p>
-                <span className="text-gold">Email:</span>{" "}
-                <a href="mailto:prasannapattnaiktrust@gmail.com" className="hover:text-gold transition-colors">
-                  prasannapattnaiktrust@gmail.com
-                </a>
-              </p>
-              <p>
-                <span className="text-gold">Phone:</span>{" "}
-                <a href="tel:+919439725460" className="hover:text-gold transition-colors">
-                  +91 9439725460
-                </a>
-                {" / "}
-                <a href="tel:+919178256179" className="hover:text-gold transition-colors">
-                  +91 9178256179
-                </a>
-              </p>
-              <div className="flex gap-3 mt-3">
-                <a
-                  href="https://www.instagram.com/prasannapattnaiktrust"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-orange flex items-center justify-center transition-colors"
-                  aria-label="Instagram"
-                >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                  </svg>
-                </a>
-              </div>
+          <div className="footer-links">
+            <div>
+              <h3>Explore</h3>
+              <Link href="/activities">Our work</Link>
+              <Link href="/founder">Our story</Link>
+              <Link href="/gallery">Field notes</Link>
+              <Link href="/about">Transparency</Link>
+            </div>
+            <div>
+              <h3>Take part</h3>
+              <Link href="/donate">Donate</Link>
+              <Link href="/contact">Volunteer</Link>
+              <a href="mailto:prasannapattnaiktrust@gmail.com">Email us</a>
+              <a href="tel:+919178256179">+91 91782 56179</a>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <p className="text-center font-serif italic text-base text-white/80">
-            In Loving Memory of Shri Prasanna Pattnaik (1948 &ndash; 2025)
-          </p>
-          <p className="text-center text-xs text-white/40 mt-2">
-            &copy; {new Date().getFullYear()} Shri Prasanna Pattnaik Memorial
-            Trust. All Rights Reserved.
-          </p>
+        <div className="footer-bottom">
+          <div>
+            © {new Date().getFullYear()} Shri Prasanna Pattnaik Memorial Trust
+          </div>
+          <div>Bhubaneswar, Odisha · Educate · Empower · Elevate</div>
         </div>
       </div>
     </footer>

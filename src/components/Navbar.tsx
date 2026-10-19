@@ -1,236 +1,110 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ACTIVITY_AREAS } from "@/lib/activities";
 
-type NavItem = {
-  label: string;
-  href: string;
-  children?: { label: string; href: string }[];
-};
-
-const NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Our Inspiration", href: "/founder" },
-  {
-    label: "Activities",
-    href: "/activities",
-    children: ACTIVITY_AREAS.map((area) => ({
-      label: area.shortTitle,
-      href: `/activities/${area.slug}`,
-    })),
-  },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Donate", href: "/donate" },
-  { label: "Contact", href: "/contact" },
+const LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/activities", label: "Our work" },
+  { href: "/founder", label: "Our story" },
+  { href: "/gallery", label: "Field notes" },
+  { href: "/about", label: "Transparency" },
 ];
 
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileActivitiesOpen, setMobileActivitiesOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-    setMobileActivitiesOpen(false);
-  }, [pathname]);
-
-  const isActive = (href: string) =>
+  const [open, setOpen] = useState(false);
+  const current = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 bg-white ${
-        scrolled ? "shadow-md" : ""
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[4.25rem]">
-          <Link href="/" className="flex items-center gap-3 shrink-0 min-w-0">
-            <Image
-              src="/images/trust-logo-large.png"
-              alt="Shri Prasanna Pattnaik Memorial Trust"
-              width={48}
-              height={48}
-              className="h-11 w-auto"
-            />
-            <span className="hidden sm:block leading-tight">
-              <span className="block font-serif text-[15px] text-green-dark">
-                Shri Prasanna Pattnaik
-              </span>
-              <span className="block text-[10px] uppercase tracking-[0.16em] text-gray-500">
-                Memorial Trust
-              </span>
-            </span>
-          </Link>
-
-          <div className="hidden lg:flex items-center gap-1">
-            {NAV_ITEMS.map((item) =>
-              item.children ? (
-                <div key={item.href} className="relative group">
-                  <Link
-                    href={item.href}
-                    className={`inline-flex items-center gap-1 px-3 py-2 text-sm font-medium border-b-2 transition-colors hover:text-orange ${
-                      isActive(item.href)
-                        ? "text-orange border-orange"
-                        : "text-gray-700 border-transparent"
-                    }`}
-                  >
-                    {item.label}
-                    <svg
-                      className="w-4 h-4 transition-transform group-hover:rotate-180"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </Link>
-                  <div className="absolute left-0 top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200">
-                    <div className="min-w-[12rem] rounded-md border border-gray-100 bg-white py-1 shadow-lg">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className={`block px-4 py-2 text-sm transition-colors hover:bg-gray-50 hover:text-orange ${
-                            pathname === child.href
-                              ? "text-orange font-medium"
-                              : "text-gray-700"
-                          }`}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors hover:text-orange ${
-                    isActive(item.href)
-                      ? "text-orange border-orange"
-                      : "text-gray-700 border-transparent"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
-          </div>
-
-          <div className="flex items-center gap-2 lg:hidden">
-            <Link
-              href="/donate"
-              className="bg-orange text-white text-sm font-semibold px-3 py-1.5"
-            >
-              Donate
-            </Link>
-            <button
-              className="p-2 rounded-md text-gray-700 hover:text-orange"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle navigation menu"
-            >
-            {mobileOpen ? (
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
-        </div>
+    <>
+      <a className="skip" href="#main">
+        Skip to content
+      </a>
+      <div className="utility">
+        <div className="shell utility-inner">
+          <span>
+            <span className="status-dot" /> Rooted in Odisha · Est. 2025
+          </span>
+          <span className="utility-contacts">
+            <a href="mailto:prasannapattnaiktrust@gmail.com">
+              prasannapattnaiktrust@gmail.com
+            </a>
+            <span>·</span>
+            <a href="tel:+919439725460">+91 94397 25460</a>
+          </span>
         </div>
       </div>
-
-      {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
-          <div className="px-4 py-3 space-y-1">
-            {NAV_ITEMS.map((item) =>
-              item.children ? (
-                <div key={item.href}>
-                  <button
-                    type="button"
-                    onClick={() => setMobileActivitiesOpen(!mobileActivitiesOpen)}
-                    className={`flex w-full items-center justify-between px-3 py-2 text-sm font-medium hover:text-orange ${
-                      isActive(item.href) ? "text-orange" : "text-gray-700"
-                    }`}
-                  >
-                    {item.label}
-                    <svg
-                      className={`w-4 h-4 transition-transform ${
-                        mobileActivitiesOpen ? "rotate-180" : ""
-                      }`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-                  {mobileActivitiesOpen && (
-                    <div className="ml-3 border-l border-gray-200 pl-3 space-y-1">
-                      <Link
-                        href={item.href}
-                        className={`block px-3 py-2 text-sm hover:text-orange ${
-                          pathname === item.href ? "text-orange" : "text-gray-600"
-                        }`}
-                      >
-                        All Activities
-                      </Link>
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className={`block px-3 py-2 text-sm hover:text-orange ${
-                            pathname === child.href ? "text-orange" : "text-gray-600"
-                          }`}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`block px-3 py-2 text-sm font-medium hover:text-orange ${
-                    isActive(item.href) ? "text-orange" : "text-gray-700"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
+      <header className="header" id="top">
+        <div className="shell header-inner">
+          <Link className="brand" href="/" aria-label="SPPMT home">
+            <span className="brand-symbol loaded">
+              <img
+                className="official-logo"
+                src="/images/trust-logo-large.png"
+                alt=""
+                width={44}
+                height={44}
+              />
+            </span>
+            <span className="brand-type">
+              <strong>SPPMT</strong>
+              <small>
+                Shri Prasanna Pattnaik
+                <br />
+                Memorial Trust
+              </small>
+            </span>
+          </Link>
+          <nav className="desktop-nav" aria-label="Main navigation">
+            {LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={current(link.href) ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="header-actions">
+            <Link className="header-donate" href="/donate">
+              Donate <span aria-hidden="true">↗</span>
+            </Link>
+            <button
+              className="menu-toggle"
+              type="button"
+              aria-controls="mobile-nav"
+              aria-expanded={open}
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen((value) => !value)}
+            >
+              <span />
+              <span />
+            </button>
           </div>
         </div>
-      )}
-    </nav>
+        <nav
+          className="mobile-nav"
+          id="mobile-nav"
+          aria-label="Mobile navigation"
+          hidden={!open}
+        >
+          {LINKS.map((link) => (
+            <Link key={link.href} href={link.href} onClick={() => setOpen(false)}>
+              {link.label}
+            </Link>
+          ))}
+          <Link className="mobile-donate" href="/donate" onClick={() => setOpen(false)}>
+            Support our work ↗
+          </Link>
+          <Link href="/contact" onClick={() => setOpen(false)}>
+            Volunteer with us ↗
+          </Link>
+        </nav>
+      </header>
+    </>
   );
 }
