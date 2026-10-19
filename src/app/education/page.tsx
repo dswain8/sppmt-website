@@ -102,7 +102,7 @@ export default function EducationPage() {
       {/* Institutions gallery */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-green mb-12">
+          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-12">
             Some of the Many Institutions Founded by Shri Prasanna Pattnaik
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -130,15 +130,14 @@ export default function EducationPage() {
       {/* Programs */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-green mb-12">
+          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-12">
             Education Programs
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {PROGRAMS.map((prog, i) => (
               <AnimateOnScroll key={prog.title} delay={i * 120}>
-                <div className="bg-blue-50 rounded-xl p-8 text-center hover:shadow-md transition-shadow">
-                  <span className="text-4xl mb-4 block">{prog.icon}</span>
-                  <h3 className="text-lg font-bold text-blue-900 mb-3">
+                <div className="border-t border-green/15 pt-6">
+                  <h3 className="font-serif text-xl text-green-dark mb-3">
                     {prog.title}
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -155,7 +154,7 @@ export default function EducationPage() {
       <AnimateOnScroll>
         <section className="py-16 bg-cream">
           <div className="max-w-3xl mx-auto px-4 text-center">
-            <h2 className="text-2xl font-bold text-green mb-6">
+            <h2 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-green-dark mb-6">
               The Trust&apos;s Continuing Work
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">

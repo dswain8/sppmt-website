@@ -43,7 +43,7 @@ export default function Footer() {
             </p>
             <Link
               href="/donate"
-              className="inline-flex mt-4 items-center gap-2 rounded-md bg-white/15 hover:bg-white/25 border border-white/25 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors"
+              className="inline-flex mt-5 text-sm text-gold hover:text-white transition-colors"
             >
               80G Tax Benefits · Donate
             </Link>
@@ -109,7 +109,7 @@ export default function Footer() {
 
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <p className="text-center text-sm text-white/60 italic">
+          <p className="text-center font-serif italic text-base text-white/80">
             In Loving Memory of Shri Prasanna Pattnaik (1948 &ndash; 2025)
           </p>
           <p className="text-center text-xs text-white/40 mt-2">

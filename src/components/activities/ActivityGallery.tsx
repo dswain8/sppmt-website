@@ -24,7 +24,7 @@ export default function ActivityGallery({
     <>
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-green mb-12">
+          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-12">
             {title}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -33,7 +33,7 @@ export default function ActivityGallery({
                 <button
                   type="button"
                   onClick={() => setLightbox(img)}
-                  className="relative aspect-[4/3] rounded-xl overflow-hidden group cursor-pointer w-full"
+                  className="relative aspect-[4/3] overflow-hidden group cursor-pointer w-full"
                 >
                   <Image
                     src={img.src}

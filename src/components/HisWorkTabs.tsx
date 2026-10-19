@@ -145,13 +145,12 @@ export default function HisWorkTabs() {
           <button
             key={t.id}
             onClick={() => setActive(t.id)}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-colors ${
+            className={`px-4 py-2 text-sm border-b-2 transition-colors ${
               active === t.id
-                ? "bg-orange text-white shadow-md"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                ? "border-orange text-orange"
+                : "border-transparent text-gray-500 hover:text-green-dark"
             }`}
           >
-            <span>{t.icon}</span>
             {t.label}
           </button>
         ))}

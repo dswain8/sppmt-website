@@ -12,7 +12,7 @@ const CAROUSEL_IMAGES = [
   { src: "/images/blood-samples.png", alt: "Blood sample collection" },
   { src: "/images/brahmani-bridge-1.png", alt: "Brahmani Setu bridge" },
   { src: "/images/brahmani-bridge-2.png", alt: "Brahmani bridge construction" },
-  { src: "/images/brahmani-bridge-odia.png", alt: "Brahmani bridge plaque in Odia" },
+  { src: "/images/brahmani-bridge-odia.png", alt: "Students gathered in a school hall" },
   { src: "/images/community-gathering.png", alt: "Community gathering" },
   { src: "/images/e-library.png", alt: "E-library facility" },
   { src: "/images/health-centre-signboard.png", alt: "Health centre signboard" },
@@ -63,7 +63,7 @@ export default function ImageCarousel() {
             alt={img.alt}
             fill
             className="object-cover"
-            priority={i === 0}
+            sizes="(max-width: 1024px) 100vw, 640px"
           />
         </div>
       ))}

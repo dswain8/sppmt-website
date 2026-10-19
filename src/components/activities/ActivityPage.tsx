@@ -18,36 +18,26 @@ export default function ActivityPage({ activity }: ActivityPageProps) {
         imageAlt={activity.bannerAlt}
       />
 
-      <AnimateOnScroll>
-        <section className="py-16 bg-white">
-          <div className="max-w-3xl mx-auto px-4 text-center">
-            <span className="text-4xl mb-4 block">{activity.icon}</span>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              {activity.description}
-            </p>
-          </div>
-        </section>
-      </AnimateOnScroll>
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="font-serif text-2xl sm:text-3xl text-green-dark leading-snug">
+            {activity.description}
+          </p>
+        </div>
+      </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-green mb-12">
+          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark mb-10">
             What We Do
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {activity.examples.map((example, i) => (
-              <AnimateOnScroll key={example} delay={i * 80}>
-                <div className="flex items-start gap-4 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                  <div className="w-8 h-8 shrink-0 rounded-full bg-orange/10 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <p className="text-gray-700 font-medium">{example}</p>
-                </div>
-              </AnimateOnScroll>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4 max-w-4xl">
+            {activity.examples.map((example) => (
+              <li key={example} className="border-t border-green/15 pt-4 text-gray-800">
+                {example}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -58,7 +48,7 @@ export default function ActivityPage({ activity }: ActivityPageProps) {
           <AnimateOnScroll>
             <section className="py-16 bg-cream">
               <div className="max-w-3xl mx-auto px-4 text-center">
-                <h2 className="text-2xl font-bold text-green mb-4">
+                <h2 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-green-dark mb-4">
                   {EDUCATION_KIT_SECTION.title}
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-8">
@@ -87,7 +77,7 @@ export default function ActivityPage({ activity }: ActivityPageProps) {
       <AnimateOnScroll>
         <section className="py-16 bg-white text-center">
           <div className="max-w-3xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-green mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-green-dark mb-4">
               Support This Initiative
             </h2>
             <p className="text-gray-600 mb-8">

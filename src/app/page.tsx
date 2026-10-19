@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import AnimateOnScroll from "@/components/AnimateOnScroll";
 import ImageCarousel from "@/components/ImageCarousel";
 import HomeHero from "@/components/HomeHero";
 import { FOCUS_AREAS } from "@/lib/focus-areas";
@@ -28,112 +27,95 @@ export default function Home() {
     <>
       <HomeHero />
 
-      {/* Founder tribute */}
-      <AnimateOnScroll>
-        <section className="bg-cream">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="flex flex-col sm:flex-row items-center gap-6">
-              <div className="shrink-0">
-                <Image
-                  src="/images/prasanna-patnaik-bw-portrait.png"
-                  alt="Shri Prasanna Pattnaik portrait"
-                  width={100}
-                  height={120}
-                  className="rounded-lg shadow-md"
-                />
-              </div>
-              <div>
-                <p className="text-gray-700 leading-relaxed">
-                  Honoring the legacy of{" "}
-                  <strong>Shri Prasanna Pattnaik (1948&ndash;2025)</strong>, a
-                  MISA detainee, the first BJP MLA of Odisha, and a social worker
-                  who dedicated his life to founding schools, colleges, healthcare
-                  centres, a blood bank, and building bridges across Odisha.
-                </p>
-                <Link
-                  href="/founder"
-                  className="inline-block mt-3 text-orange font-semibold hover:text-orange-dark transition-colors"
-                >
-                  Read His Story &rarr;
-                </Link>
-              </div>
+      <section className="bg-cream">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 md:gap-14 items-center">
+            <Image
+              src="/images/prasanna-patnaik-bw-portrait.png"
+              alt="Shri Prasanna Pattnaik portrait"
+              width={440}
+              height={528}
+              className="w-full max-w-[220px] h-auto"
+            />
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.22em] text-gold font-semibold mb-4">
+                Our Inspiration
+              </p>
+              <p className="font-serif text-2xl sm:text-3xl text-green-dark leading-snug">
+                Honoring the legacy of Shri Prasanna Pattnaik (1948&ndash;2025), a
+                MISA detainee, the first BJP MLA of Odisha, and a social worker
+                who dedicated his life to founding schools, colleges, healthcare
+                centres, a blood bank, and building bridges across Odisha.
+              </p>
+              <Link
+                href="/founder"
+                className="inline-block mt-6 text-orange font-semibold hover:text-orange-dark transition-colors"
+              >
+                Read His Story &rarr;
+              </Link>
             </div>
-          </div>
-        </section>
-      </AnimateOnScroll>
-
-      {/* Mission */}
-      <AnimateOnScroll>
-        <section className="py-16 bg-white">
-          <div className="max-w-3xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-green mb-6">Our Mission</h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              To honor and advance the legacy of Shri Prasanna Pattnaik by serving
-              communities across Odisha through education, healthcare, skill
-              development, agriculture, and civic sense.
-            </p>
-          </div>
-        </section>
-      </AnimateOnScroll>
-
-      {/* Five initiative areas */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-green mb-4">
-            Our Focus Areas
-          </h2>
-          <p className="text-center text-gray-500 mb-12 max-w-2xl mx-auto">
-            Five pillars of community impact, building on the institutions and
-            values that Shri Prasanna Pattnaik established.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {FOCUS_AREAS.map((area, i) => (
-              <AnimateOnScroll key={area.slug} delay={i * 80}>
-                <Link
-                  href={area.href}
-                  className="group block bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow h-full"
-                >
-                  <div className="relative h-44">
-                    <Image
-                      src={area.bannerImage}
-                      alt={area.bannerAlt}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, 20vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <span className="absolute bottom-3 left-3 text-2xl">{area.icon}</span>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-bold text-green mb-2 group-hover:text-orange transition-colors">
-                      {area.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
-                      {area.description}
-                    </p>
-                  </div>
-                </Link>
-              </AnimateOnScroll>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link
-              href="/activities"
-              className="bg-green hover:bg-green-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
-            >
-              View All Activities
-            </Link>
           </div>
         </div>
       </section>
 
+      <section className="py-16 sm:py-24 bg-white border-b border-gray-100">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <h2 className="text-[11px] uppercase tracking-[0.22em] text-gold font-semibold mb-5">
+            Our Mission
+          </h2>
+          <p className="font-serif text-2xl sm:text-4xl text-green-dark leading-snug">
+            To honor and advance the legacy of Shri Prasanna Pattnaik by serving
+            communities across Odisha through education, healthcare, skill
+            development, agriculture, and civic sense.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark">
+            Our Focus Areas
+          </h2>
+          <p className="mt-3 mb-12 max-w-2xl text-gray-600 leading-relaxed">
+            Five pillars of community impact, building on the institutions and
+            values that Shri Prasanna Pattnaik established.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            {FOCUS_AREAS.map((area) => (
+              <Link key={area.slug} href={area.href} className="group block">
+                <div className="relative h-56 overflow-hidden bg-gray-100">
+                  <Image
+                    src={area.bannerImage}
+                    alt={area.bannerAlt}
+                    fill
+                    className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+                <h3 className="mt-4 font-serif text-2xl text-green-dark group-hover:text-orange transition-colors">
+                  {area.title}
+                </h3>
+                <p className="mt-2 text-gray-600 text-sm leading-relaxed">
+                  {area.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+          <Link
+            href="/activities"
+            className="inline-block mt-12 text-orange font-semibold hover:text-orange-dark transition-colors"
+          >
+            View All Activities &rarr;
+          </Link>
+        </div>
+      </section>
+
       {/* Recent activities preview */}
-      <AnimateOnScroll>
-        <section className="py-16 bg-white">
+      <section className="py-16 sm:py-24 bg-cream">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-3xl font-bold text-green mb-6">
+                <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark mb-6">
                   Recent Activities
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-4">
@@ -168,54 +150,48 @@ export default function Home() {
               <ImageCarousel />
             </div>
           </div>
-        </section>
-      </AnimateOnScroll>
+      </section>
 
-      {/* Donation CTA */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-20 sm:py-28 overflow-hidden">
         <Image
           src="/images/activities/DSC09450.jpg"
           alt="Students with educational kits"
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/75" />
-        <div className="relative z-10 max-w-3xl mx-auto px-4 text-center text-white">
-          <AnimateOnScroll>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Help Us Continue His Legacy
-            </h2>
-            <p className="inline-flex items-center gap-2 rounded-md bg-white text-green text-xs font-bold uppercase tracking-wide px-3 py-1.5 mb-4">
-              Section 80G · Tax benefits on donations
-            </p>
-            <p className="text-white/80 mb-8">
-              Your donation supports education, healthcare, skill development,
-              agriculture, and civic sense programs across Odisha. Eligible
-              contributions qualify for tax deduction under Section 80G.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/donate"
-                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors text-lg"
-              >
-                Donate Now
-              </Link>
-              <Link
-                href="/contact"
-                className="border-2 border-white text-white hover:bg-white/10 font-semibold px-8 py-3 rounded-md transition-colors text-lg"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </AnimateOnScroll>
+        <div className="absolute inset-0 bg-black/70" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-gold font-semibold mb-4">
+            Section 80G · Tax benefits on donations
+          </p>
+          <h2 className="font-serif text-4xl sm:text-5xl font-medium max-w-xl leading-tight">
+            Help Us Continue His Legacy
+          </h2>
+          <p className="text-white/85 max-w-xl mt-5 mb-8 leading-relaxed">
+            Your donation supports education, healthcare, skill development,
+            agriculture, and civic sense programs across Odisha. Eligible
+            contributions qualify for tax deduction under Section 80G.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link
+              href="/donate"
+              className="inline-flex items-center justify-center bg-orange hover:bg-orange-dark text-white font-semibold px-7 py-3 transition-colors"
+            >
+              Donate Now
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center border border-white/60 text-white hover:bg-white/10 font-semibold px-7 py-3 transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Contact strip */}
-      <AnimateOnScroll>
-        <section className="py-12 bg-green-light">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-xl font-bold text-green mb-4">Get in Touch</h2>
+      <section className="py-14 bg-green-light">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-serif text-2xl text-green-dark mb-4">Get in Touch</h2>
             <p className="text-gray-600 mb-4">
               <a href="mailto:prasannapattnaiktrust@gmail.com" className="text-orange hover:underline">
                 prasannapattnaiktrust@gmail.com
@@ -231,9 +207,8 @@ export default function Home() {
             >
               Contact Us &rarr;
             </Link>
-          </div>
-        </section>
-      </AnimateOnScroll>
+        </div>
+      </section>
     </>
   );
 }

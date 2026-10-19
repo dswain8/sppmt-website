@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-import DonationConfirmForm from "@/components/DonationConfirmForm";
+import DonationGoogleForm from "@/components/DonationGoogleForm";
 import { getDonationConfig } from "@/lib/donation";
 
 export const metadata: Metadata = {
@@ -80,13 +80,13 @@ export default function DonatePage() {
 
       <section className="py-12 bg-cream border-b border-orange/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-lg font-bold text-green mb-8">
+          <h2 className="font-serif text-3xl text-green-dark mb-8">
             How it works
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {STEPS.map((step) => (
-              <div key={step.n} className="text-center sm:text-left">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-orange text-white font-bold text-sm mb-3">
+              <div key={step.n}>
+                <span className="block font-serif text-3xl text-orange mb-2">
                   {step.n}
                 </span>
                 <h3 className="font-semibold text-green mb-1">{step.title}</h3>
@@ -103,7 +103,7 @@ export default function DonatePage() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
           <AnimateOnScroll>
             <div>
-              <h2 className="text-2xl font-bold text-green mb-2 text-center">
+              <h2 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-green-dark mb-2 text-center">
                 Donate via Bank Transfer
               </h2>
               <p className="text-center text-gray-500 text-sm mb-6">
@@ -154,20 +154,17 @@ export default function DonatePage() {
 
           <AnimateOnScroll delay={80}>
             <div id="confirm" className="scroll-mt-24">
-              <h2 className="text-2xl font-bold text-green mb-2 text-center">
+              <h2 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-green-dark mb-2 text-center">
                 Confirm your donation
               </h2>
               <p className="text-center text-gray-500 text-sm mb-8">
                 Already transferred? Tell us the details so we can verify the
                 payment and issue your 80G donation receipt.
               </p>
-              <div className="rounded-xl border border-gray-100 bg-gray-50 p-5 sm:p-8">
-                <DonationConfirmForm
-                  config={{
-                    email: config.email,
-                    whatsappNumber: config.whatsappNumber,
-                    receiptSlaDays: config.receiptSlaDays,
-                  }}
+              <div className="rounded-xl border border-gray-100 bg-gray-50 p-2 sm:p-4">
+                <DonationGoogleForm
+                  formUrl={config.googleFormUrl}
+                  receiptSlaDays={config.receiptSlaDays}
                 />
               </div>
             </div>

@@ -44,7 +44,8 @@ Old URLs (e.g. `/programs`, `/healthcare`) redirect to the new activity pages.
 
 ## Forms (no backend)
 
-- **Donations**: Bank transfer → confirm via form on `/donate` (WhatsApp + email) → official receipt within 7 working days
+- **Donations**: Bank transfer → Google Form on `/donate` → official 80G receipt within 7 working days
+- **Google Form URL**: set `DONATION_GOOGLE_FORM_URL` in Vercel / `.env` (see `.env.example`)
 - **Volunteers**: Email or phone via `/contact`
 
 ## Deploying to Vercel

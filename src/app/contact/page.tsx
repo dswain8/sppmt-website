@@ -113,7 +113,7 @@ export default function ContactPage() {
       <section id="volunteer" className="py-16 bg-cream scroll-mt-20">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnScroll>
-            <h2 className="text-2xl font-bold text-green mb-4 text-center">
+            <h2 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-green-dark mb-4 text-center">
               Volunteer With Us
             </h2>
             <p className="text-center text-gray-600 leading-relaxed mb-8">

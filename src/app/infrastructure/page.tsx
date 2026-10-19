@@ -39,7 +39,7 @@ export default function InfrastructurePage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnScroll>
-            <h2 className="text-3xl font-bold text-center text-green mb-4">
+            <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-4">
               Brahmani Setu
             </h2>
             <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12 text-lg leading-relaxed">
@@ -79,7 +79,7 @@ export default function InfrastructurePage() {
       {/* Fire station */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-green mb-12">
+          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-12">
             Public Facilities
           </h2>
           <AnimateOnScroll>
@@ -113,7 +113,7 @@ export default function InfrastructurePage() {
       <AnimateOnScroll>
         <section className="py-16 bg-cream">
           <div className="max-w-3xl mx-auto px-4 text-center">
-            <h2 className="text-2xl font-bold text-green mb-6">
+            <h2 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-green-dark mb-6">
               The Trust&apos;s Infrastructure Vision
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-8">

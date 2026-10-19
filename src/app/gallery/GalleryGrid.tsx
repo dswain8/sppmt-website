@@ -26,16 +26,16 @@ export default function GalleryGrid() {
     <>
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 mb-10 border-b border-gray-200">
             {GALLERY_CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`pb-3 text-sm transition-colors border-b-2 -mb-px ${
                   activeCategory === cat
-                    ? "bg-orange text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "border-orange text-orange font-semibold"
+                    : "border-transparent text-gray-500 hover:text-green-dark"
                 }`}
               >
                 {cat}
@@ -49,7 +49,7 @@ export default function GalleryGrid() {
                 key={img.src}
                 type="button"
                 onClick={() => setLightbox(img)}
-                className="relative aspect-[4/3] rounded-xl overflow-hidden group cursor-pointer"
+                className="relative aspect-[4/3] overflow-hidden group cursor-pointer"
               >
                 <Image
                   src={img.src}
@@ -60,7 +60,7 @@ export default function GalleryGrid() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                <span className="absolute bottom-3 left-3 text-xs bg-black/60 text-white px-2 py-1 rounded-full">
+                <span className="absolute bottom-3 left-3 text-[11px] uppercase tracking-[0.14em] text-white">
                   {img.category}
                 </span>
               </button>

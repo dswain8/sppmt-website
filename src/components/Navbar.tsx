@@ -56,15 +56,23 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="shrink-0">
+        <div className="flex items-center justify-between h-[4.25rem]">
+          <Link href="/" className="flex items-center gap-3 shrink-0 min-w-0">
             <Image
               src="/images/trust-logo-large.png"
               alt="Shri Prasanna Pattnaik Memorial Trust"
               width={48}
               height={48}
-              className="h-10 w-auto sm:h-12"
+              className="h-11 w-auto"
             />
+            <span className="hidden sm:block leading-tight">
+              <span className="block font-serif text-[15px] text-green-dark">
+                Shri Prasanna Pattnaik
+              </span>
+              <span className="block text-[10px] uppercase tracking-[0.16em] text-gray-500">
+                Memorial Trust
+              </span>
+            </span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-1">
@@ -73,10 +81,10 @@ export default function Navbar() {
                 <div key={item.href} className="relative group">
                   <Link
                     href={item.href}
-                    className={`inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors hover:text-orange ${
+                    className={`inline-flex items-center gap-1 px-3 py-2 text-sm font-medium border-b-2 transition-colors hover:text-orange ${
                       isActive(item.href)
-                        ? "text-orange border-b-2 border-orange"
-                        : "text-gray-700"
+                        ? "text-orange border-orange"
+                        : "text-gray-700 border-transparent"
                     }`}
                   >
                     {item.label}
@@ -116,10 +124,10 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors hover:text-orange ${
+                  className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors hover:text-orange ${
                     isActive(item.href)
-                      ? "text-orange border-b-2 border-orange"
-                      : "text-gray-700"
+                      ? "text-orange border-orange"
+                      : "text-gray-700 border-transparent"
                   }`}
                 >
                   {item.label}

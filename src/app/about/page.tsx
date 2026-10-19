@@ -53,7 +53,7 @@ export default function AboutPage() {
                 />
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-green mb-6">
+                <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark mb-6">
                   Shri Prasanna Pattnaik Memorial Trust
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-4">
@@ -102,7 +102,7 @@ export default function AboutPage() {
       {/* Trustees */}
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-green mb-4">
+          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-4">
             Board of Trustees
           </h2>
           <p className="text-center text-gray-500 mb-10">
@@ -110,15 +110,10 @@ export default function AboutPage() {
             transparency, accountability, and service.
           </p>
 
-          <div className="divide-y divide-gray-100">
+            <div className="divide-y-0">
             {TRUSTEES.map((trustee, i) => (
               <AnimateOnScroll key={i} delay={i * 80}>
-                <div className="flex items-center gap-5 py-5">
-                  <div className="w-10 h-10 shrink-0 rounded-full bg-green flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                    </svg>
-                  </div>
+                <div className="flex items-start gap-6 py-5 border-b border-gray-100">
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                       <h3 className="font-semibold text-gray-800">
@@ -143,7 +138,7 @@ export default function AboutPage() {
       <AnimateOnScroll>
         <section className="py-16 bg-gray-50">
           <div className="max-w-3xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-green mb-8">
+            <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-8">
               Registration Details
             </h2>
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -175,7 +170,7 @@ export default function AboutPage() {
       <AnimateOnScroll>
         <section className="py-16 bg-green-light text-center">
           <div className="max-w-3xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-green mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-green-dark mb-4">
               Join Us in Building Shri Pattnaik&apos;s Vision
             </h2>
             <p className="text-gray-600 mb-8">

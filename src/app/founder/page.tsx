@@ -114,35 +114,38 @@ export default function FounderPage() {
       <PageBanner
         title="Shri Prasanna Pattnaik"
         subtitle="1 June 1948 — 30 May 2025 · A True Son of the Soil"
-        imageSrc="/images/prasanna-patnaik-memorial-portrait.png"
-        imageAlt="Shri Prasanna Pattnaik memorial portrait"
       />
 
       {/* Portrait */}
       <AnimateOnScroll>
-        <section className="py-16 bg-cream">
-          <div className="max-w-3xl mx-auto px-4 text-center">
-            <div className="inline-block p-1.5 border-2 border-gold rounded-lg shadow-lg">
-              <Image
-                src="/images/prasanna-patnaik-bw-portrait.png"
-                alt="Shri Prasanna Pattnaik"
-                width={200}
-                height={240}
-                className="rounded"
-              />
+      <section className="py-16 sm:py-24 bg-cream">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-[minmax(16rem,22rem)_1fr] gap-10 items-end">
+            <Image
+              src="/images/prasanna-patnaik-bw-portrait.png"
+              alt="Shri Prasanna Pattnaik"
+              width={640}
+              height={768}
+              className="w-full max-w-sm h-auto border border-green/20 bg-white"
+            />
+            <div>
+              <ul className="space-y-2 text-lg text-gray-700">
+                <li>Social Worker</li>
+                <li>Legislator</li>
+                <li>First BJP MLA of Odisha</li>
+                <li>Founder of Schools &amp; Colleges in Odisha</li>
+              </ul>
             </div>
-            <p className="mt-6 text-gray-600 text-lg leading-relaxed">
-              Social Worker &nbsp;|&nbsp; Legislator &nbsp;|&nbsp; First BJP MLA of Odisha &nbsp;|&nbsp; Founder of Schools &amp; Colleges in Odisha
-            </p>
           </div>
-        </section>
+        </div>
+      </section>
       </AnimateOnScroll>
 
       {/* Early life */}
       <AnimateOnScroll>
         <section className="py-16 bg-white">
           <div className="max-w-3xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-green mb-6">Early Life</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark mb-6">Early Life</h2>
             <p className="text-gray-600 leading-relaxed text-lg">
               Prasanna Pattnaik was born on 1 June 1948 in the village of
               Bhuban, in Dhenkanal District of Odisha. Son of Narayana Pattnaik,
@@ -159,7 +162,7 @@ export default function FounderPage() {
       {/* Timeline */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-green mb-12">
+          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-12">
             A Life in Public Service
           </h2>
           <div className="relative">
@@ -188,7 +191,7 @@ export default function FounderPage() {
                       i % 2 === 0 ? "sm:mr-auto sm:pr-8" : "sm:ml-auto sm:pl-8"
                     }`}
                   >
-                    <span className="inline-block text-sm font-bold text-orange bg-orange/10 px-3 py-1 rounded-full mb-2">
+                    <span className="block font-serif text-orange text-sm mb-2">
                       {item.year}
                     </span>
                     <h3 className="text-lg font-bold text-gray-800 mb-1">
@@ -208,7 +211,7 @@ export default function FounderPage() {
       {/* Legacy cards */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-green mb-12">
+          <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-12">
             Legacy Beyond Politics
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -243,7 +246,7 @@ export default function FounderPage() {
         <section className="py-16 bg-cream">
           <div className="max-w-3xl mx-auto px-4">
             <div className="border-l-4 border-gold pl-6 py-2">
-              <p className="text-xl text-gray-700 italic leading-relaxed">
+              <p className="font-serif text-2xl sm:text-3xl text-green-dark italic leading-snug">
                 &ldquo;He was not merely a politician; he was a builder of
                 institutions, a champion of the forgotten, and a leader who
                 believed that true public service means transforming lives at
@@ -258,7 +261,7 @@ export default function FounderPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateOnScroll>
-            <h2 className="text-3xl font-bold text-center text-green mb-3">
+            <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark text-center mb-3">
               His Work
             </h2>
             <p className="text-center text-gray-500 mb-10 max-w-2xl mx-auto">
@@ -275,7 +278,7 @@ export default function FounderPage() {
       <AnimateOnScroll>
         <section className="py-16 bg-white">
           <div className="max-w-3xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-green mb-6">
+            <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-green-dark mb-6">
               The Trust That Carries His Name
             </h2>
             <p className="text-gray-600 leading-relaxed text-lg mb-8">

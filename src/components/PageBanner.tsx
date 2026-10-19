@@ -16,26 +16,27 @@ export default function PageBanner({
 }: PageBannerProps) {
   if (!imageSrc) {
     return (
-      <section className="bg-green pt-24 pb-16 sm:pt-28 sm:pb-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <BackNav variant="light" className="mb-8" />
-          <div className="text-center text-white">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3">
-              {title}
-            </h1>
-            {subtitle && (
-              <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto">
-                {subtitle}
-              </p>
-            )}
-          </div>
+      <section className="bg-cream pt-28 pb-14 sm:pt-32 sm:pb-16 border-b border-green/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <BackNav variant="dark" className="mb-8" />
+          <p className="text-[11px] uppercase tracking-[0.22em] text-gold font-semibold mb-3">
+            Shri Prasanna Pattnaik Memorial Trust
+          </p>
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium text-green-dark leading-[1.05] max-w-3xl">
+            {title}
+          </h1>
+          {subtitle && (
+            <p className="mt-4 text-lg text-gray-600 max-w-2xl leading-relaxed">
+              {subtitle}
+            </p>
+          )}
         </div>
       </section>
     );
   }
 
   return (
-    <section className="relative h-[320px] sm:h-[380px] flex items-end overflow-hidden">
+    <section className="relative min-h-[26rem] sm:min-h-[32rem] flex items-end overflow-hidden">
       <Image
         src={imageSrc}
         alt={imageAlt ?? title}
@@ -43,20 +44,21 @@ export default function PageBanner({
         className="object-cover"
         priority
       />
-      <div className="absolute inset-0 bg-black/55" />
-      <div className="relative z-10 w-full pt-24 pb-10 sm:pt-28 sm:pb-12">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/35" />
+      <div className="relative z-10 w-full pt-28 pb-10 sm:pt-32 sm:pb-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <BackNav variant="light" className="mb-6" />
-          <div className="text-center text-white">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3">
-              {title}
-            </h1>
-            {subtitle && (
-              <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto">
-                {subtitle}
-              </p>
-            )}
-          </div>
+          <BackNav variant="light" className="mb-8" />
+          <p className="text-[11px] uppercase tracking-[0.22em] text-white/80 font-semibold mb-3">
+            Shri Prasanna Pattnaik Memorial Trust
+          </p>
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium text-white leading-[1.05] max-w-4xl">
+            {title}
+          </h1>
+          {subtitle && (
+            <p className="mt-4 text-lg sm:text-xl text-white/85 max-w-2xl leading-relaxed">
+              {subtitle}
+            </p>
+          )}
         </div>
       </div>
     </section>

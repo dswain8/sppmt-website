@@ -15,6 +15,8 @@ export interface DonationConfig {
   approval80G: string;
   /** Days to issue receipt after payment verification */
   receiptSlaDays: number;
+  /** Google Form URL for donation confirmation (viewform link) */
+  googleFormUrl: string;
 }
 
 export interface SuggestedAmount {
@@ -64,6 +66,7 @@ export function getDonationConfig(): DonationConfig {
     registration12A: process.env.DONATION_12A_NUMBER ?? "",
     approval80G: process.env.DONATION_80G_NUMBER ?? "",
     receiptSlaDays: Number(process.env.DONATION_RECEIPT_SLA_DAYS ?? "7"),
+    googleFormUrl: process.env.DONATION_GOOGLE_FORM_URL ?? "",
   };
 }
 
