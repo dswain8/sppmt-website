@@ -4,6 +4,7 @@ import "./charity-design.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import StickyDonateCta from "@/components/StickyDonateCta";
 import JsonLd from "@/components/JsonLd";
 import {
   SEO_KEYWORDS,
@@ -65,7 +66,12 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {},
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
+  },
 };
 
 export default function RootLayout({
@@ -88,6 +94,7 @@ export default function RootLayout({
         <main id="main" className="flex-1">{children}</main>
         <Footer />
         <ScrollToTop />
+        <StickyDonateCta />
       </body>
     </html>
   );

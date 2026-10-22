@@ -8,10 +8,35 @@ export const metadata: Metadata = {
     "Four areas of active community work by the Shri Prasanna Pattnaik Memorial Trust: education, healthcare, women’s livelihoods, and community environment.",
 };
 
+const WORK_LEADS: Record<string, { src: string; alt: string; frame: string; line?: string }> = {
+  education: {
+    src: "/images/activities/DSC09246.jpg",
+    alt: "Families going through papers at a community education visit",
+    frame: "photo-papers",
+    line: "Papers at a community education visit",
+  },
+  cleanliness: {
+    src: "/images/activities/File_004.jpg",
+    alt: "Women sweeping the courtyard of a temple with brooms",
+    frame: "photo-brooms",
+    line: "Temple and public space cleaning",
+  },
+  livelihood: {
+    src: "/images/activities/File_012.jpg",
+    alt: "Women making applique at a livelihood session",
+    frame: "photo-circle",
+  },
+  healthcare: {
+    src: "/images/activities/File_022.jpg",
+    alt: "A patient receiving assistance during hospital outreach",
+    frame: "photo-ward",
+  },
+};
+
 export default function ActivitiesPage() {
   return (
     <>
-      <header className="page-head compact shell">
+      <header className="page-head compact shell work-intro">
         <div className="eyebrow with-line">Our work</div>
         <h1>
           Practical care.
@@ -23,23 +48,35 @@ export default function ActivitiesPage() {
           across Odisha.
         </p>
       </header>
-      <div className="shell work-index">
-        <span>On this page</span>
-        {ACTIVITY_AREAS.map((area, index) => (
-          <a key={area.slug} href={`#${area.slug}`}>
-            0{index + 1} / {area.shortTitle} ↗
-          </a>
-        ))}
-      </div>
-      {ACTIVITY_AREAS.map((area, index) => (
-        <section className={`program-section${index === 0 ? " first" : ""}`} id={area.slug} key={area.slug}>
+      <nav className="shell work-board" aria-label="Program areas">
+        {ACTIVITY_AREAS.map((area, index) => {
+          const lead = WORK_LEADS[area.slug];
+          return (
+            <Link key={area.slug} href={`/activities/${area.slug}`}>
+              <div className={`photo work-card-photo loaded ${lead.frame}`}>
+                <img src={lead.src} alt={lead.alt} />
+              </div>
+              <span className="work-card-copy">
+                <strong>
+                  0{index + 1} / {area.shortTitle} <span>↗</span>
+                </strong>
+                <em>{lead.line ?? area.examples[0]}</em>
+              </span>
+            </Link>
+          );
+        })}
+      </nav>
+      {ACTIVITY_AREAS.filter((area) => area.slug !== "education").map((area) => {
+        const index = ACTIVITY_AREAS.findIndex((item) => item.slug === area.slug);
+        return (
+        <section className="program-section" id={area.slug} key={area.slug}>
           <div className={`shell program-grid ${index % 2 ? "reverse" : ""}`}>
             <div className="program-visual">
-              <div className="photo program-photo loaded">
+              <div className={`photo program-photo loaded${area.slug === "education" ? " photo-books" : ""}`}>
                 <img
                   src={
                     area.slug === "education"
-                      ? "/images/activities/DSC09384.jpg"
+                      ? "/images/activities/DSC09424.jpg"
                       : area.bannerImage
                   }
                   alt={area.bannerAlt}
@@ -48,13 +85,9 @@ export default function ActivitiesPage() {
               <span className="program-index">0{index + 1}</span>
             </div>
             <div className="program-content">
-              <div className="eyebrow">{area.shortTitle}</div>
+              <div className="eyebrow">0{index + 1} / {area.shortTitle}</div>
               <h2>{area.title}</h2>
               <p className="program-summary">{area.description}</p>
-              <div className="program-proof">
-                <strong>Documented on this site</strong>
-                <p>{area.examples.join(" · ")}</p>
-              </div>
               <div className="program-actions">
                 <Link className="btn btn-dark" href={`/activities/${area.slug}`}>
                   See photographs <span>↗</span>
@@ -66,7 +99,8 @@ export default function ActivitiesPage() {
             </div>
           </div>
         </section>
-      ))}
+        );
+      })}
       <section className="closing-note shell">
         <div className="eyebrow">Also in the mission</div>
         <h2>

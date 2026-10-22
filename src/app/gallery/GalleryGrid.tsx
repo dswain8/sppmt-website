@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import ImageLightbox from "@/components/ImageLightbox";
 import {
   GALLERY_IMAGES,
@@ -22,50 +21,47 @@ export default function GalleryGrid() {
       ? GALLERY_IMAGES
       : GALLERY_IMAGES.filter((img) => img.category === activeCategory);
 
+  const seen = new Set<string>();
+  const photos = filtered.filter((img) => {
+    if (seen.has(img.src)) return false;
+    seen.add(img.src);
+    return true;
+  });
+
   return (
     <>
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap gap-x-6 gap-y-2 mb-10 border-b border-gray-200">
-            {GALLERY_CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setActiveCategory(cat)}
-                className={`pb-3 text-sm transition-colors border-b-2 -mb-px ${
-                  activeCategory === cat
-                    ? "border-orange text-orange font-semibold"
-                    : "border-transparent text-gray-500 hover:text-green-dark"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+      <section className="section shell gallery-archive">
+        <div className="eyebrow">Every photograph</div>
+        <div className="gallery-filters" role="tablist" aria-label="Photograph categories">
+          {GALLERY_CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              aria-pressed={activeCategory === cat}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filtered.map((img) => (
-              <button
-                key={img.src}
-                type="button"
-                onClick={() => setLightbox(img)}
-                className="relative aspect-[4/3] overflow-hidden group cursor-pointer"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                <span className="absolute bottom-3 left-3 text-[11px] uppercase tracking-[0.14em] text-white">
-                  {img.category}
-                </span>
-              </button>
-            ))}
-          </div>
+        <div className="notes-grid">
+          {photos.map((img) => (
+            <button
+              key={`${img.category}-${img.src}`}
+              type="button"
+              className="note-card"
+              onClick={() => setLightbox(img)}
+            >
+              <div className="photo note-photo loaded">
+                <img src={img.src} alt={img.alt} />
+              </div>
+              <div className="note-body">
+                <span>{img.category}</span>
+                <h3>{img.alt}</h3>
+              </div>
+            </button>
+          ))}
         </div>
       </section>
 

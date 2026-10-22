@@ -30,10 +30,10 @@ export default function ContactPage() {
         </p>
       </header>
       <section className="shell volunteer-layout">
-        <div className="photo volunteer-photo loaded">
+        <div className="photo volunteer-photo photo-saplings loaded">
           <img
-            src="/images/activities/plantation-group-banner.jpg"
-            alt="Community members at a trust plantation drive"
+            src="/images/activities/plantation-sapling-walk.jpg"
+            alt="Women carrying saplings for a planting"
           />
         </div>
         <div className="volunteer-content">
@@ -61,7 +61,7 @@ export default function ContactPage() {
             Email the trust to volunteer <span>↗</span>
           </a>
           <div className="contact-rows">
-            <a href="tel:+919439725460">Call +91 94397 25460 ↗</a>
+            <a href="tel:+919972366933">Call +91 99723 66933 ↗</a>
             <a href="tel:+919178256179">Call +91 91782 56179 ↗</a>
             <Link href="/donate">Or support the work with a donation ↗</Link>
           </div>

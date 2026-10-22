@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ScholarshipAnnouncement from "@/components/ScholarshipAnnouncement";
+import DonationQrCode from "@/components/DonationQrCode";
+import { FOCUS_AREAS } from "@/lib/focus-areas";
+import { getDonationConfig } from "@/lib/donation";
 import { SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -27,6 +31,8 @@ function Photo({
 }
 
 export default function Home() {
+  const donationConfig = getDonationConfig();
+
   return (
     <>
       <section className="hero shell" aria-labelledby="hero-title">
@@ -93,6 +99,8 @@ export default function Home() {
         </div>
       </div>
 
+      <ScholarshipAnnouncement />
+
       <section className="section shell" id="work">
         <div className="section-head">
           <div>
@@ -149,13 +157,13 @@ export default function Home() {
             </Link>
             <Link className="side-story" href="/activities/cleanliness">
               <Photo
-                className="side-photo"
-                src="/images/activities/plantation-watering.jpg"
-                alt="Trust volunteer watering a sapling at a tree plantation event"
+                className="side-photo photo-brooms"
+                src="/images/activities/File_004.jpg"
+                alt="Women sweeping the courtyard of a temple"
               />
               <div>
                 <span className="mini-category">03 · Environment</span>
-                <h3>Growing a cleaner, greener community</h3>
+                <h3>Sweeping a temple courtyard</h3>
                 <span className="side-more">Explore this work ↗</span>
               </div>
             </Link>
@@ -163,10 +171,9 @@ export default function Home() {
         </div>
         <div className="focus-row">
           <span>Focus areas</span>
-          <div>Education</div>
-          <div>Healthcare</div>
-          <div>Women’s livelihoods</div>
-          <div>Community environment</div>
+          {FOCUS_AREAS.map((area) => (
+            <div key={area.slug}>{area.title}</div>
+          ))}
           <Link href="/activities" aria-label="See programs">
             ↗
           </Link>
@@ -241,24 +248,24 @@ export default function Home() {
           <Link href="/activities/education" className="note-card">
             <Photo
               className="note-photo"
-              src="/images/activities/DSC09450.jpg"
-              alt="SPPMT educational kit distribution event with local students"
+              src="/images/activities/DSC09246.jpg"
+              alt="Families going through papers at a community education visit"
             />
             <div className="note-body">
               <div className="mini-category">Education · Community update</div>
-              <h3>School supplies for students in rural Odisha</h3>
+              <h3>Families going through papers together</h3>
               <span>Read the activity report ↗</span>
             </div>
           </Link>
           <Link href="/activities/cleanliness" className="note-card">
             <Photo
-              className="note-photo"
-              src="/images/activities/plantation-watering.jpg"
-              alt="Sapling planting activity undertaken by the trust"
+              className="note-photo photo-leaves-card"
+              src="/images/activities/cleanliness-leaf-cleanup.jpg"
+              alt="Community members collecting dry leaves during a cleanliness drive"
             />
             <div className="note-body">
               <div className="mini-category">Community · Environment</div>
-              <h3>Building healthier public spaces together</h3>
+              <h3>Collecting leaves on a cleanliness drive</h3>
               <span>Explore the activity ↗</span>
             </div>
           </Link>
@@ -330,10 +337,46 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section shell" id="give" style={{ paddingTop: 30, paddingBottom: 60 }}>
+        <div className="section-head">
+          <div>
+            <div className="eyebrow">Support our mission</div>
+            <h2>
+              Give directly.
+              <br />
+              <em>Empower a life.</em>
+            </h2>
+          </div>
+          <div className="section-aside">
+            <p>
+              Your contributions directly fund educational scholarships, school
+              supplies, healthcare assistance, and environmental drives in
+              Odisha. All eligible donations receive an official Section 80G tax
+              exemption receipt.
+            </p>
+            <Link href="/donate" className="under-link">
+              View official bank details &amp; 80G guide <span>↗</span>
+            </Link>
+          </div>
+        </div>
+
+        <DonationQrCode
+          upiId={donationConfig.upiId || "sppmt@uco"}
+          payeeName={donationConfig.accountName}
+          accountNumber={donationConfig.accountNumber}
+          ifsc={donationConfig.ifsc}
+          bankName={donationConfig.bankName}
+          branch={donationConfig.branch}
+          whatsappNumber={donationConfig.whatsappNumber}
+          defaultAmount={1000}
+        />
+      </section>
+
       <section className="support-cta shell">
         <div className="support-art" aria-hidden="true">
-          <span className="sun-circle" />
-          <span className="sun-rays">✳</span>
+          <span className="sun-circle">
+            <span className="sun-rays">✳</span>
+          </span>
         </div>
         <div>
           <div className="eyebrow">Continue the legacy</div>

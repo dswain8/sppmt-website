@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   async redirects() {
     return [
       { source: "/programs", destination: "/activities", permanent: true },
@@ -16,7 +17,6 @@ const nextConfig: NextConfig = {
       { source: "/activities/education-kit-distribution", destination: "/activities/education", permanent: true },
       { source: "/join", destination: "/contact#volunteer", permanent: true },
       { source: "/volunteer", destination: "/contact#volunteer", permanent: true },
-      { source: "/scholarship", destination: "/activities/education", permanent: false },
       { source: "/donate/receipt-guide", destination: "/donate", permanent: true },
     ];
   },

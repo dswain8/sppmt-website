@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import HisWorkTabs from "@/components/HisWorkTabs";
+import FaqSection from "@/components/FaqSection";
 
 export const metadata: Metadata = {
   title: "Shri Prasanna Patnaik | Our Inspiration",
@@ -129,7 +130,11 @@ export default function FounderPage() {
         </div>
         <div className="story-hero-copy">
           <div className="eyebrow">Rooted in Bhuban</div>
-          <h2>Born in Bhuban. Remembered across Odisha.</h2>
+          <h2>
+            Born in Bhuban.
+            <br />
+            Remembered across Odisha.
+          </h2>
           <p>
             Born on 1 June 1948 in the village of Bhuban, Dhenkanal District,
             son of Narayana Pattnaik. He devoted his public life to expanding
@@ -199,6 +204,55 @@ export default function FounderPage() {
           <HisWorkTabs />
         </div>
       </section>
+
+      {/* Structured Founder FAQ with FAQPage Schema */}
+      <FaqSection
+        id="founder-faqs"
+        eyebrow="Questions & History"
+        title={
+          <>
+            Shri Prasanna Pattnaik:
+            <br />
+            <em>His Life &amp; Legacy.</em>
+          </>
+        }
+        description="Key historical facts about Shri Prasanna Pattnaik, his legislative milestones, and the ongoing mission of the memorial trust."
+        items={FOUNDER_FAQS}
+      />
     </>
   );
 }
+
+const FOUNDER_FAQS = [
+  {
+    question: "Who was Shri Prasanna Pattnaik?",
+    answer:
+      "Shri Prasanna Pattnaik (1 June 1948 – 30 May 2025) was a revered social worker, educator, institution builder, and the first BJP MLA of Odisha. Over five decades of public service, he established high schools, colleges, health centres, a blood bank, and major transport infrastructure across Dhenkanal district.",
+  },
+  {
+    question: "When did Shri Prasanna Pattnaik become the first BJP MLA of Odisha?",
+    answer:
+      "Shri Prasanna Pattnaik made history in 1985 when he won the Kamakhyanagar seat on a Bharatiya Janata Party (BJP) ticket. He was the sole BJP representative elected to the 9th Odisha Legislative Assembly and was formally recognized by the Speaker as the Leader of the BJP in the house.",
+  },
+  {
+    question: "What electoral record does Shri Prasanna Pattnaik hold in Odisha?",
+    answer:
+      "In 1977, running on a Janata Party ticket, Shri Prasanna Pattnaik was elected to the Odisha Legislative Assembly from Kamakhyanagar at the age of 28, becoming the youngest MLA in Odisha's legislative history—a historic distinction that remains unbeaten to this day.",
+  },
+  {
+    question: "What institutions were founded by Shri Prasanna Pattnaik?",
+    answer:
+      "His visionary development work transformed Dhenkanal district. He founded Kamakhyanagar College, Anchalika Mahavidyalaya (Bhuban), women's high schools, vocational training centers, sub-divisional hospitals, the first blood bank in Kamakhyanagar/Bhuban, and spearheaded the construction of the Brahmani Setu bridge.",
+  },
+  {
+    question: "What was his role during the Emergency and JP Movement?",
+    answer:
+      "Inspired by Loknayak Jayaprakash Narayan, Shri Prasanna Pattnaik actively joined the anti-corruption JP Movement in 1975. During the national Emergency, he was detained under the Maintenance of Internal Security Act (MISA) for 18 months in Dhenkanal and Palahara jails.",
+  },
+  {
+    question: "How does the Shri Prasanna Pattnaik Memorial Trust (SPPMT) continue his legacy?",
+    answer:
+      "Founded in 2025 in Bhubaneswar by his family and associates, the trust honors his memory by funding educational scholarships, distributing student kits, organizing free medical outreach camps, and supporting sustainable rural livelihoods across Odisha.",
+  },
+];
+

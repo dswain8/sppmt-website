@@ -5,6 +5,8 @@ export interface DonationConfig {
   bankName: string;
   branch: string;
   upiId: string;
+  merchantTid?: string;
+  qrImagePath?: string;
   email: string;
   whatsappNumber: string;
   /** Display as-is when set (e.g. trust PAN) */
@@ -57,11 +59,14 @@ export function getDonationConfig(): DonationConfig {
     ifsc: process.env.DONATION_IFSC ?? "UCBA0000923",
     bankName: process.env.DONATION_BANK_NAME ?? "UCO Bank",
     branch: process.env.DONATION_BRANCH ?? "Saheed Nagar, Bhubaneswar",
-    upiId: process.env.DONATION_UPI_ID ?? "",
+    upiId:
+      process.env.DONATION_UPI_ID ?? "shriprasannapattnaik.82380414@hdfcbank",
+    merchantTid: "82380414",
+    qrImagePath: "/images/trust-qr-code.jpg",
     email:
       process.env.DONATION_EMAIL ?? "prasannapattnaiktrust@gmail.com",
     whatsappNumber:
-      process.env.DONATION_WHATSAPP ?? "919439725460",
+      process.env.DONATION_WHATSAPP ?? "919972366933",
     pan: process.env.DONATION_TRUST_PAN ?? "",
     registration12A: process.env.DONATION_12A_NUMBER ?? "",
     approval80G: process.env.DONATION_80G_NUMBER ?? "",

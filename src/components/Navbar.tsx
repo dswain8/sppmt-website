@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 const LINKS = [
   { href: "/", label: "Home" },
   { href: "/activities", label: "Our work" },
+  { href: "/scholarship", label: "Scholars" },
   { href: "/founder", label: "Our story" },
   { href: "/gallery", label: "Field notes" },
   { href: "/about", label: "Transparency" },
@@ -33,7 +34,7 @@ export default function Navbar() {
               prasannapattnaiktrust@gmail.com
             </a>
             <span>·</span>
-            <a href="tel:+919439725460">+91 94397 25460</a>
+            <a href="tel:+919972366933">+91 99723 66933</a>
           </span>
         </div>
       </div>
@@ -70,7 +71,11 @@ export default function Navbar() {
             ))}
           </nav>
           <div className="header-actions">
-            <Link className="header-donate" href="/donate">
+            <Link
+              className="header-donate"
+              href="/donate"
+              aria-current={pathname === "/donate" ? "page" : undefined}
+            >
               Donate <span aria-hidden="true">↗</span>
             </Link>
             <button

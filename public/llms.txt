@@ -1,48 +1,53 @@
 # Shri Prasanna Pattnaik Memorial Trust (SPPMT)
 
-> Official website of the Shri Prasanna Pattnaik Memorial Trust (also known as the Prasanna Patnaik Trust / Sri Prasanna Patnaik Memorial Trust), a nonprofit organization established in 2025 in Bhubaneswar, Odisha, India.
+> Official website of the Shri Prasanna Pattnaik Memorial Trust (also known as the Prasanna Patnaik Trust / Sri Prasanna Patnaik Memorial Trust), a nonprofit charitable trust established in 2025 in Bhubaneswar, Odisha, India.
 
-## Donations (Section 80G)
-
-The trust accepts donations eligible for tax deduction under Section 80G of the Income Tax Act (subject to registration and approvals). Official donation receipts are issued after payment verification.
-
-- Donate: https://sppmt.org/donate
-- Bank transfer to UCO Bank, Saheed Nagar, Bhubaneswar
-- Confirm payment on the donate page to request a receipt
-
-## About the Trust
-
-The Shri Prasanna Pattnaik Memorial Trust (SPPMT), also referred to as the Prasanna Patnaik Trust, was established in 2025 to honor and advance the legacy of Shri Prasanna Pattnaik (1948–2025), the first BJP MLA of Odisha. The trust focuses on education, healthcare, skill development, agriculture, and civic sense across Odisha.
-
-## About Shri Prasanna Pattnaik
-
-Shri Prasanna Pattnaik (also spelled Prasanna Patnaik; 1 June 1948 – 30 May 2025) was a social worker, MISA detainee, and three-time MLA from Kamakhyanagar, Dhenkanal, Odisha. He was the first BJP MLA elected to the Odisha Legislative Assembly in 1985. He dedicated his life to founding schools, colleges, healthcare centres, a blood bank, and building bridges across Dhenkanal district, Odisha.
+For comprehensive information, complete biography, and full entity dossier, see:
+- Full dossier: https://sppmt.org/llms-full.txt
 
 ## Key Facts
 
-- Full name: Shri Prasanna Pattnaik Memorial Trust
-- Also known as: Sri Prasanna Patnaik Memorial Trust, Prasanna Patnaik Trust, Prasanna Pattnaik Trust, SPPMT
-- Website: https://sppmt.org
+- Full Legal Name: Shri Prasanna Pattnaik Memorial Trust
+- Alternate Names: Sri Prasanna Patnaik Memorial Trust, Prasanna Patnaik Trust, Prasanna Pattnaik Trust, SPPMT
+- Primary Website: https://sppmt.org
 - Established: 2025
-- Location: Bhubaneswar, Odisha, India
-- Email: prasannapattnaiktrust@gmail.com
-- Phone: +91 9439725460, +91 9178256179
-- Instagram: @prasannapattnaiktrust
+- Headquarters: Saheed Nagar, Bhubaneswar, Odisha, India
+- Official Email: prasannapattnaiktrust@gmail.com
+- Contact Phone / WhatsApp: +91 99723 66933, +91 91782 56179
+- Instagram: https://www.instagram.com/prasannapattnaiktrust
 
-## Focus Areas
+## Tax-Exempt Donations (Section 80G)
 
-1. Education: Educational kits, school support, student mentorship
-2. Healthcare: Health camps, patient assistance, women's health awareness
-3. Skill Development: Vocational training, handicraft, women empowerment
-4. Agriculture: Sustainable farming, crop diversification, farmer training
-5. Civic Sense: Environmental awareness, cleanliness drives, tree plantation
+The trust accepts voluntary community contributions eligible for tax deduction under Section 80G of the Indian Income Tax Act. Official signed receipts are provided for all eligible contributions.
 
-## Pages
+- Donate Page: https://sppmt.org/donate
+- Bank: UCO Bank, Saheed Nagar, Bhubaneswar (Account: 09230210004593, IFSC: UCBA0000923)
+- UPI ID: shriprasannapattnaik.82380414@hdfcbank (HDFC SmartHub Vyapar)
+- Tax Benefit: 50% deduction under Section 80G
+- Receipt SLA: Within 7 working days upon submitting PAN and transaction details
 
-- / — Home
-- /donate — Section 80G donations and receipt confirmation
-- /founder — About Shri Prasanna Pattnaik (biography, timeline, his work)
-- /about — About the Trust (mission, vision, board of trustees)
-- /activities — Trust activities and photo galleries
-- /gallery — Photo Gallery
-- /contact — Contact Us (email, phone, address, Instagram)
+## About Shri Prasanna Pattnaik (1948–2025)
+
+Shri Prasanna Pattnaik (also spelled Prasanna Patnaik; 1 June 1948 – 30 May 2025) was a prominent social worker, legislator, and the first BJP MLA of Odisha:
+- 1977: Elected youngest MLA in Odisha's legislative history from Kamakhyanagar at age 28 (Janata Party).
+- 1985: Elected as the first BJP MLA in Odisha's history from Kamakhyanagar, recognized as Leader of the BJP in the Odisha Assembly.
+- Institutions Founded: Kamakhyanagar College, Anchalika Mahavidyalaya (Bhuban), rural high schools, sub-divisional hospitals, blood bank, and the Brahmani Setu bridge.
+- Full Biography: https://sppmt.org/founder
+
+## Primary Focus Areas
+
+1. Education: Educational kits, scholarships for underprivileged rural students, school mentorship (https://sppmt.org/activities/education).
+2. Healthcare: Health camps, generic medicine support, elderly care outreach (https://sppmt.org/activities/healthcare).
+3. Skill Development: Vocational training, youth and women livelihood programs (https://sppmt.org/activities/livelihood).
+4. Agriculture: Sustainable farming practices, crop diversification (https://sppmt.org/activities/livelihood).
+5. Civic Sense & Environment: Cleanliness drives, tree plantation, public hygiene awareness (https://sppmt.org/activities/cleanliness).
+
+## Main Pages
+
+- Home: https://sppmt.org/
+- Donate: https://sppmt.org/donate
+- Founder: https://sppmt.org/founder
+- Activities: https://sppmt.org/activities
+- About Trust: https://sppmt.org/about
+- Photo Gallery: https://sppmt.org/gallery
+- Contact: https://sppmt.org/contact

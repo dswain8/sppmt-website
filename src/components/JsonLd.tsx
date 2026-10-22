@@ -36,7 +36,7 @@ const organizationSchema = {
   contactPoint: [
     {
       "@type": "ContactPoint",
-      telephone: "+91-9439725460",
+      telephone: "+91-9972366933",
       contactType: "general",
       availableLanguage: ["English", "Hindi", "Odia"],
     },
@@ -60,14 +60,25 @@ const organizationSchema = {
     },
   ],
   knowsAbout: [
+    "Shri Prasanna Pattnaik",
+    "First BJP MLA of Odisha",
+    "Kamakhyanagar constituency",
+    "Bhuban, Dhenkanal",
     "Section 80G tax deduction",
     "80G donation receipts",
     "Healthcare in Odisha",
-    "Education support in Odisha",
+    "Education scholarships and school kit distribution in Odisha",
     "Skill development and livelihood",
     "Agriculture in Odisha",
-    "Civic sense and environment",
+    "Civic sense and environmental cleanliness",
   ],
+  potentialAction: {
+    "@type": "DonateAction",
+    target: `${SITE_URL}/donate`,
+    name: "Donate to SPPMT (Section 80G Tax Exemption)",
+    description:
+      "Support educational scholarships, school supplies, healthcare outreach, and rural initiatives across Odisha with 50% Section 80G tax deduction.",
+  },
 };
 
 const websiteSchema = {

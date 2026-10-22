@@ -6,34 +6,70 @@ interface ActivityPageProps {
   activity: ActivityArea;
 }
 
+const EDUCATION_LEAD = {
+  src: "/images/activities/DSC09246.jpg",
+  alt: "Women and a trust member reviewing papers at a community education visit",
+  caption: "Families going through papers at a community education visit.",
+};
+
 export default function ActivityPage({ activity }: ActivityPageProps) {
+  const lead =
+    activity.slug === "education"
+      ? EDUCATION_LEAD
+      : { src: activity.bannerImage, alt: activity.bannerAlt, caption: activity.bannerAlt };
+
   return (
     <>
-      <header className="page-head shell">
-        <div className="eyebrow with-line">Our work</div>
-        <h1>
-          {activity.shortTitle}
-          <br />
-          <em>in practice.</em>
-        </h1>
-        <p>{activity.description}</p>
-        <div className="page-meta">{activity.title}</div>
+      <header className={`page-head shell${activity.slug === "education" ? " work-open education-open" : ""}`}>
+        <div>
+          <div className="eyebrow with-line">Our work</div>
+          <h1>
+            {activity.shortTitle}
+            <br />
+            <em>in practice.</em>
+          </h1>
+          {activity.slug === "education" ? (
+            <>
+              <h2>Families with the papers.</h2>
+              <p className="program-summary">
+                At this visit, families and a trust member went through papers together.
+              </p>
+              <div className="program-actions">
+                <Link className="btn btn-dark" href="/donate">
+                  Support this work <span>↗</span>
+                </Link>
+                <Link className="text-link" href="/contact">
+                  Volunteer ↗
+                </Link>
+              </div>
+            </>
+          ) : (
+            <p>{activity.description}</p>
+          )}
+        </div>
+        {activity.slug === "education" && (
+          <div>
+            <div className="photo program-photo loaded">
+              <img src={lead.src} alt={lead.alt} />
+            </div>
+            <p className="program-caption">{lead.caption}</p>
+          </div>
+        )}
       </header>
 
+      {activity.slug !== "education" && (
       <section className="program-section">
         <div className="shell program-grid">
           <div className="program-visual">
             <div className="photo program-photo loaded">
-              <img src={activity.bannerImage} alt={activity.bannerAlt} />
+              <img src={lead.src} alt={lead.alt} />
             </div>
+            <p className="program-caption">{lead.caption}</p>
           </div>
           <div className="program-content">
             <div className="eyebrow">What we do</div>
             <h2>{activity.title}</h2>
-            <div className="program-proof">
-              <strong>Documented activities</strong>
-              <p>{activity.examples.join(" · ")}</p>
-            </div>
+            <p className="program-summary">{lead.caption}</p>
             <div className="program-actions">
               <Link className="btn btn-dark" href="/donate">
                 Support this work <span>↗</span>
@@ -45,12 +81,20 @@ export default function ActivityPage({ activity }: ActivityPageProps) {
           </div>
         </div>
       </section>
+      )}
+
+      {activity.slug === "education" && (
+        <section className="shell education-scope">
+          <div className="eyebrow">The wider program</div>
+          <p>{activity.description}</p>
+        </section>
+      )}
 
       <ActivityGallery images={activity.galleryImages} title="Photographs" />
 
       {activity.slug === "education" && (
         <section className="section shell">
-          <div className="eyebrow">{EDUCATION_KIT_SECTION.title}</div>
+          <div className="eyebrow">Distribution</div>
           <h2 style={{ marginTop: 16 }}>{EDUCATION_KIT_SECTION.title}</h2>
           <p className="program-summary">{EDUCATION_KIT_SECTION.description}</p>
           <div className="principles-list" style={{ marginTop: 28 }}>
