@@ -70,7 +70,10 @@ const organizationSchema = {
     },
   ],
   email: "prasannapattnaiktrust@gmail.com",
-  sameAs: ["https://www.instagram.com/prasannapattnaiktrust"],
+  sameAs: [
+    "https://www.instagram.com/prasannapattnaiktrust",
+    "https://www.wikidata.org/wiki/Q141830272",
+  ],
   areaServed: [
     {
       "@type": "Place",
@@ -152,7 +155,10 @@ const founderSchema = {
     },
   ],
   image: `${SITE_URL}/images/prasanna-patnaik-bw-portrait.png`,
-  sameAs: [],
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Prasanna_Pattnaik",
+    "https://www.wikidata.org/wiki/Q27916112",
+  ],
   mainEntityOfPage: `${SITE_URL}/founder`,
 };
 
