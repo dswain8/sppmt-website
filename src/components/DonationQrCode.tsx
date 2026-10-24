@@ -153,18 +153,64 @@ export default function DonationQrCode({
     }
   };
 
-  const handleDownloadQr = () => {
-    const hrefToDownload = activeTab === "smart" && qrDataUrl ? qrDataUrl : officialQrImage;
-    if (!hrefToDownload) return;
-    const link = document.createElement("a");
-    link.href = hrefToDownload;
-    link.download =
-      activeTab === "smart" && activeAmount > 0
+  const handleDownloadQr = async () => {
+    const isSmartTab = activeTab === "smart" && qrDataUrl;
+    const filename =
+      isSmartTab && activeAmount > 0
         ? `SPPMT-UPI-QR-Rs${activeAmount}.png`
         : "SPPMT-Official-UPI-QR.jpg";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+
+    try {
+      let blob: Blob | null = null;
+
+      if (isSmartTab) {
+        const res = await fetch(qrDataUrl);
+        blob = await res.blob();
+      } else if (officialQrImage) {
+        const res = await fetch(officialQrImage);
+        blob = await res.blob();
+      }
+
+      if (!blob) return;
+
+      const file = new File([blob], filename, { type: blob.type || "image/png" });
+
+      // iOS Safari and modern mobile browsers support Web Share with files.
+      // On iOS, this brings up the native share sheet with "Save Image" (saves directly to Photos).
+      if (
+        typeof navigator !== "undefined" &&
+        navigator.canShare &&
+        navigator.canShare({ files: [file] })
+      ) {
+        await navigator.share({
+          files: [file],
+          title: `SPPMT Donation QR Code (${activeAmount > 0 ? `₹${activeAmount.toLocaleString("en-IN")}` : "UPI"})`,
+          text: `Scan & Pay via UPI to Shri Prasanna Pattnaik Memorial Trust`,
+        });
+        return;
+      }
+
+      // Fallback for desktop & browsers without Web Share files: standard download trigger
+      const blobUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+    } catch (err: unknown) {
+      if (err instanceof Error && err.name === "AbortError") {
+        // User cancelled share sheet; silent exit
+        return;
+      }
+      console.warn("QR download fallback:", err);
+      // Fallback: open in new tab so user can long-press and tap "Save to Photos"
+      const fallbackUrl = isSmartTab ? qrDataUrl : officialQrImage;
+      if (fallbackUrl && typeof window !== "undefined") {
+        window.open(fallbackUrl, "_blank");
+      }
+    }
   };
 
   const shareableCampaignUrl =
@@ -359,7 +405,7 @@ export default function DonationQrCode({
                 className="btn-qr-utility"
                 onClick={handleDownloadQr}
               >
-                ↓ Save QR to Phone Gallery
+                ↓ Save QR to Photos / Gallery
               </button>
               <button
                 type="button"
@@ -372,8 +418,7 @@ export default function DonationQrCode({
               </button>
             </div>
             <small className="single-phone-tip">
-              <strong>Using one phone?</strong> Save the QR image above, open Google Pay / PhonePe / Paytm, tap{" "}
-              <em>Scan QR → Upload from Gallery</em>, or copy the UPI ID below.
+              <strong>Using one phone?</strong> Tap <em>Save QR to Photos / Gallery</em> (on iPhone, select <strong>&ldquo;Save Image&rdquo;</strong> in the share menu, or press &amp; hold the QR image to save). Then open Google Pay / PhonePe / Paytm and tap <strong>Scan QR → Upload from Gallery</strong>, or copy the UPI ID below.
             </small>
           </div>
 
@@ -568,7 +613,7 @@ export default function DonationQrCode({
             style={{ marginTop: 8, width: "100%", justifyContent: "center" }}
             onClick={handleDownloadQr}
           >
-            ↓ Save QR to Phone Gallery
+            ↓ Save QR to Photos / Gallery
           </button>
         </div>
 
