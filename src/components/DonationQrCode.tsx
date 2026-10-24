@@ -118,8 +118,8 @@ export default function DonationQrCode({
     }
   }, [activeAmount, impactInfo.title]);
 
-  // Standard NPCI UPI payment query parameters
-  const upiQueryString = (() => {
+  // Standard NPCI UPI payment URI for QR code generation
+  const upiUri = (() => {
     const params = new URLSearchParams({
       pa: upiId,
       pn: payeeName,
@@ -129,14 +129,8 @@ export default function DonationQrCode({
     if (activeAmount > 0) {
       params.set("am", activeAmount.toString());
     }
-    return params.toString();
+    return `upi://pay?${params.toString()}`;
   })();
-
-  const upiUri = `upi://pay?${upiQueryString}`;
-  // App-specific deep links on iOS / Android to prevent WhatsApp from hijacking generic upi://
-  const gpayUri = `tez://upi/pay?${upiQueryString}`;
-  const phonepeUri = `phonepe://upi/pay?${upiQueryString}`;
-  const paytmUri = `paytmmp://pay?${upiQueryString}`;
 
   useEffect(() => {
     QRCode.toDataURL(upiUri, {
@@ -419,7 +413,7 @@ export default function DonationQrCode({
             {showSaveTip && (
               <div className="save-qr-guide-toast" role="alert">
                 <div className="guide-toast-header">
-                  <span>📸 How to save directly to your Photos / Gallery:</span>
+                  <span>📸 How to save directly to Photos / Gallery:</span>
                   <button
                     type="button"
                     onClick={() => setShowSaveTip(false)}
@@ -430,67 +424,33 @@ export default function DonationQrCode({
                   </button>
                 </div>
                 <p>
-                  <strong>Chrome on iPhone / Android:</strong> If Chrome downloads to a file rather than your Photos album, simply <strong>press &amp; hold the QR image above for 1 second</strong>, then tap <strong>&ldquo;Save Image&rdquo;</strong> (or &ldquo;Add to Photos&rdquo;). It will appear right in your Photos app!
+                  <strong>Chrome / Safari on iPhone:</strong> If your browser downloaded to Files instead of Photos, simply <strong>press &amp; hold the QR code image above for 1 second</strong>, then tap <strong>&ldquo;Save Image&rdquo;</strong> (or &ldquo;Add to Photos&rdquo;).
                 </p>
                 <div className="guide-toast-actions">
-                  <a href={upiUri} className="guide-toast-btn">
-                    Or Tap to Pay via UPI App directly (No QR needed) ↗
-                  </a>
+                  <button
+                    type="button"
+                    className="guide-toast-btn"
+                    onClick={() => {
+                      handleCopy(upiId, "upi");
+                      setShowSaveTip(false);
+                    }}
+                  >
+                    {copiedKey === "upi" ? "UPI ID Copied ✓" : "Or Copy UPI ID to Pay in App ↗"}
+                  </button>
                 </div>
               </div>
             )}
 
             <small className="single-phone-tip">
-              <strong>Using one phone?</strong> Tap <em>Save QR to Photos / Gallery</em> (on Chrome / iPhone, press &amp; hold the QR image to tap <strong>&ldquo;Save Image&rdquo;</strong>). Then in Google Pay / PhonePe / Paytm, tap <strong>Scan QR → Upload from Gallery</strong>, or copy the UPI ID below.
+              <strong>Using one phone?</strong> Tap <strong>Copy UPI ID</strong> below, open Google Pay / PhonePe / Paytm, and paste into <em>&ldquo;Pay UPI ID&rdquo;</em>. Or press &amp; hold the QR image to save to Photos.
             </small>
           </div>
 
-          {/* Mobile 1-Tap Pay Direct Options by App */}
-          <div className="hero-mobile-pay-wrap">
-            <div className="mobile-pay-heading">
-              <span>Tap your UPI app to pay directly:</span>
-            </div>
-            <div className="mobile-upi-apps-grid">
-              <a
-                href={gpayUri}
-                className="btn-upi-app gpay-btn"
-                onClick={() => handleCopy(upiId, "gpay_copy")}
-              >
-                <span className="app-dot gpay-dot" />
-                <span>Google Pay</span>
-              </a>
-              <a
-                href={phonepeUri}
-                className="btn-upi-app phonepe-btn"
-                onClick={() => handleCopy(upiId, "phonepe_copy")}
-              >
-                <span className="app-dot phonepe-dot" />
-                <span>PhonePe</span>
-              </a>
-              <a
-                href={paytmUri}
-                className="btn-upi-app paytm-btn"
-                onClick={() => handleCopy(upiId, "paytm_copy")}
-              >
-                <span className="app-dot paytm-dot" />
-                <span>Paytm</span>
-              </a>
-              <a
-                href={upiUri}
-                className="btn-upi-app other-upi-btn"
-                onClick={() => handleCopy(upiId, "other_copy")}
-              >
-                <span className="app-dot other-dot" />
-                <span>WhatsApp / Other</span>
-              </a>
-            </div>
-            <small className="mobile-tap-hint">
-              Opens your chosen app with amount pre-filled, or copy the UPI ID below
-            </small>
-          </div>
-
-          {/* Centered Official UPI ID with Copy Button */}
+          {/* Centered Official UPI ID with Copy Button & Quick Guide */}
           <div className="hero-upi-copy-wrap">
+            <div className="mobile-pay-heading">
+              <span>Paying from this phone? Copy UPI ID &amp; pay in any app:</span>
+            </div>
             <div className="hero-upi-box">
               <span className="upi-label">Official Trust UPI ID:</span>
               <strong className="upi-value">{upiId}</strong>
@@ -502,6 +462,13 @@ export default function DonationQrCode({
               >
                 {copiedKey === "upi" ? "Copied ✓" : "Copy UPI ID"}
               </button>
+            </div>
+            <div className="upi-paste-instruction">
+              <span className="instruction-step">1. Tap <strong>Copy UPI ID</strong></span>
+              <span className="instruction-arrow">→</span>
+              <span className="instruction-step">2. Open <strong>GPay / PhonePe / Paytm</strong></span>
+              <span className="instruction-arrow">→</span>
+              <span className="instruction-step">3. Tap <strong>Pay UPI ID</strong> &amp; paste</span>
             </div>
             <div className="hero-merchant-tag">
               <span>Trust PAN: <strong>ABNTS3218C</strong></span>
@@ -673,47 +640,10 @@ export default function DonationQrCode({
         </div>
 
         <div className="qr-actions-details">
-          {/* Mobile direct UPI tap link */}
+          {/* Mobile tip */}
           <div className="mobile-only-pay">
-            <span className="mobile-pay-heading" style={{ display: "block", marginBottom: 6 }}>
-              Tap your app to pay directly:
-            </span>
-            <div className="mobile-upi-apps-grid">
-              <a
-                href={gpayUri}
-                className="btn-upi-app gpay-btn"
-                onClick={() => handleCopy(upiId, "gpay_copy")}
-              >
-                <span className="app-dot gpay-dot" />
-                <span>Google Pay</span>
-              </a>
-              <a
-                href={phonepeUri}
-                className="btn-upi-app phonepe-btn"
-                onClick={() => handleCopy(upiId, "phonepe_copy")}
-              >
-                <span className="app-dot phonepe-dot" />
-                <span>PhonePe</span>
-              </a>
-              <a
-                href={paytmUri}
-                className="btn-upi-app paytm-btn"
-                onClick={() => handleCopy(upiId, "paytm_copy")}
-              >
-                <span className="app-dot paytm-dot" />
-                <span>Paytm</span>
-              </a>
-              <a
-                href={upiUri}
-                className="btn-upi-app other-upi-btn"
-                onClick={() => handleCopy(upiId, "other_copy")}
-              >
-                <span className="app-dot other-dot" />
-                <span>WhatsApp / Other</span>
-              </a>
-            </div>
-            <small className="mobile-hint" style={{ marginTop: 6, display: "block" }}>
-              Tap above to open your UPI app, or copy UPI ID below.
+            <small className="mobile-hint" style={{ marginTop: 0, display: "block", fontSize: 12 }}>
+              📱 <strong>Using this phone?</strong> Tap <strong>Copy UPI ID</strong> below, open Google Pay / PhonePe / Paytm, and paste into <em>&ldquo;Pay UPI ID&rdquo;</em>.
             </small>
           </div>
 
