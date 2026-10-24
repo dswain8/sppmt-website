@@ -21,8 +21,13 @@ const organizationSchema = {
   identifier: [
     {
       "@type": "PropertyValue",
-      name: "Section 80G Registration URN",
+      name: "12A / Section 332 Registration URN",
       value: "ABNTS3218CE20261",
+    },
+    {
+      "@type": "PropertyValue",
+      name: "80G / Section 354 Approval URN",
+      value: "ABNTS3218CF20261",
     },
     {
       "@type": "PropertyValue",
@@ -35,15 +40,19 @@ const organizationSchema = {
     name: "Bhubaneswar, Odisha, India",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "Plot No A-359, Saheed Nagar",
       addressLocality: "Bhubaneswar",
       addressRegion: "Odisha",
+      postalCode: "751007",
       addressCountry: "IN",
     },
   },
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Plot No A-359, Saheed Nagar",
     addressLocality: "Bhubaneswar",
     addressRegion: "Odisha",
+    postalCode: "751007",
     addressCountry: "IN",
   },
   contactPoint: [

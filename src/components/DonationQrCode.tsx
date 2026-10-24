@@ -409,9 +409,9 @@ export default function DonationQrCode({
             <div className="hero-merchant-tag">
               <span>Trust PAN: <strong>ABNTS3218C</strong></span>
               <span> · </span>
-              <span>80G URN: <strong>ABNTS3218CE20261</strong></span>
+              <span>12A URN: <strong>ABNTS3218CE20261</strong></span>
               <span> · </span>
-              <span>HDFC TID: <strong>{merchantTid}</strong></span>
+              <span>80G URN: <strong>ABNTS3218CF20261</strong></span>
             </div>
           </div>
 

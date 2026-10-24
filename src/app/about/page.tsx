@@ -72,15 +72,19 @@ export default function AboutPage() {
             </div>
             <div>
               <span>Registered office</span>
-              <strong>Bhubaneswar, Odisha</strong>
+              <strong>Plot No A-359, Saheed Nagar, Bhubaneswar, Khordha, Odisha - 751007</strong>
             </div>
             <div>
               <span>Trust PAN</span>
               <strong>ABNTS3218C</strong>
             </div>
             <div>
-              <span>Section 80G URN (Form 10AC)</span>
+              <span>12A / Sec 332 Registration URN</span>
               <strong>ABNTS3218CE20261</strong>
+            </div>
+            <div>
+              <span>80G / Sec 354 Approval URN</span>
+              <strong>ABNTS3218CF20261</strong>
             </div>
           </div>
         </div>

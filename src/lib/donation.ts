@@ -68,8 +68,8 @@ export function getDonationConfig(): DonationConfig {
     whatsappNumber:
       process.env.DONATION_WHATSAPP ?? "919972366933",
     pan: process.env.DONATION_TRUST_PAN ?? "ABNTS3218C",
-    registration12A: process.env.DONATION_12A_NUMBER ?? "",
-    approval80G: process.env.DONATION_80G_NUMBER ?? "ABNTS3218CE20261",
+    registration12A: process.env.DONATION_12A_NUMBER ?? "ABNTS3218CE20261",
+    approval80G: process.env.DONATION_80G_NUMBER ?? "ABNTS3218CF20261",
     receiptSlaDays: Number(process.env.DONATION_RECEIPT_SLA_DAYS ?? "7"),
     googleFormUrl: process.env.DONATION_GOOGLE_FORM_URL ?? "",
   };
