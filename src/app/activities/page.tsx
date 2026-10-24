@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ACTIVITY_AREAS } from "@/lib/activities";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 export const metadata: Metadata = {
   title: "Our Work",
@@ -92,9 +93,15 @@ export default function ActivitiesPage() {
                 <Link className="btn btn-dark" href={`/activities/${area.slug}`}>
                   See photographs <span>↗</span>
                 </Link>
-                <Link className="text-link" href="/donate">
-                  Support this work ↗
-                </Link>
+                {DONATIONS_ENABLED ? (
+                  <Link className="text-link" href="/donate">
+                    Support this work ↗
+                  </Link>
+                ) : (
+                  <Link className="text-link" href="/contact">
+                    Volunteer or partner ↗
+                  </Link>
+                )}
               </div>
             </div>
           </div>

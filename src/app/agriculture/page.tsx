@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 export const metadata: Metadata = {
   title: "Agriculture",
@@ -90,15 +91,24 @@ export default function AgriculturePage() {
               Support Rural Agriculture
             </h2>
             <p className="text-gray-600 mb-8">
-              Your contribution helps farmers adopt better practices, access
-              training, and build sustainable livelihoods.
+              Your partnership helps farmers adopt better practices, access
+              training, and build sustainable livelihoods across Odisha.
             </p>
-            <Link
-              href="/donate"
-              className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
-            >
-              Donate to Agriculture Programs
-            </Link>
+            {DONATIONS_ENABLED ? (
+              <Link
+                href="/donate"
+                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
+              >
+                Donate to Agriculture Programs
+              </Link>
+            ) : (
+              <Link
+                href="/contact"
+                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
+              >
+                Partner on Agriculture Programs
+              </Link>
+            )}
           </div>
         </section>
       </AnimateOnScroll>

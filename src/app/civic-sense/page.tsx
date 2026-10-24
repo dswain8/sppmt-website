@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 export const metadata: Metadata = {
   title: "Civic Sense",
@@ -119,12 +120,21 @@ export default function CivicSensePage() {
               >
                 Volunteer
               </Link>
-              <Link
-                href="/donate"
-                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
-              >
-                Donate
-              </Link>
+              {DONATIONS_ENABLED ? (
+                <Link
+                  href="/donate"
+                  className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
+                >
+                  Donate
+                </Link>
+              ) : (
+                <Link
+                  href="/contact"
+                  className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
+                >
+                  Get in Touch
+                </Link>
+              )}
             </div>
           </div>
         </section>

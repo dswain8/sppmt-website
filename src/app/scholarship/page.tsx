@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ScholarshipAnnouncement from "@/components/ScholarshipAnnouncement";
 import DonationQrCode from "@/components/DonationQrCode";
-import { getDonationConfig } from "@/lib/donation";
+import { DONATIONS_ENABLED, getDonationConfig } from "@/lib/donation";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -52,9 +52,15 @@ export default function ScholarshipPage() {
             <span>Share on WhatsApp</span>
             <span>↗</span>
           </a>
-          <a href="#sponsor" className="text-link">
-            Sponsor a Student (80G Tax Exemption) ↗
-          </a>
+          {DONATIONS_ENABLED ? (
+            <a href="#sponsor" className="text-link">
+              Sponsor a Student (80G Tax Exemption) ↗
+            </a>
+          ) : (
+            <Link href="/contact" className="text-link">
+              Partner or Sponsor a Scholar ↗
+            </Link>
+          )}
         </div>
       </header>
 
@@ -62,30 +68,63 @@ export default function ScholarshipPage() {
       <ScholarshipAnnouncement showDonationCta={false} />
 
       {/* Sponsor a Scholar Section */}
-      <section className="shell" id="sponsor" style={{ padding: "40px 0 70px" }}>
-        <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center", marginBottom: 32 }}>
-          <div className="eyebrow">Sponsorship Flywheel</div>
-          <h2 style={{ fontSize: "clamp(30px, 3.2vw, 44px)", margin: "8px 0 12px" }}>
-            Sponsor a scholar for Cohort 2.
-          </h2>
-          <p style={{ color: "#455d50", lineHeight: 1.6 }}>
-            100% of your contribution is directed toward student tuition, books,
-            and learning equipment. Every donation qualifies for tax exemption
-            under Section 80G.
-          </p>
-        </div>
+      {DONATIONS_ENABLED ? (
+        <section className="shell" id="sponsor" style={{ padding: "40px 0 70px" }}>
+          <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center", marginBottom: 32 }}>
+            <div className="eyebrow">Sponsorship Flywheel</div>
+            <h2 style={{ fontSize: "clamp(30px, 3.2vw, 44px)", margin: "8px 0 12px" }}>
+              Sponsor a scholar for Cohort 2.
+            </h2>
+            <p style={{ color: "#455d50", lineHeight: 1.6 }}>
+              100% of your contribution is directed toward student tuition, books,
+              and learning equipment. Every donation qualifies for tax exemption
+              under Section 80G.
+            </p>
+          </div>
 
-        <DonationQrCode
-          upiId={donationConfig.upiId || "sppmt@uco"}
-          payeeName={donationConfig.accountName}
-          accountNumber={donationConfig.accountNumber}
-          ifsc={donationConfig.ifsc}
-          bankName={donationConfig.bankName}
-          branch={donationConfig.branch}
-          whatsappNumber={donationConfig.whatsappNumber}
-          defaultAmount={2500}
-        />
-      </section>
+          <DonationQrCode
+            upiId={donationConfig.upiId || "sppmt@uco"}
+            payeeName={donationConfig.accountName}
+            accountNumber={donationConfig.accountNumber}
+            ifsc={donationConfig.ifsc}
+            bankName={donationConfig.bankName}
+            branch={donationConfig.branch}
+            whatsappNumber={donationConfig.whatsappNumber}
+            defaultAmount={2500}
+          />
+        </section>
+      ) : (
+        <section className="shell" id="sponsor" style={{ padding: "40px 0 50px" }}>
+          <div
+            style={{
+              maxWidth: 760,
+              margin: "0 auto",
+              textAlign: "center",
+              background: "#f2f5ed",
+              padding: "36px 28px",
+              borderRadius: 4,
+              border: "1px solid #dbe2d4",
+            }}
+          >
+            <div className="eyebrow" style={{ color: "var(--forest)" }}>Cohort 2 Sponsorship</div>
+            <h2 style={{ fontSize: "clamp(26px, 2.8vw, 36px)", margin: "10px 0 12px" }}>
+              Interested in sponsoring a scholar?
+            </h2>
+            <p style={{ color: "#455d50", lineHeight: 1.6, maxWidth: 600, margin: "0 auto 20px" }}>
+              We welcome individuals and organizations to partner with us for our upcoming scholarship cycles.
+              Please reach out to our trust office directly to learn about direct student sponsorship and program support.
+            </p>
+            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
+              <Link href="/contact" className="btn btn-dark" style={{ minHeight: 44, padding: "10px 20px" }}>
+                Contact Trust Office <span>↗</span>
+              </Link>
+              <a href="tel:+919972366933" className="text-link">
+                Call +91 99723 66933 ↗
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Next Cycle Notice */}
       <section className="section shell" style={{ borderTop: "1px solid #dedfd5", paddingTop: 48, paddingBottom: 64 }}>

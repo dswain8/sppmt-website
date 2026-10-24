@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 export const metadata: Metadata = {
   title: "Contact & Volunteer",
   description:
-    "Contact the Shri Prasanna Pattnaik Memorial Trust to donate, volunteer, or learn more about our work across Odisha.",
+    "Contact the Shri Prasanna Pattnaik Memorial Trust to volunteer, partner, or learn more about our work across Odisha.",
 };
 
 const AREAS = [
@@ -62,7 +63,11 @@ export default function ContactPage() {
           </a>
           <div className="contact-rows">
             <a href="tel:+919972366933">Call +91 99723 66933 ↗</a>
-            <Link href="/donate">Or support the work with a donation ↗</Link>
+            {DONATIONS_ENABLED ? (
+              <Link href="/donate">Or support the work with a donation ↗</Link>
+            ) : (
+              <Link href="/about">Learn about trust governance &amp; transparency ↗</Link>
+            )}
           </div>
         </div>
       </section>

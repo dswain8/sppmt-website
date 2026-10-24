@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 export const metadata: Metadata = {
   title: "Infrastructure",
@@ -122,12 +123,21 @@ export default function InfrastructurePage() {
               supply, electrification, and public amenities that serve rural
               communities.
             </p>
-            <Link
-              href="/donate"
-              className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
-            >
-              Support Development
-            </Link>
+            {DONATIONS_ENABLED ? (
+              <Link
+                href="/donate"
+                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
+              >
+                Support Development
+              </Link>
+            ) : (
+              <Link
+                href="/contact"
+                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
+              >
+                Partner on Infrastructure
+              </Link>
+            )}
           </div>
         </section>
       </AnimateOnScroll>

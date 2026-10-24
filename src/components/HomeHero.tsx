@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 export default function HomeHero() {
   return (
@@ -27,12 +28,21 @@ export default function HomeHero() {
             Eligible donations qualify for tax deduction under Section 80G.
           </p>
           <div className="mt-8 flex flex-col items-start gap-4">
-            <Link
-              href="/donate"
-              className="inline-flex items-center justify-center bg-orange hover:bg-orange-dark text-white font-semibold px-7 py-3 text-sm sm:text-base transition-colors"
-            >
-              Donate Now
-            </Link>
+            {DONATIONS_ENABLED ? (
+              <Link
+                href="/donate"
+                className="inline-flex items-center justify-center bg-orange hover:bg-orange-dark text-white font-semibold px-7 py-3 text-sm sm:text-base transition-colors"
+              >
+                Donate Now
+              </Link>
+            ) : (
+              <Link
+                href="/activities"
+                className="inline-flex items-center justify-center bg-orange hover:bg-orange-dark text-white font-semibold px-7 py-3 text-sm sm:text-base transition-colors"
+              >
+                Explore Our Programs
+              </Link>
+            )}
             <Link
               href="/about"
               className="text-green-dark font-semibold underline underline-offset-4 decoration-green/30 hover:decoration-green-dark"

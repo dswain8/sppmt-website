@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ActivityGallery from "@/components/activities/ActivityGallery";
 import { EDUCATION_KIT_SECTION, type ActivityArea } from "@/lib/activities";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 interface ActivityPageProps {
   activity: ActivityArea;
@@ -35,12 +36,25 @@ export default function ActivityPage({ activity }: ActivityPageProps) {
                 At this visit, families and a trust member went through papers together.
               </p>
               <div className="program-actions">
-                <Link className="btn btn-dark" href="/donate">
-                  Support this work <span>↗</span>
-                </Link>
-                <Link className="text-link" href="/contact">
-                  Volunteer ↗
-                </Link>
+                {DONATIONS_ENABLED ? (
+                  <>
+                    <Link className="btn btn-dark" href="/donate">
+                      Support this work <span>↗</span>
+                    </Link>
+                    <Link className="text-link" href="/contact">
+                      Volunteer ↗
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link className="btn btn-dark" href="/contact">
+                      Volunteer or Partner <span>↗</span>
+                    </Link>
+                    <Link className="text-link" href="/activities">
+                      All programs ↗
+                    </Link>
+                  </>
+                )}
               </div>
             </>
           ) : (
@@ -71,12 +85,25 @@ export default function ActivityPage({ activity }: ActivityPageProps) {
             <h2>{activity.title}</h2>
             <p className="program-summary">{lead.caption}</p>
             <div className="program-actions">
-              <Link className="btn btn-dark" href="/donate">
-                Support this work <span>↗</span>
-              </Link>
-              <Link className="text-link" href="/contact">
-                Volunteer ↗
-              </Link>
+              {DONATIONS_ENABLED ? (
+                <>
+                  <Link className="btn btn-dark" href="/donate">
+                    Support this work <span>↗</span>
+                  </Link>
+                  <Link className="text-link" href="/contact">
+                    Volunteer ↗
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link className="btn btn-dark" href="/contact">
+                    Volunteer or Partner <span>↗</span>
+                  </Link>
+                  <Link className="text-link" href="/gallery">
+                    View field notes ↗
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

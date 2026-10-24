@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 export default function StickyDonateCta() {
   const pathname = usePathname();
 
-  // Do not show on donate page itself
-  if (pathname === "/donate") {
+  // If donations are temporarily suppressed, or if on donate page itself, do not render
+  if (!DONATIONS_ENABLED || pathname === "/donate") {
     return null;
   }
 

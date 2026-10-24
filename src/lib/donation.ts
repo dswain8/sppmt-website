@@ -1,3 +1,7 @@
+/** Flag to temporarily suppress/enable all donation CTAs, QR codes and payment flows */
+export const DONATIONS_ENABLED =
+  process.env.NEXT_PUBLIC_ENABLE_DONATIONS === "true" ? true : false;
+
 export interface DonationConfig {
   accountName: string;
   accountNumber: string;

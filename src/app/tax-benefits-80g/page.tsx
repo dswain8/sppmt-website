@@ -3,7 +3,7 @@ import Link from "next/link";
 import DonationQrCode from "@/components/DonationQrCode";
 import ReceiptClaimForm from "@/components/ReceiptClaimForm";
 import FaqSection from "@/components/FaqSection";
-import { getDonationConfig } from "@/lib/donation";
+import { DONATIONS_ENABLED, getDonationConfig } from "@/lib/donation";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -148,9 +148,15 @@ export default function TaxBenefits80GPage() {
                     </td>
                     <td>{row.impact}</td>
                     <td>
-                      <Link href={`${row.link}#donation-hero`} className="text-link">
-                        Select &amp; Scan UPI ↗
-                      </Link>
+                      {DONATIONS_ENABLED ? (
+                        <Link href={`${row.link}#donation-hero`} className="text-link">
+                          Select &amp; Scan UPI ↗
+                        </Link>
+                      ) : (
+                        <Link href="/contact" className="text-link">
+                          Inquire with Trust ↗
+                        </Link>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -187,21 +193,72 @@ export default function TaxBenefits80GPage() {
         </div>
       </section>
 
-      {/* Section 3: Direct UPI QR Code */}
-      <section className="shell" id="donate-upi" style={{ paddingBottom: 64 }}>
-        <DonationQrCode
-          upiId={config.upiId}
-          payeeName={config.accountName}
-          accountNumber={config.accountNumber}
-          ifsc={config.ifsc}
-          bankName={config.bankName}
-          branch={config.branch}
-          merchantTid={config.merchantTid}
-          officialQrImage={config.qrImagePath}
-          whatsappNumber={config.whatsappNumber}
-          defaultAmount={5000}
-        />
-      </section>
+      {/* Section 3: Direct UPI QR Code (Suppressed while DONATIONS_ENABLED is false) */}
+      {DONATIONS_ENABLED ? (
+        <section className="shell" id="donate-upi" style={{ paddingBottom: 64 }}>
+          <DonationQrCode
+            upiId={config.upiId}
+            payeeName={config.accountName}
+            accountNumber={config.accountNumber}
+            ifsc={config.ifsc}
+            bankName={config.bankName}
+            branch={config.branch}
+            merchantTid={config.merchantTid}
+            officialQrImage={config.qrImagePath}
+            whatsappNumber={config.whatsappNumber}
+            defaultAmount={5000}
+          />
+        </section>
+      ) : (
+        <section className="shell" id="donate-upi" style={{ paddingBottom: 48 }}>
+          <div
+            style={{
+              background: "#f2f5ed",
+              border: "1px solid #dbe2d4",
+              padding: "32px",
+              borderRadius: 4,
+              textAlign: "center",
+            }}
+          >
+            <h3 style={{ fontSize: 22, color: "var(--forest)", marginBottom: 8 }}>
+              Online UPI Donations Currently Under Maintenance
+            </h3>
+            <p
+              style={{
+                color: "#455d50",
+                maxWidth: 640,
+                margin: "0 auto 16px",
+                lineHeight: 1.6,
+              }}
+            >
+              Our digital UPI payment gateway is currently undergoing integration
+              updates. For direct bank transfers (NEFT / RTGS) to our registered
+              UCO Bank account or queries regarding Section 80G tax receipts, please
+              reach out directly to our trust office.
+            </p>
+            <div
+              style={{
+                display: "flex",
+                gap: 14,
+                justifyContent: "center",
+                flexWrap: "wrap",
+                alignItems: "center",
+              }}
+            >
+              <Link
+                href="/contact"
+                className="btn btn-dark"
+                style={{ minHeight: 44, padding: "10px 20px" }}
+              >
+                Contact Trust Office <span>↗</span>
+              </Link>
+              <a href="tel:+919972366933" className="text-link">
+                Call +91 99723 66933 ↗
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Section 4: Direct 80G Receipt Claim Form */}
       <section className="section shell tax-receipt-section" id="receipt">

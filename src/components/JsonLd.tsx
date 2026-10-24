@@ -4,6 +4,7 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "@/lib/seo";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -91,13 +92,17 @@ const organizationSchema = {
     "Agriculture in Odisha",
     "Civic sense and environmental cleanliness",
   ],
-  potentialAction: {
-    "@type": "DonateAction",
-    target: `${SITE_URL}/donate`,
-    name: "Donate to SPPMT (Section 80G Tax Exemption)",
-    description:
-      "Support educational scholarships, school supplies, healthcare outreach, and rural initiatives across Odisha with 50% Section 80G tax deduction.",
-  },
+  ...(DONATIONS_ENABLED
+    ? {
+        potentialAction: {
+          "@type": "DonateAction",
+          target: `${SITE_URL}/donate`,
+          name: "Donate to SPPMT (Section 80G Tax Exemption)",
+          description:
+            "Support educational scholarships, school supplies, healthcare outreach, and rural initiatives across Odisha with 50% Section 80G tax deduction.",
+        },
+      }
+    : {}),
 };
 
 const websiteSchema = {

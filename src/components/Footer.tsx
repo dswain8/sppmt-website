@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 export default function Footer() {
   return (
@@ -29,8 +30,8 @@ export default function Footer() {
             </div>
             <div>
               <h3>Take part</h3>
-              <Link href="/donate">Donate</Link>
-              <Link href="/contact">Volunteer</Link>
+              {DONATIONS_ENABLED && <Link href="/donate">Donate</Link>}
+              <Link href="/contact">Volunteer / Partner</Link>
               <a href="mailto:prasannapattnaiktrust@gmail.com">Email us</a>
               <a href="tel:+919972366933">+91 99723 66933</a>
             </div>

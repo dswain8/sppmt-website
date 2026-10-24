@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 const LINKS = [
   { href: "/", label: "Home" },
@@ -71,13 +72,23 @@ export default function Navbar() {
             ))}
           </nav>
           <div className="header-actions">
-            <Link
-              className="header-donate"
-              href="/donate"
-              aria-current={pathname === "/donate" ? "page" : undefined}
-            >
-              Donate <span aria-hidden="true">↗</span>
-            </Link>
+            {DONATIONS_ENABLED ? (
+              <Link
+                className="header-donate"
+                href="/donate"
+                aria-current={pathname === "/donate" ? "page" : undefined}
+              >
+                Donate <span aria-hidden="true">↗</span>
+              </Link>
+            ) : (
+              <Link
+                className="header-donate"
+                href="/contact"
+                aria-current={pathname === "/contact" ? "page" : undefined}
+              >
+                Get in touch <span aria-hidden="true">↗</span>
+              </Link>
+            )}
             <button
               className="menu-toggle"
               type="button"
@@ -102,9 +113,15 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link className="mobile-donate" href="/donate" onClick={() => setOpen(false)}>
-            Support our work ↗
-          </Link>
+          {DONATIONS_ENABLED ? (
+            <Link className="mobile-donate" href="/donate" onClick={() => setOpen(false)}>
+              Support our work ↗
+            </Link>
+          ) : (
+            <Link className="mobile-donate" href="/contact" onClick={() => setOpen(false)}>
+              Get in touch ↗
+            </Link>
+          )}
           <Link href="/contact" onClick={() => setOpen(false)}>
             Volunteer with us ↗
           </Link>

@@ -4,7 +4,7 @@ import ScholarshipAnnouncement from "@/components/ScholarshipAnnouncement";
 import DonationQrCode from "@/components/DonationQrCode";
 import ActiveCampaignBanner from "@/components/ActiveCampaignBanner";
 import { FOCUS_AREAS } from "@/lib/focus-areas";
-import { getDonationConfig } from "@/lib/donation";
+import { DONATIONS_ENABLED, getDonationConfig } from "@/lib/donation";
 import { SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -59,9 +59,15 @@ export default function Home() {
             <Link className="btn btn-dark" href="/activities">
               Discover our work <span>↗</span>
             </Link>
-            <Link className="text-link" href="/donate">
-              Support the trust <span>↗</span>
-            </Link>
+            {DONATIONS_ENABLED ? (
+              <Link className="text-link" href="/donate">
+                Support the trust <span>↗</span>
+              </Link>
+            ) : (
+              <Link className="text-link" href="/contact">
+                Volunteer or partner <span>↗</span>
+              </Link>
+            )}
           </div>
           <div className="hero-trust">
             <span className="mini-spark">✳</span>
@@ -100,7 +106,7 @@ export default function Home() {
         </div>
       </div>
 
-      <ScholarshipAnnouncement />
+      <ScholarshipAnnouncement showDonationCta={DONATIONS_ENABLED} />
 
       <section className="section shell" id="work">
         <div className="section-head">
@@ -338,42 +344,44 @@ export default function Home() {
         </div>
       </section>
 
-      <ActiveCampaignBanner inPageQrSync={true} />
+      {DONATIONS_ENABLED && <ActiveCampaignBanner inPageQrSync={true} />}
 
-      <section className="section shell" id="give" style={{ paddingTop: 30, paddingBottom: 60 }}>
-        <div className="section-head">
-          <div>
-            <div className="eyebrow">Support our mission</div>
-            <h2>
-              Give directly.
-              <br />
-              <em>Empower a life.</em>
-            </h2>
+      {DONATIONS_ENABLED && (
+        <section className="section shell" id="give" style={{ paddingTop: 30, paddingBottom: 60 }}>
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">Support our mission</div>
+              <h2>
+                Give directly.
+                <br />
+                <em>Empower a life.</em>
+              </h2>
+            </div>
+            <div className="section-aside">
+              <p>
+                Your contributions directly fund educational scholarships, school
+                supplies, healthcare assistance, and environmental drives in
+                Odisha. All eligible donations receive an official Section 80G tax
+                exemption receipt.
+              </p>
+              <Link href="/donate" className="under-link">
+                View official bank details &amp; 80G guide <span>↗</span>
+              </Link>
+            </div>
           </div>
-          <div className="section-aside">
-            <p>
-              Your contributions directly fund educational scholarships, school
-              supplies, healthcare assistance, and environmental drives in
-              Odisha. All eligible donations receive an official Section 80G tax
-              exemption receipt.
-            </p>
-            <Link href="/donate" className="under-link">
-              View official bank details &amp; 80G guide <span>↗</span>
-            </Link>
-          </div>
-        </div>
 
-        <DonationQrCode
-          upiId={donationConfig.upiId || "sppmt@uco"}
-          payeeName={donationConfig.accountName}
-          accountNumber={donationConfig.accountNumber}
-          ifsc={donationConfig.ifsc}
-          bankName={donationConfig.bankName}
-          branch={donationConfig.branch}
-          whatsappNumber={donationConfig.whatsappNumber}
-          defaultAmount={1000}
-        />
-      </section>
+          <DonationQrCode
+            upiId={donationConfig.upiId || "sppmt@uco"}
+            payeeName={donationConfig.accountName}
+            accountNumber={donationConfig.accountNumber}
+            ifsc={donationConfig.ifsc}
+            bankName={donationConfig.bankName}
+            branch={donationConfig.branch}
+            whatsappNumber={donationConfig.whatsappNumber}
+            defaultAmount={1000}
+          />
+        </section>
+      )}
 
       <section className="support-cta shell">
         <div className="support-art" aria-hidden="true">
@@ -393,9 +401,15 @@ export default function Home() {
             work with communities across Odisha.
           </p>
           <div className="button-row">
-            <Link href="/donate" className="btn btn-dark">
-              Make a contribution <span>↗</span>
-            </Link>
+            {DONATIONS_ENABLED ? (
+              <Link href="/donate" className="btn btn-dark">
+                Make a contribution <span>↗</span>
+              </Link>
+            ) : (
+              <Link href="/contact" className="btn btn-dark">
+                Partner with us <span>↗</span>
+              </Link>
+            )}
             <Link href="/contact" className="text-link">
               Volunteer with us ↗
             </Link>

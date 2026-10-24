@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 export const metadata: Metadata = {
   title: "Employment",
@@ -123,12 +124,21 @@ export default function EmploymentPage() {
               Your support helps train rural youth for sustainable employment
               and entrepreneurship.
             </p>
-            <Link
-              href="/donate"
-              className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
-            >
-              Support Employment Programs
-            </Link>
+            {DONATIONS_ENABLED ? (
+              <Link
+                href="/donate"
+                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
+              >
+                Support Employment Programs
+              </Link>
+            ) : (
+              <Link
+                href="/contact"
+                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
+              >
+                Partner on Skills &amp; Employment
+              </Link>
+            )}
           </div>
         </section>
       </AnimateOnScroll>

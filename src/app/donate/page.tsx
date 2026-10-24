@@ -5,7 +5,7 @@ import ReceiptClaimForm from "@/components/ReceiptClaimForm";
 import DonationGoogleForm from "@/components/DonationGoogleForm";
 import FaqSection from "@/components/FaqSection";
 import ActiveCampaignBanner from "@/components/ActiveCampaignBanner";
-import { getDonationConfig } from "@/lib/donation";
+import { DONATIONS_ENABLED, getDonationConfig } from "@/lib/donation";
 
 export const metadata: Metadata = {
   title: "Donate | Tax Benefits under Section 80G",
@@ -59,6 +59,159 @@ const DONATE_FAQS = [
 export default function DonatePage() {
   const config = getDonationConfig();
   const whatsappNumber = config.whatsappNumber || "919972366933";
+
+  if (!DONATIONS_ENABLED) {
+    return (
+      <>
+        <header className="page-head shell compact-donate-head">
+          <div className="eyebrow donate-eyebrow">
+            <span>Notice</span>
+            <span className="eyebrow-sep">·</span>
+            <span>Online Portal Update</span>
+          </div>
+          <h1 className="single-line-title">
+            Online Donations <em>Temporarily Paused.</em>
+          </h1>
+          <p className="donate-intro-sub">
+            Our online UPI donation portal is currently undergoing scheduled banking integration updates.
+            Direct bank transfers (NEFT / RTGS) to our official trust account remain fully active.
+          </p>
+        </header>
+
+        <section className="shell" style={{ paddingBottom: 56 }}>
+          <div
+            style={{
+              background: "#fff",
+              border: "1px solid #e2e4dc",
+              borderRadius: 6,
+              padding: "clamp(24px, 4vw, 44px)",
+              maxWidth: 780,
+              margin: "0 auto",
+              boxShadow: "0 4px 18px rgba(0,0,0,0.04)",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 18 }}>
+              <span
+                style={{
+                  background: "#f4f7ee",
+                  color: "var(--forest)",
+                  borderRadius: "50%",
+                  width: 44,
+                  height: 44,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 20,
+                  fontWeight: 700,
+                  flexShrink: 0,
+                }}
+              >
+                🏦
+              </span>
+              <div>
+                <h2 style={{ margin: 0, fontSize: "clamp(20px, 2.4vw, 26px)", color: "var(--forest)" }}>
+                  Direct Bank Transfer Details
+                </h2>
+                <span style={{ fontSize: 13, color: "#6c7a72" }}>
+                  Official Registered Account · Section 80G Tax Exemption
+                </span>
+              </div>
+            </div>
+
+            <p style={{ color: "#455d50", lineHeight: 1.6, fontSize: 14 }}>
+              Supporters and institutional partners wishing to contribute to our student scholarships, school kit distributions, and community outreach can transfer directly to our official bank account below.
+            </p>
+
+            <div
+              style={{
+                background: "#fafaf7",
+                border: "1px solid #e8e9e2",
+                borderRadius: 4,
+                padding: "20px 24px",
+                marginTop: 20,
+                fontSize: 14,
+              }}
+            >
+              <div style={{ display: "grid", gridTemplateColumns: "clamp(120px, 30%, 180px) 1fr", gap: "12px 16px" }}>
+                <span style={{ color: "#607368" }}>Account Name:</span>
+                <strong>Shri Prasanna Pattnaik Memorial Trust</strong>
+
+                <span style={{ color: "#607368" }}>Bank Name:</span>
+                <strong>UCO Bank</strong>
+
+                <span style={{ color: "#607368" }}>Branch:</span>
+                <span>Saheed Nagar, Bhubaneswar, Odisha</span>
+
+                <span style={{ color: "#607368" }}>Account Number:</span>
+                <strong style={{ fontFamily: "monospace", fontSize: 16, color: "var(--forest)" }}>
+                  09230210004593
+                </strong>
+
+                <span style={{ color: "#607368" }}>IFSC Code:</span>
+                <strong style={{ fontFamily: "monospace", fontSize: 16, color: "var(--forest)" }}>
+                  UCBA0000923
+                </strong>
+
+                <span style={{ color: "#607368" }}>Trust PAN:</span>
+                <span>ABNTS3218C</span>
+
+                <span style={{ color: "#607368" }}>Section 80G URN:</span>
+                <span>ABNTS3218CF20261 (50% Tax Deduction)</span>
+
+                <span style={{ color: "#607368" }}>Section 12A URN:</span>
+                <span>ABNTS3218CE20261</span>
+              </div>
+            </div>
+
+            <div
+              style={{
+                marginTop: 28,
+                paddingTop: 20,
+                borderTop: "1px solid #eee",
+                display: "flex",
+                gap: 16,
+                flexWrap: "wrap",
+                alignItems: "center",
+              }}
+            >
+              <Link href="/contact" className="btn btn-dark" style={{ minHeight: 46, padding: "12px 22px" }}>
+                Contact Trust Office <span>↗</span>
+              </Link>
+              <a href="tel:+919972366933" className="text-link">
+                Helpline: +91 99723 66933 ↗
+              </a>
+              <a href="mailto:prasannapattnaiktrust@gmail.com" className="text-link">
+                prasannapattnaiktrust@gmail.com ↗
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 80G Receipt Claim Form for Direct Bank Transfers */}
+        <section className="section shell tax-receipt-section" id="receipt">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">Tax Exemption · Section 80G</div>
+              <h2>
+                Claim your
+                <br />
+                <em>80G tax receipt.</em>
+              </h2>
+            </div>
+            <div className="section-aside">
+              <p>
+                Made a bank transfer? Enter your details and 12-digit UTR below to
+                receive your signed Section 80G receipt and Form 10BE certificate
+                within {config.receiptSlaDays} working days.
+              </p>
+            </div>
+          </div>
+
+          <ReceiptClaimForm receiptSlaDays={config.receiptSlaDays} />
+        </section>
+      </>
+    );
+  }
 
   return (
     <>

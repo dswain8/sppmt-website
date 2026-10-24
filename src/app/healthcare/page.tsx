@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { DONATIONS_ENABLED } from "@/lib/donation";
 
 export const metadata: Metadata = {
   title: "Healthcare",
@@ -121,12 +122,21 @@ export default function HealthcarePage() {
               Your contribution helps maintain health centres and run
               life-saving programs in rural India.
             </p>
-            <Link
-              href="/donate"
-              className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
-            >
-              Donate to Healthcare
-            </Link>
+            {DONATIONS_ENABLED ? (
+              <Link
+                href="/donate"
+                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
+              >
+                Donate to Healthcare
+              </Link>
+            ) : (
+              <Link
+                href="/contact"
+                className="bg-orange hover:bg-orange-dark text-white font-semibold px-8 py-3 rounded-md transition-colors inline-block"
+              >
+                Partner on Healthcare Programs
+              </Link>
+            )}
           </div>
         </section>
       </AnimateOnScroll>
