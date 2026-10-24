@@ -215,11 +215,6 @@ export default function DonationQrCode({
     }
   };
 
-  const shareableCampaignUrl =
-    typeof window !== "undefined"
-      ? `${window.location.origin}/donate${activeAmount > 0 ? `?amount=${activeAmount}` : ""}`
-      : `https://sppmt.org/donate${activeAmount > 0 ? `?amount=${activeAmount}` : ""}`;
-
   const whatsappMessage = encodeURIComponent(
     `Namaskar SPPMT, I have made a contribution of ${
       activeAmount > 0 ? `₹${activeAmount.toLocaleString("en-IN")} (${impactInfo.title})` : "a donation"
@@ -403,7 +398,7 @@ export default function DonationQrCode({
               📱 Touch &amp; hold QR image above to &ldquo;Save Image&rdquo; directly to Photos
             </span>
 
-            {/* Save QR to Gallery + Share Smart Link Utility Row */}
+            {/* Save QR to Gallery Action */}
             <div className="qr-utility-actions">
               <button
                 type="button"
@@ -411,15 +406,6 @@ export default function DonationQrCode({
                 onClick={handleDownloadQr}
               >
                 ↓ Save QR to Photos / Gallery
-              </button>
-              <button
-                type="button"
-                className="btn-qr-utility"
-                onClick={() => handleCopy(shareableCampaignUrl, "sharelink")}
-              >
-                {copiedKey === "sharelink"
-                  ? "Link Copied ✓"
-                  : `🔗 Copy ₹${activeAmount > 0 ? activeAmount.toLocaleString("en-IN") : ""} Donate Link`}
               </button>
             </div>
 
