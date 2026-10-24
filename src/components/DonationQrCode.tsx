@@ -25,6 +25,11 @@ interface DonationQrCodeProps {
   className?: string;
 }
 
+// Official HDFC Bank SmartHub Vyapar verified BharatQR / UPI payload
+// Decoded directly from the official bank terminal standee (TID: 82380414)
+export const OFFICIAL_HDFC_BHARAT_QR_PAYLOAD =
+  "000201010211021644038482380414010415522024082380414061661000308238041440825HDFC00000015020012486062026560010A0000005240138shriprasannapattnaik.82380414@hdfcbank27420010A0000005240124STQD832528117900216712865204869953033565802IN5923SHRI PRASANNA PATTNAIK 6011BHUBANESWAR610675100762400524STQD832528117900216712860708823804146304f7b9";
+
 export default function DonationQrCode({
   upiId = process.env.NEXT_PUBLIC_DONATION_UPI_ID || "shriprasannapattnaik.82380414@hdfcbank",
   payeeName = "Shri Prasanna Pattnaik Memorial Trust",
@@ -118,25 +123,9 @@ export default function DonationQrCode({
     }
   }, [activeAmount, impactInfo.title]);
 
-  // Standard NPCI-compliant UPI payment URI for QR code generation
-  // Follows NPCI specifications: literal '@' in VPA, %20 for spaces (never '+'), and 2-decimal amount
-  const upiUri = (() => {
-    const cleanPayee = encodeURIComponent(payeeName);
-    const cleanNote = encodeURIComponent(impactInfo.upiNote || "Donation to SPPMT (80G)");
-    const parts = [
-      `pa=${upiId}`, // Keep literal @ for VPA per NPCI standards
-      `pn=${cleanPayee}`,
-      `cu=INR`,
-      `tn=${cleanNote}`,
-    ];
-    if (activeAmount > 0) {
-      parts.push(`am=${activeAmount.toFixed(2)}`); // Standard 2-decimal format e.g. 1000.00
-    }
-    return `upi://pay?${parts.join("&")}`;
-  })();
-
   useEffect(() => {
-    QRCode.toDataURL(upiUri, {
+    // Generate QR code using the exact HDFC Bank SmartHub verified BharatQR payload
+    QRCode.toDataURL(OFFICIAL_HDFC_BHARAT_QR_PAYLOAD, {
       width: heroMode ? 360 : 280,
       margin: 2,
       color: {
@@ -147,7 +136,7 @@ export default function DonationQrCode({
     })
       .then((url) => setQrDataUrl(url))
       .catch((err) => console.error("Error generating QR code:", err));
-  }, [upiUri, heroMode]);
+  }, [heroMode]);
 
   const handleCopy = (text: string, key: string) => {
     if (navigator?.clipboard?.writeText) {
@@ -159,29 +148,15 @@ export default function DonationQrCode({
 
   const handleDownloadQr = async () => {
     setShowSaveTip(true);
-    const isSmartTab = activeTab === "smart" && qrDataUrl;
+    const downloadPath = activeTab === "smart" ? "/images/trust-official-qr.png" : officialQrImage;
     const filename =
-      isSmartTab && activeAmount > 0
-        ? `SPPMT-UPI-QR-Rs${activeAmount}.png`
-        : "SPPMT-Official-UPI-QR.jpg";
+      activeTab === "smart" ? "SPPMT-HDFC-Official-UPI-QR.png" : "SPPMT-Official-Standee.jpg";
 
     try {
-      let blob: Blob | null = null;
-
-      if (isSmartTab) {
-        const res = await fetch(qrDataUrl);
-        blob = await res.blob();
-      } else if (officialQrImage) {
-        const res = await fetch(officialQrImage);
-        blob = await res.blob();
-      }
-
-      if (!blob) return;
-
+      const res = await fetch(downloadPath);
+      const blob = await res.blob();
       const file = new File([blob], filename, { type: blob.type || "image/png" });
 
-      // iOS Safari and modern mobile browsers support Web Share with files.
-      // On iOS, this brings up the native share sheet with "Save Image" (saves directly to Photos).
       if (
         typeof navigator !== "undefined" &&
         navigator.canShare &&
@@ -189,13 +164,12 @@ export default function DonationQrCode({
       ) {
         await navigator.share({
           files: [file],
-          title: `SPPMT Donation QR Code (${activeAmount > 0 ? `₹${activeAmount.toLocaleString("en-IN")}` : "UPI"})`,
-          text: `Scan & Pay via UPI to Shri Prasanna Pattnaik Memorial Trust`,
+          title: "SPPMT HDFC SmartHub Verified UPI QR Code",
+          text: "Scan & Pay via UPI to Shri Prasanna Pattnaik Memorial Trust",
         });
         return;
       }
 
-      // Fallback for desktop & browsers without Web Share files: standard download trigger
       const blobUrl = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = blobUrl;
@@ -206,14 +180,11 @@ export default function DonationQrCode({
       setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
     } catch (err: unknown) {
       if (err instanceof Error && err.name === "AbortError") {
-        // User cancelled share sheet; silent exit
         return;
       }
       console.warn("QR download fallback:", err);
-      // Fallback: open in new tab so user can long-press and tap "Save to Photos"
-      const fallbackUrl = isSmartTab ? qrDataUrl : officialQrImage;
-      if (fallbackUrl && typeof window !== "undefined") {
-        window.open(fallbackUrl, "_blank");
+      if (typeof window !== "undefined") {
+        window.open(downloadPath, "_blank");
       }
     }
   };
@@ -341,21 +312,21 @@ export default function DonationQrCode({
           </div>
         )}
 
-        {/* View Switcher: Dynamic QR vs Official Bank Standee */}
+        {/* View Switcher: Verified QR vs Full Standee Poster */}
         <div className="hero-qr-tabs">
           <button
             type="button"
             onClick={() => setActiveTab("smart")}
             className={`hero-tab-btn ${activeTab === "smart" ? "active" : ""}`}
           >
-            ⚡ Dynamic UPI QR {activeAmount > 0 ? `(₹${activeAmount.toLocaleString("en-IN")})` : ""}
+            ⚡ Official HDFC Verified QR
           </button>
           <button
             type="button"
             onClick={() => setActiveTab("standee")}
             className={`hero-tab-btn ${activeTab === "standee" ? "active" : ""}`}
           >
-            🏦 Official Bank Standee QR
+            🏦 Full HDFC Standee Poster
           </button>
         </div>
 
@@ -363,17 +334,13 @@ export default function DonationQrCode({
         <div className="donation-hero-qr-stage">
           <div className="hero-qr-card">
             {activeTab === "smart" ? (
-              qrDataUrl ? (
-                <img
-                  src={qrDataUrl}
-                  alt={`UPI QR code to donate ${activeAmount > 0 ? `₹${activeAmount}` : ""} to ${payeeName}`}
-                  className="hero-qr-img"
-                  width={300}
-                  height={300}
-                />
-              ) : (
-                <div className="hero-qr-loading">Generating secure QR code…</div>
-              )
+              <img
+                src={qrDataUrl || "/images/trust-official-qr.png"}
+                alt={`Official HDFC SmartHub Vyapar QR code for ${payeeName}`}
+                className="hero-qr-img"
+                width={300}
+                height={300}
+              />
             ) : (
               <img
                 src={officialQrImage}
@@ -388,7 +355,7 @@ export default function DonationQrCode({
               <span>
                 {activeAmount > 0 ? (
                   <>
-                    Scan &amp; Pay <strong>₹{activeAmount.toLocaleString("en-IN")}</strong>
+                    Scan &amp; enter <strong>₹{activeAmount.toLocaleString("en-IN")}</strong> in app
                   </>
                 ) : (
                   <strong>Scan with any UPI app</strong>
@@ -397,6 +364,9 @@ export default function DonationQrCode({
                 <span className="payee-tag">{payeeName}</span>
               </span>
             </div>
+            <span className="qr-touch-hint">
+              ✓ Verified HDFC SmartHub Terminal (TID: 82380414) · Accepts all UPI apps
+            </span>
             <span className="qr-touch-hint">
               📱 Touch &amp; hold QR image above to &ldquo;Save Image&rdquo; directly to Photos
             </span>
@@ -600,17 +570,13 @@ export default function DonationQrCode({
       <div className={`qr-container-row ${compactMode ? "qr-compact-row" : ""}`}>
         <div className="qr-image-wrapper">
           {activeTab === "smart" ? (
-            qrDataUrl ? (
-              <img
-                src={qrDataUrl}
-                alt={`UPI QR code to donate ${activeAmount > 0 ? `₹${activeAmount}` : ""} to ${payeeName}`}
-                className="qr-image"
-                width={240}
-                height={240}
-              />
-            ) : (
-              <div className="qr-loading">Generating secure QR code…</div>
-            )
+            <img
+              src={qrDataUrl || "/images/trust-official-qr.png"}
+              alt={`Official HDFC SmartHub Vyapar QR code for ${payeeName}`}
+              className="qr-image"
+              width={240}
+              height={240}
+            />
           ) : (
             <img
               src={officialQrImage}
@@ -624,7 +590,7 @@ export default function DonationQrCode({
             <span className="qr-dot" />
             <strong>
               {activeAmount > 0
-                ? `Scan & Pay ₹${activeAmount.toLocaleString("en-IN")}`
+                ? `Scan & enter ₹${activeAmount.toLocaleString("en-IN")}`
                 : "Scan with any UPI app"}
             </strong>
           </div>
