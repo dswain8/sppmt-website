@@ -115,7 +115,7 @@ export default function AboutPage() {
           </div>
           <div>
             <div>
-              <strong>Section 80G tax exemption (URN: ABNTS3218CE20261)</strong>
+              <strong>Section 80G tax exemption (URN: ABNTS3218CF20261)</strong>
               <p>
                 Approved under Section 80G of the Income Tax Act (Trust PAN: ABNTS3218C). Read full Form 10BE and receipt guidance.
               </p>

@@ -47,8 +47,8 @@ export default function ActiveCampaignBanner({
         <div className="campaign-header-grid">
           <div>
             <h2 id="active-campaign-heading" className="campaign-main-title">
-              Mission Vidya &amp; Seva:{" "}
-              <em>Sponsor the Next Cohort &amp; Rural Kits.</em>
+              Rural Education Kits &amp;{" "}
+              <em>Scholar Support Drive.</em>
             </h2>
             <p className="campaign-lead">{ACTIVE_CAMPAIGN.subtitle}</p>
           </div>

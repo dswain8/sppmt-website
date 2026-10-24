@@ -29,7 +29,7 @@ const FIELD_NOTES: Record<string, { src: string; alt: string; caption: string }>
 export const metadata: Metadata = {
   title: "Field notes",
   description:
-    "Photo gallery of Sri Prasanna Pattnaik Memorial Trust activities — healthcare, education, livelihood, environment, and community development across Odisha.",
+    "Photo gallery of Shri Prasanna Pattnaik Memorial Trust activities — healthcare, education, livelihood, environment, and community development across Odisha.",
 };
 
 export default function GalleryPage() {

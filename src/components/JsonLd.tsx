@@ -15,7 +15,7 @@ const organizationSchema = {
   logo: `${SITE_URL}/images/trust-logo-large.png`,
   image: `${SITE_URL}/images/trust-logo-large.png`,
   description:
-    "The Sri Prasanna Patnaik Memorial Trust (Prasanna Patnaik Trust / SPPMT) was established in 2025 in Bhubaneswar, Odisha, to carry forward the lifelong vision of Shri Prasanna Pattnaik (1948–2025). The trust accepts donations eligible for tax deduction under Section 80G and works in education, healthcare, skill development, agriculture, and civic sense.",
+    "The Shri Prasanna Pattnaik Memorial Trust (SPPMT) was established in 2025 in Bhubaneswar, Odisha, to carry forward the lifelong vision of Shri Prasanna Pattnaik (1948–2025). The trust accepts donations eligible for tax deduction under Section 80G and works in education, healthcare, skill development, agriculture, and civic sense.",
   foundingDate: "2025-10-13",
   taxID: "ABNTS3218C",
   identifier: [
@@ -59,12 +59,6 @@ const organizationSchema = {
     {
       "@type": "ContactPoint",
       telephone: "+91-9972366933",
-      contactType: "general",
-      availableLanguage: ["English", "Hindi", "Odia"],
-    },
-    {
-      "@type": "ContactPoint",
-      telephone: "+91-9178256179",
       contactType: "general",
       availableLanguage: ["English", "Hindi", "Odia"],
     },

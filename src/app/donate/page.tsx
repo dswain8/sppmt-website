@@ -27,7 +27,7 @@ const DONATE_FAQS = [
   {
     question: "Is my donation to Shri Prasanna Pattnaik Memorial Trust tax-deductible?",
     answer:
-      "Yes. Community contributions and donations to Shri Prasanna Pattnaik Memorial Trust (Trust PAN: ABNTS3218C, Section 80G Registration URN: ABNTS3218CE20261) are eligible for a 50% tax deduction under Section 80G of the Income Tax Act. We provide official signed receipts after payment verification.",
+      "Yes. Shri Prasanna Pattnaik Memorial Trust is approved under Section 80G of the Income Tax Act, 1961 (80G Approval URN: ABNTS3218CF20261, 12A URN: ABNTS3218CE20261, Trust PAN: ABNTS3218C). Donations qualify for a 50% deduction of the donated amount from gross taxable income under the qualifying tax regime. After payment, an official signed donation receipt is provided and your Form 10BE certificate is generated via our annual Form 10BD filing.",
   },
   {
     question: "How do I claim my Section 80G tax receipt after donating?",
@@ -65,16 +65,19 @@ export default function DonatePage() {
       {/* Above the fold: Centered, aesthetically balanced hero header */}
       <header className="page-head shell compact-donate-head">
         <div className="eyebrow donate-eyebrow">
-          <span>Support</span>
+          <span>Active Drive</span>
+          <span className="eyebrow-sep">·</span>
+          <span>Education Kits &amp; Merit Scholarships</span>
           <span className="eyebrow-sep">·</span>
           <span>Section 80G Tax Exemption</span>
         </div>
         <h1 className="single-line-title">
-          A meaningful gift. <em>A clear path.</em>
+          Sponsor an Education Kit. <em>Empower a Scholar.</em>
         </h1>
         <p className="donate-intro-sub">
-          Give with confidence. 100% of community contributions directly support
-          educational scholarships, school kits, healthcare, and rural initiatives across Odisha.
+          Give with confidence. 100% of community contributions directly fund
+          sturdy school bags, notebooks, and learning supplies for rural students across Odisha,
+          alongside our Merit &amp; Need Scholarships. Eligible for 50% Section 80G tax deduction.
         </p>
       </header>
 
@@ -184,9 +187,9 @@ export default function DonatePage() {
           </div>
           <div className="section-aside">
             <p>
-              Donations to Shri Prasanna Pattnaik Memorial Trust are eligible for
-              a <strong>50% tax deduction under Section 80G</strong>. Enter your details
-              below to receive your signed receipt within {config.receiptSlaDays} working days.
+              Donations to Shri Prasanna Pattnaik Memorial Trust qualify for
+              a <strong>50% deduction of the donated amount from your taxable income under Section 80G</strong> (available under the qualifying tax regime as per Income Tax laws). Enter your details
+              below to receive your signed receipt and Form 10BE certificate within {config.receiptSlaDays} working days.
             </p>
             <Link href="/tax-benefits-80g" className="under-link">
               Read full Section 80G &amp; Form 10BE guide <span>↗</span>

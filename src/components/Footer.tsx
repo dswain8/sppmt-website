@@ -32,7 +32,7 @@ export default function Footer() {
               <Link href="/donate">Donate</Link>
               <Link href="/contact">Volunteer</Link>
               <a href="mailto:prasannapattnaiktrust@gmail.com">Email us</a>
-              <a href="tel:+919178256179">+91 91782 56179</a>
+              <a href="tel:+919972366933">+91 99723 66933</a>
             </div>
           </div>
         </div>

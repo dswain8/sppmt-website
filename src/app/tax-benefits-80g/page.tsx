@@ -61,7 +61,7 @@ const TAX_FAQS = [
   {
     question: "How much tax deduction can I claim under Section 80G when donating to SPPMT?",
     answer:
-      "Eligible donations to the Shri Prasanna Pattnaik Memorial Trust (Trust PAN: ABNTS3218C, Section 80G URN: ABNTS3218CE20261) qualify for a 50% deduction from your gross total taxable income under Section 80G of the Indian Income Tax Act, 1961.",
+      "Eligible donations to the Shri Prasanna Pattnaik Memorial Trust (Trust PAN: ABNTS3218C, Section 80G Approval URN: ABNTS3218CF20261, 12A URN: ABNTS3218CE20261) qualify for a 50% deduction from your gross total taxable income under Section 80G of the Indian Income Tax Act, 1961.",
   },
   {
     question: "Do UPI payments (Google Pay, PhonePe, Paytm) qualify for Section 80G tax exemption?",
@@ -114,7 +114,7 @@ export default function TaxBenefits80GPage() {
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
                 <span className="badge-80g">Section 80G · 50% Tax Deduction</span>
                 <span className="badge-verified">Trust PAN: ABNTS3218C</span>
-                <span className="badge-verified">80G URN: ABNTS3218CE20261</span>
+                <span className="badge-verified">80G URN: ABNTS3218CF20261</span>
               </div>
               <h2 style={{ fontSize: "clamp(28px, 3vw, 40px)", marginTop: 10 }}>
                 How Your Contribution Translates into Impact &amp; Tax Relief

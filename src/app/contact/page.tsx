@@ -62,7 +62,6 @@ export default function ContactPage() {
           </a>
           <div className="contact-rows">
             <a href="tel:+919972366933">Call +91 99723 66933 ↗</a>
-            <a href="tel:+919178256179">Call +91 91782 56179 ↗</a>
             <Link href="/donate">Or support the work with a donation ↗</Link>
           </div>
         </div>

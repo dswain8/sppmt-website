@@ -29,24 +29,29 @@ export interface SuggestedAmount {
 
 export const SUGGESTED_AMOUNTS: SuggestedAmount[] = [
   {
+    amount: 500,
+    label: "₹500",
+    impact: "Provides notebooks, geometry box & study stationery for 1 student",
+  },
+  {
     amount: 1000,
     label: "₹1,000",
-    impact: "Supports educational kits for students",
+    impact: "Sponsors 1 complete school kit (sturdy bag, notebook set & learning tools)",
   },
   {
     amount: 2500,
     label: "₹2,500",
-    impact: "Helps fund a cleanliness or plantation drive",
+    impact: "Sponsors complete education kits & exam supplies for 2–3 students",
   },
   {
     amount: 5000,
     label: "₹5,000",
-    impact: "Contributes to healthcare outreach",
+    impact: "Sponsors 5 student school kits or co-sponsors a merit scholarship",
   },
   {
     amount: 10000,
     label: "₹10,000",
-    impact: "Supports education and livelihood programs",
+    impact: "Sponsors 10 complete education kits for a rural classroom",
   },
 ];
 
@@ -54,7 +59,7 @@ export function getDonationConfig(): DonationConfig {
   return {
     accountName:
       process.env.DONATION_ACCOUNT_NAME ??
-      "Sri Prasanna Pattnaik Memorial Trust",
+      "Shri Prasanna Pattnaik Memorial Trust",
     accountNumber: process.env.DONATION_ACCOUNT_NUMBER ?? "09230210004593",
     ifsc: process.env.DONATION_IFSC ?? "UCBA0000923",
     bankName: process.env.DONATION_BANK_NAME ?? "UCO Bank",

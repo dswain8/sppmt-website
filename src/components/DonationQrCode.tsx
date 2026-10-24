@@ -302,14 +302,14 @@ export default function DonationQrCode({
             onClick={() => setActiveTab("smart")}
             className={`hero-tab-btn ${activeTab === "smart" ? "active" : ""}`}
           >
-            Dynamic UPI QR {activeAmount > 0 ? `(₹${activeAmount.toLocaleString("en-IN")})` : ""}
+            ⚡ Dynamic UPI QR {activeAmount > 0 ? `(₹${activeAmount.toLocaleString("en-IN")})` : ""}
           </button>
           <button
             type="button"
             onClick={() => setActiveTab("standee")}
             className={`hero-tab-btn ${activeTab === "standee" ? "active" : ""}`}
           >
-            Official HDFC Standee Photo
+            🏦 Official Bank Standee QR
           </button>
         </div>
 
@@ -647,7 +647,7 @@ export default function DonationQrCode({
                 <span className="field-title">Beneficiary Name &amp; 80G Registration</span>
                 <span className="field-subval">{payeeName}</span>
                 <span className="field-subval branch">
-                  PAN: <strong>ABNTS3218C</strong> · 80G URN: <strong>ABNTS3218CE20261</strong>
+                  PAN: <strong>ABNTS3218C</strong> · 80G URN: <strong>ABNTS3218CF20261</strong>
                 </span>
               </div>
             </div>
@@ -667,7 +667,7 @@ export default function DonationQrCode({
             <a
               href={`/donate${activeAmount > 0 ? `?amount=${activeAmount}` : ""}#receipt`}
               className="btn btn-dark"
-              style={{ minHeight: 44, padding: "10px 18px", fontSize: 12 }}
+              style={{ minHeight: 44, padding: "10px 18px", fontSize: 13 }}
             >
               <span>Claim 80G Tax Receipt ↗</span>
             </a>
@@ -676,7 +676,7 @@ export default function DonationQrCode({
               target="_blank"
               rel="noopener noreferrer"
               className="text-link"
-              style={{ fontSize: 12 }}
+              style={{ fontSize: 13 }}
             >
               Or WhatsApp coordinator (+91 99723 66933) ↗
             </a>
