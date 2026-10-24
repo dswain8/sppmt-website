@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/activities/healthcare", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/scholarship", priority: 0.95, changeFrequency: "weekly" as const },
     { path: "/donate", priority: 1.0, changeFrequency: "weekly" as const },
+    { path: "/tax-benefits-80g", priority: 0.95, changeFrequency: "weekly" as const },
     { path: "/gallery", priority: 0.7, changeFrequency: "weekly" as const },
     { path: "/contact", priority: 0.8, changeFrequency: "monthly" as const },
   ];

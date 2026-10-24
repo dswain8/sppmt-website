@@ -2,6 +2,11 @@
 
 import { useEffect, useState, useId } from "react";
 import QRCode from "qrcode";
+import {
+  IMPACT_TIERS,
+  calculate80GDeduction,
+  getImpactForAmount,
+} from "@/lib/campaign";
 
 interface DonationQrCodeProps {
   upiId?: string;
@@ -19,8 +24,6 @@ interface DonationQrCodeProps {
   heroMode?: boolean;
   className?: string;
 }
-
-const PRESET_AMOUNTS = [500, 1000, 2500, 5000];
 
 export default function DonationQrCode({
   upiId = process.env.NEXT_PUBLIC_DONATION_UPI_ID || "shriprasannapattnaik.82380414@hdfcbank",
@@ -43,9 +46,76 @@ export default function DonationQrCode({
   const [qrDataUrl, setQrDataUrl] = useState<string>("");
   const [activeTab, setActiveTab] = useState<"smart" | "standee">("smart");
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const [activeCampaignLabel, setActiveCampaignLabel] = useState<string | null>(null);
   const customInputId = useId();
 
   const activeAmount = selectedAmount !== null ? selectedAmount : (Number(customAmount) || 0);
+  const impactInfo = getImpactForAmount(activeAmount);
+  const taxInfo = calculate80GDeduction(activeAmount);
+
+  // Read URL parameters (?amount=1000&campaign=school-kit) & listen for campaign selection events
+  useEffect(() => {
+    const applyAmount = (amt: number, campaignSlug?: string | null, shouldScroll?: boolean) => {
+      if (amt > 0) {
+        const isPreset = IMPACT_TIERS.some((t) => t.amount === amt);
+        if (isPreset) {
+          setSelectedAmount(amt);
+          setCustomAmount("");
+        } else {
+          setSelectedAmount(null);
+          setCustomAmount(String(amt));
+        }
+      }
+      if (campaignSlug) {
+        const matchedTier = IMPACT_TIERS.find((t) => t.campaignSlug === campaignSlug);
+        setActiveCampaignLabel(matchedTier ? matchedTier.title : campaignSlug.replace(/-/g, " "));
+      }
+      if (shouldScroll) {
+        const targetEl =
+          document.getElementById("donation-hero") || document.getElementById("donation-box");
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    };
+
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const urlAmt = Number(params.get("amount"));
+      const urlCampaign = params.get("campaign");
+      if (urlAmt > 0) {
+        applyAmount(urlAmt, urlCampaign, false);
+      } else if (urlCampaign) {
+        const matched = IMPACT_TIERS.find((t) => t.campaignSlug === urlCampaign);
+        if (matched) {
+          applyAmount(matched.amount, urlCampaign, false);
+        }
+      }
+    }
+
+    const handleSelectEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<{ amount: number; campaign?: string }>;
+      if (customEvent.detail?.amount) {
+        applyAmount(customEvent.detail.amount, customEvent.detail.campaign, true);
+      }
+    };
+
+    window.addEventListener("sppmt:select-donation-amount", handleSelectEvent);
+    return () => {
+      window.removeEventListener("sppmt:select-donation-amount", handleSelectEvent);
+    };
+  }, []);
+
+  // Broadcast amount changes so ReceiptClaimForm stays in sync automatically
+  useEffect(() => {
+    if (typeof window !== "undefined" && activeAmount > 0) {
+      window.dispatchEvent(
+        new CustomEvent("sppmt:donation-amount-changed", {
+          detail: { amount: activeAmount, impactTitle: impactInfo.title },
+        })
+      );
+    }
+  }, [activeAmount, impactInfo.title]);
 
   // Standard NPCI UPI payment URI
   const upiUri = (() => {
@@ -53,7 +123,7 @@ export default function DonationQrCode({
       pa: upiId,
       pn: payeeName,
       cu: "INR",
-      tn: "Donation to SPPMT (80G Tax Benefit)",
+      tn: impactInfo.upiNote || "Donation to SPPMT (80G Tax Benefit)",
     });
     if (activeAmount > 0) {
       params.set("am", activeAmount.toString());
@@ -63,7 +133,7 @@ export default function DonationQrCode({
 
   useEffect(() => {
     QRCode.toDataURL(upiUri, {
-      width: heroMode ? 320 : 260,
+      width: heroMode ? 360 : 280,
       margin: 2,
       color: {
         dark: "#183b30", // Forest green
@@ -83,9 +153,28 @@ export default function DonationQrCode({
     }
   };
 
+  const handleDownloadQr = () => {
+    const hrefToDownload = activeTab === "smart" && qrDataUrl ? qrDataUrl : officialQrImage;
+    if (!hrefToDownload) return;
+    const link = document.createElement("a");
+    link.href = hrefToDownload;
+    link.download =
+      activeTab === "smart" && activeAmount > 0
+        ? `SPPMT-UPI-QR-Rs${activeAmount}.png`
+        : "SPPMT-Official-UPI-QR.jpg";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const shareableCampaignUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}/donate${activeAmount > 0 ? `?amount=${activeAmount}` : ""}`
+      : `https://sppmt.org/donate${activeAmount > 0 ? `?amount=${activeAmount}` : ""}`;
+
   const whatsappMessage = encodeURIComponent(
     `Namaskar SPPMT, I have made a contribution of ${
-      activeAmount > 0 ? `₹${activeAmount.toLocaleString("en-IN")}` : "a donation"
+      activeAmount > 0 ? `₹${activeAmount.toLocaleString("en-IN")} (${impactInfo.title})` : "a donation"
     } to Shri Prasanna Pattnaik Memorial Trust. Please find my transaction screenshot and details attached for the Section 80G tax receipt.`
   );
   const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}?text=${whatsappMessage}`;
@@ -98,40 +187,74 @@ export default function DonationQrCode({
       <div className={`donation-hero-box ${className}`} id="donation-hero">
         {/* Trust Badges */}
         <div className="hero-badges-row">
-          <span className="badge-80g">Section 80G Tax Exemption</span>
+          <span className="badge-80g">50% Tax Deduction · Section 80G</span>
           <span className="badge-verified">✓ HDFC SmartHub Vyapar Verified</span>
+          {activeCampaignLabel && (
+            <span className="badge-campaign-Selected">
+              Campaign: {activeCampaignLabel}
+            </span>
+          )}
+        </div>
+
+        {/* 3-Step Visual Progress Strip */}
+        <div className="upi-quick-steps" aria-label="3-step donation process">
+          <div className="upi-step-pill">
+            <span className="step-num-circle">1</span>
+            <span>Pick Impact &amp; Scan UPI QR</span>
+          </div>
+          <span className="upi-step-arrow" aria-hidden="true">→</span>
+          <div className="upi-step-pill">
+            <span className="step-num-circle">2</span>
+            <span>Enter 12-Digit UTR &amp; PAN Below</span>
+          </div>
+          <span className="upi-step-arrow" aria-hidden="true">→</span>
+          <div className="upi-step-pill">
+            <span className="step-num-circle">3</span>
+            <span>Receive Official 80G Tax Certificate</span>
+          </div>
         </div>
 
         {/* Hero Title & Subtitle */}
-        <h2 className="donation-hero-title">Scan &amp; Donate via UPI</h2>
+        <h2 className="donation-hero-title">Choose Your Impact &amp; Scan via UPI</h2>
         <p className="donation-hero-subtitle">
-          Scan using any UPI App — Google Pay, PhonePe, Paytm, BHIM, or your mobile banking app.
+          Zero middlemen or gateway fees. 100% of your transfer reaches the trust account directly via Google Pay, PhonePe, Paytm, BHIM, or any banking app.
         </p>
 
-        {/* Amount Selector */}
+        {/* Interactive Impact Tiers Selector */}
         {showPresets && (
           <div className="donation-hero-presets">
-            <span className="hero-presets-label">Select Contribution Amount:</span>
-            <div className="hero-preset-chips">
-              {PRESET_AMOUNTS.map((amt) => (
-                <button
-                  key={amt}
-                  type="button"
-                  className={`hero-preset-btn ${selectedAmount === amt ? "active" : ""}`}
-                  onClick={() => {
-                    setSelectedAmount(amt);
-                    setCustomAmount("");
-                  }}
-                >
-                  ₹{amt.toLocaleString("en-IN")}
-                </button>
-              ))}
+            <span className="hero-presets-label">Select an Impact Tier (Automatically Updates QR Code):</span>
+            <div className="impact-tiers-grid">
+              {IMPACT_TIERS.map((tier) => {
+                const isSelected = selectedAmount === tier.amount;
+                return (
+                  <button
+                    key={tier.amount}
+                    type="button"
+                    className={`impact-tier-card ${isSelected ? "active" : ""}`}
+                    onClick={() => {
+                      setSelectedAmount(tier.amount);
+                      setCustomAmount("");
+                      setActiveCampaignLabel(tier.title);
+                    }}
+                  >
+                    {tier.badge && <span className="tier-floating-badge">{tier.badge}</span>}
+                    <span className="tier-amount">{tier.label}</span>
+                    <span className="tier-title">{tier.title}</span>
+                    <span className="tier-tax-tag">
+                      80G Deductible: ₹{Math.round(tier.amount * 0.5).toLocaleString("en-IN")}
+                    </span>
+                  </button>
+                );
+              })}
               <button
                 type="button"
-                className={`hero-preset-btn ${selectedAmount === null ? "active" : ""}`}
+                className={`impact-tier-card custom-tier-card ${selectedAmount === null ? "active" : ""}`}
                 onClick={() => setSelectedAmount(null)}
               >
-                Other Amount
+                <span className="tier-amount">Custom</span>
+                <span className="tier-title">Any Amount</span>
+                <span className="tier-tax-tag">50% 80G Benefit</span>
               </button>
             </div>
 
@@ -142,12 +265,31 @@ export default function DonationQrCode({
                   id={customInputId}
                   type="number"
                   min="1"
-                  placeholder="Enter custom amount (e.g. 10000)"
+                  placeholder="Enter custom amount in INR (e.g. 15000)"
                   value={customAmount}
                   onChange={(e) => setCustomAmount(e.target.value)}
                   className="hero-custom-input"
                   autoFocus
                 />
+              </div>
+            )}
+
+            {/* Live Impact + 80G Tax Savings Callout Banner */}
+            {activeAmount > 0 && (
+              <div className="live-impact-callout" role="status" aria-live="polite">
+                <div className="impact-callout-main">
+                  <span className="impact-spark" aria-hidden="true">✳</span>
+                  <div>
+                    <strong>
+                      ₹{activeAmount.toLocaleString("en-IN")} · {impactInfo.title}
+                    </strong>
+                    <p>{impactInfo.impact}</p>
+                  </div>
+                </div>
+                <div className="impact-tax-pill">
+                  <span>Section 80G Tax Deduction (50%)</span>
+                  <strong>₹{taxInfo.eligibleDeduction.toLocaleString("en-IN")} Qualifying Deduction</strong>
+                </div>
               </div>
             )}
           </div>
@@ -167,7 +309,7 @@ export default function DonationQrCode({
             onClick={() => setActiveTab("standee")}
             className={`hero-tab-btn ${activeTab === "standee" ? "active" : ""}`}
           >
-            Official Merchant Standee Photo
+            Official HDFC Standee Photo
           </button>
         </div>
 
@@ -209,6 +351,30 @@ export default function DonationQrCode({
                 <span className="payee-tag">{payeeName}</span>
               </span>
             </div>
+
+            {/* Save QR to Gallery + Share Smart Link Utility Row */}
+            <div className="qr-utility-actions">
+              <button
+                type="button"
+                className="btn-qr-utility"
+                onClick={handleDownloadQr}
+              >
+                ↓ Save QR to Phone Gallery
+              </button>
+              <button
+                type="button"
+                className="btn-qr-utility"
+                onClick={() => handleCopy(shareableCampaignUrl, "sharelink")}
+              >
+                {copiedKey === "sharelink"
+                  ? "Link Copied ✓"
+                  : `🔗 Copy ₹${activeAmount > 0 ? activeAmount.toLocaleString("en-IN") : ""} Donate Link`}
+              </button>
+            </div>
+            <small className="single-phone-tip">
+              <strong>Using one phone?</strong> Save the QR image above, open Google Pay / PhonePe / Paytm, tap{" "}
+              <em>Scan QR → Upload from Gallery</em>, or copy the UPI ID below.
+            </small>
           </div>
 
           {/* Mobile 1-Tap Pay Direct Link */}
@@ -216,12 +382,14 @@ export default function DonationQrCode({
             <a href={upiUri} className="btn-hero-mobile-pay">
               <span className="pay-label">
                 {activeAmount > 0
-                  ? `Pay ₹${activeAmount.toLocaleString("en-IN")} via UPI App`
-                  : "Pay via Installed UPI App"}
+                  ? `Tap to Pay ₹${activeAmount.toLocaleString("en-IN")} via UPI App`
+                  : "Tap to Pay via Installed UPI App"}
               </span>
-              <span className="pay-apps">Google Pay · PhonePe · Paytm · BHIM ↗</span>
+              <span className="pay-apps">Opens Google Pay · PhonePe · Paytm · BHIM ↗</span>
             </a>
-            <small className="mobile-tap-hint">Tap on mobile to open your installed UPI app</small>
+            <small className="mobile-tap-hint">
+              Or save QR to gallery / copy the UPI ID below if your browser blocks app switching
+            </small>
           </div>
 
           {/* Centered Official UPI ID with Copy Button */}
@@ -239,21 +407,25 @@ export default function DonationQrCode({
               </button>
             </div>
             <div className="hero-merchant-tag">
-              <span>HDFC Merchant TID: <strong>{merchantTid}</strong></span>
+              <span>Trust PAN: <strong>ABNTS3218C</strong></span>
               <span> · </span>
-              <span>Terminal: <strong>UCO Bank Saheed Nagar</strong></span>
+              <span>80G URN: <strong>ABNTS3218CE20261</strong></span>
+              <span> · </span>
+              <span>HDFC TID: <strong>{merchantTid}</strong></span>
             </div>
           </div>
 
           {/* Action Row: Link directly to 80G Form & Bank Transfer */}
           <div className="hero-action-buttons">
-            <a href="#receipt-form" className="btn btn-dark hero-claim-btn">
-              <span>Already Donated? Claim Your 80G Tax Receipt Below</span>
+            <a href="#receipt" className="btn btn-dark hero-claim-btn">
+              <span>
+                Done Paying {activeAmount > 0 ? `₹${activeAmount.toLocaleString("en-IN")}` : ""}? Claim Your 80G Receipt Below
+              </span>
               <span className="arrow-down">↓</span>
             </a>
             <div className="hero-sublinks">
               <a href="#bank-transfer" className="sublink-item">
-                Need to do NEFT / RTGS Bank Transfer? View Bank Account Details ↓
+                Prefer NEFT / RTGS / IMPS? View Bank Account Details ↓
               </a>
               <span className="sep">·</span>
               <a
@@ -262,7 +434,7 @@ export default function DonationQrCode({
                 rel="noopener noreferrer"
                 className="sublink-item"
               >
-                Coordinator Helpline (+91 99723 66933) ↗
+                WhatsApp Receipt Helpline (+91 99723 66933) ↗
               </a>
             </div>
           </div>
@@ -272,48 +444,59 @@ export default function DonationQrCode({
   }
 
   // ============================================================
-  // STANDARD / EMBED MODE (for Homepage & Scholarship pages)
+  // STANDARD / EMBED MODE (for Homepage, Scholarship & 80G pages)
   // ============================================================
   return (
     <div className={`donation-qr-box ${compactMode ? "compact-above-fold" : ""} ${className}`} id="donation-box">
       <div className="donation-qr-header">
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-          <span className="badge-80g">Section 80G Tax Exemption</span>
+          <span className="badge-80g">50% Tax Deduction · Section 80G</span>
           <span className="badge-verified">✓ HDFC SmartHub Vyapar Verified</span>
         </div>
-        <h3 className="donation-qr-title">Instant Contribution via UPI</h3>
+        <h3 className="donation-qr-title">Choose Impact &amp; Donate via UPI</h3>
         <p className="donation-qr-subtitle">
-          Scan using any UPI App (Google Pay, PhonePe, Paytm, BHIM, or Mobile Banking)
+          Scan using any UPI App (Google Pay, PhonePe, Paytm, BHIM) or copy our official UPI ID
         </p>
       </div>
 
       {showPresets && (
         <div className="donation-amount-selector">
-          <label className="amount-label">Select Contribution Amount (INR):</label>
-          <div className="preset-buttons">
-            {PRESET_AMOUNTS.map((amt) => (
-              <button
-                key={amt}
-                type="button"
-                className={`preset-btn ${selectedAmount === amt ? "active" : ""}`}
-                onClick={() => {
-                  setSelectedAmount(amt);
-                  setCustomAmount("");
-                }}
-              >
-                ₹{amt.toLocaleString("en-IN")}
-              </button>
-            ))}
+          <label className="amount-label">Select Contribution Tier (INR):</label>
+          <div className="impact-tiers-grid compact-tiers-grid">
+            {IMPACT_TIERS.map((tier) => {
+              const isSelected = selectedAmount === tier.amount;
+              return (
+                <button
+                  key={tier.amount}
+                  type="button"
+                  className={`impact-tier-card ${isSelected ? "active" : ""}`}
+                  onClick={() => {
+                    setSelectedAmount(tier.amount);
+                    setCustomAmount("");
+                  }}
+                >
+                  {tier.badge && <span className="tier-floating-badge">{tier.badge}</span>}
+                  <span className="tier-amount">{tier.label}</span>
+                  <span className="tier-title">{tier.title}</span>
+                  <span className="tier-tax-tag">
+                    80G: ₹{Math.round(tier.amount * 0.5).toLocaleString("en-IN")}
+                  </span>
+                </button>
+              );
+            })}
             <button
               type="button"
-              className={`preset-btn ${selectedAmount === null ? "active" : ""}`}
+              className={`impact-tier-card custom-tier-card ${selectedAmount === null ? "active" : ""}`}
               onClick={() => setSelectedAmount(null)}
             >
-              Other Amount
+              <span className="tier-amount">Custom</span>
+              <span className="tier-title">Other Amount</span>
+              <span className="tier-tax-tag">50% 80G Benefit</span>
             </button>
           </div>
+
           {selectedAmount === null && (
-            <div className="custom-amount-input-wrap">
+            <div className="custom-amount-input-wrap" style={{ marginTop: 12 }}>
               <span className="rupee-symbol">₹</span>
               <input
                 id={customInputId}
@@ -324,6 +507,24 @@ export default function DonationQrCode({
                 onChange={(e) => setCustomAmount(e.target.value)}
                 className="custom-amount-input"
               />
+            </div>
+          )}
+
+          {activeAmount > 0 && (
+            <div className="live-impact-callout compact-callout" style={{ marginTop: 14 }}>
+              <div className="impact-callout-main">
+                <span className="impact-spark" aria-hidden="true">✳</span>
+                <div>
+                  <strong>
+                    ₹{activeAmount.toLocaleString("en-IN")} · {impactInfo.title}
+                  </strong>
+                  <p>{impactInfo.impact}</p>
+                </div>
+              </div>
+              <div className="impact-tax-pill">
+                <span>50% Sec 80G Deduction</span>
+                <strong>₹{taxInfo.eligibleDeduction.toLocaleString("en-IN")}</strong>
+              </div>
             </div>
           )}
         </div>
@@ -360,6 +561,15 @@ export default function DonationQrCode({
                 : "Scan with any UPI app"}
             </strong>
           </div>
+
+          <button
+            type="button"
+            className="btn-qr-utility"
+            style={{ marginTop: 8, width: "100%", justifyContent: "center" }}
+            onClick={handleDownloadQr}
+          >
+            ↓ Save QR to Phone Gallery
+          </button>
         </div>
 
         <div className="qr-actions-details">
@@ -372,7 +582,7 @@ export default function DonationQrCode({
               <span className="app-icons">Google Pay · PhonePe · Paytm ↗</span>
             </a>
             <small className="mobile-hint">
-              Tap above to directly open your installed UPI app.
+              Tap above to open your UPI app, or save QR to scan from gallery.
             </small>
           </div>
 
@@ -434,9 +644,11 @@ export default function DonationQrCode({
 
             <div className="copy-field account-holder">
               <div className="field-meta">
-                <span className="field-title">Beneficiary Name</span>
+                <span className="field-title">Beneficiary Name &amp; 80G Registration</span>
                 <span className="field-subval">{payeeName}</span>
-                <span className="field-subval branch">Branch: {branch}</span>
+                <span className="field-subval branch">
+                  PAN: <strong>ABNTS3218C</strong> · 80G URN: <strong>ABNTS3218CE20261</strong>
+                </span>
               </div>
             </div>
           </div>
@@ -448,13 +660,16 @@ export default function DonationQrCode({
           <div>
             <strong>Already transferred?</strong>
             <p style={{ margin: "2px 0 0", fontSize: 12, color: "var(--muted)" }}>
-              Submit your PAN and UTR directly in the form below to receive your official Section 80G tax receipt.
+              Submit your PAN and UTR to receive your official Section 80G tax deduction certificate.
             </p>
           </div>
           <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap", marginTop: 10 }}>
-            <a href="#receipt-form" className="btn btn-dark" style={{ minHeight: 44, padding: "10px 18px", fontSize: 12 }}>
-              <span>Enter Details for 80G Receipt ↓</span>
-              <span>↓</span>
+            <a
+              href={`/donate${activeAmount > 0 ? `?amount=${activeAmount}` : ""}#receipt`}
+              className="btn btn-dark"
+              style={{ minHeight: 44, padding: "10px 18px", fontSize: 12 }}
+            >
+              <span>Claim 80G Tax Receipt ↗</span>
             </a>
             <a
               href={whatsappUrl}

@@ -74,6 +74,14 @@ export default function AboutPage() {
               <span>Registered office</span>
               <strong>Bhubaneswar, Odisha</strong>
             </div>
+            <div>
+              <span>Trust PAN</span>
+              <strong>ABNTS3218C</strong>
+            </div>
+            <div>
+              <span>Section 80G URN (Form 10AC)</span>
+              <strong>ABNTS3218CE20261</strong>
+            </div>
           </div>
         </div>
         <div className="opening-trustees">
@@ -103,10 +111,12 @@ export default function AboutPage() {
           </div>
           <div>
             <div>
-              <strong>Section 80G guidance</strong>
-              <p>Eligibility and receipt information from the donation page.</p>
+              <strong>Section 80G tax exemption (URN: ABNTS3218CE20261)</strong>
+              <p>
+                Approved under Section 80G of the Income Tax Act (Trust PAN: ABNTS3218C). Read full Form 10BE and receipt guidance.
+              </p>
             </div>
-            <Link href="/donate">Read donation guidance ↗</Link>
+            <Link href="/tax-benefits-80g">Read 80G tax guide ↗</Link>
           </div>
           <div>
             <div>

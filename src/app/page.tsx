@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ScholarshipAnnouncement from "@/components/ScholarshipAnnouncement";
 import DonationQrCode from "@/components/DonationQrCode";
+import ActiveCampaignBanner from "@/components/ActiveCampaignBanner";
 import { FOCUS_AREAS } from "@/lib/focus-areas";
 import { getDonationConfig } from "@/lib/donation";
 import { SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -336,6 +337,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ActiveCampaignBanner inPageQrSync={true} />
 
       <section className="section shell" id="give" style={{ paddingTop: 30, paddingBottom: 60 }}>
         <div className="section-head">

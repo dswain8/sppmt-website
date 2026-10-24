@@ -4,6 +4,7 @@ import DonationQrCode from "@/components/DonationQrCode";
 import ReceiptClaimForm from "@/components/ReceiptClaimForm";
 import DonationGoogleForm from "@/components/DonationGoogleForm";
 import FaqSection from "@/components/FaqSection";
+import ActiveCampaignBanner from "@/components/ActiveCampaignBanner";
 import { getDonationConfig } from "@/lib/donation";
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ const DONATE_FAQS = [
   {
     question: "Is my donation to Shri Prasanna Pattnaik Memorial Trust tax-deductible?",
     answer:
-      "Yes. Community contributions and donations to Shri Prasanna Pattnaik Memorial Trust are eligible for a 50% tax deduction under Section 80G of the Income Tax Act. We provide official signed receipts after payment verification.",
+      "Yes. Community contributions and donations to Shri Prasanna Pattnaik Memorial Trust (Trust PAN: ABNTS3218C, Section 80G Registration URN: ABNTS3218CE20261) are eligible for a 50% tax deduction under Section 80G of the Income Tax Act. We provide official signed receipts after payment verification.",
   },
   {
     question: "How do I claim my Section 80G tax receipt after donating?",
@@ -93,6 +94,9 @@ export default function DonatePage() {
           heroMode={true}
         />
       </section>
+
+      {/* Active Campaign Showcase (Syncs with Hero QR Code on click) */}
+      <ActiveCampaignBanner inPageQrSync={true} />
 
       {/* Below the fold: Bank Transfer (NEFT/RTGS/IMPS) */}
       <section className="shell bank-transfer-section" id="bank-transfer">
@@ -184,6 +188,9 @@ export default function DonatePage() {
               a <strong>50% tax deduction under Section 80G</strong>. Enter your details
               below to receive your signed receipt within {config.receiptSlaDays} working days.
             </p>
+            <Link href="/tax-benefits-80g" className="under-link">
+              Read full Section 80G &amp; Form 10BE guide <span>↗</span>
+            </Link>
           </div>
         </div>
 

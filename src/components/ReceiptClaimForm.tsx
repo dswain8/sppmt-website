@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useId, type FormEvent } from "react";
+import { useState, useEffect, useId, type FormEvent } from "react";
+import { calculate80GDeduction, getImpactForAmount } from "@/lib/campaign";
 
 interface ReceiptClaimFormProps {
   receiptSlaDays?: number;
@@ -25,6 +26,7 @@ export default function ReceiptClaimForm({
     address: "",
   });
 
+  const [userEditedAmount, setUserEditedAmount] = useState(false);
   const [loading, setLoading] = useState(false);
   const [submittedData, setSubmittedData] = useState<{
     referenceId: string;
@@ -46,10 +48,40 @@ export default function ReceiptClaimForm({
   const dateId = useId();
   const addressId = useId();
 
+  // Sync amount from URL query param (?amount=...) and QR tier selection events
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const urlAmt = Number(params.get("amount"));
+      if (urlAmt > 0) {
+        setForm((prev) => ({ ...prev, amount: String(urlAmt) }));
+      }
+    }
+
+    const handleQrAmountChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ amount: number }>;
+      if (!userEditedAmount && customEvent.detail?.amount > 0) {
+        setForm((prev) => ({ ...prev, amount: String(customEvent.detail.amount) }));
+      }
+    };
+
+    window.addEventListener("sppmt:donation-amount-changed", handleQrAmountChange);
+    return () => {
+      window.removeEventListener("sppmt:donation-amount-changed", handleQrAmountChange);
+    };
+  }, [userEditedAmount]);
+
   const updateField = (field: string, value: string) => {
+    if (field === "amount") {
+      setUserEditedAmount(true);
+    }
     setForm((prev) => ({ ...prev, [field]: value }));
     if (errorMsg) setErrorMsg(null);
   };
+
+  const numericAmount = Number(form.amount) || 0;
+  const taxSummary = calculate80GDeduction(numericAmount);
+  const impactSummary = getImpactForAmount(numericAmount);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -117,6 +149,11 @@ export default function ReceiptClaimForm({
     );
     const waUrl = `https://wa.me/919972366933?text=${waText}`;
 
+    const friendReferralText = encodeURIComponent(
+      `Namaskar! I just contributed to the Shri Prasanna Pattnaik Memorial Trust (SPPMT) to support rural students' education and community healthcare in Odisha. 100% of public contributions go directly to grassroots programs and qualify for a 50% Section 80G tax deduction.\n\nYou can support a student with a school kit (₹1,000) or scholarship directly via UPI here: https://sppmt.org/donate`
+    );
+    const friendReferralUrl = `https://wa.me/?text=${friendReferralText}`;
+
     return (
       <div className={`receipt-success-card ${className}`}>
         <div className="success-icon-wrap">
@@ -139,8 +176,12 @@ export default function ReceiptClaimForm({
             <strong>{submittedData.pan}</strong>
           </div>
           <div>
-            <span>Amount</span>
+            <span>Amount Contributed</span>
             <strong>₹{submittedData.amount.toLocaleString("en-IN")}</strong>
+          </div>
+          <div>
+            <span>50% Sec 80G Deduction</span>
+            <strong>₹{Math.round(submittedData.amount * 0.5).toLocaleString("en-IN")}</strong>
           </div>
           <div>
             <span>UTR / Ref No.</span>
@@ -165,6 +206,25 @@ export default function ReceiptClaimForm({
             3. The trust files statutory Form 10BD with the Income Tax Department,
             making your Form 10BE automatically visible in your AIS / Form 26AS.
           </p>
+        </div>
+
+        {/* Viral WhatsApp Referral Flywheel */}
+        <div className="receipt-referral-banner">
+          <div>
+            <strong>Multiply Your Impact Today</strong>
+            <p>
+              Most of our grassroots support comes from word-of-mouth. Invite a friend or family member on WhatsApp to sponsor a student school kit or scholarship.
+            </p>
+          </div>
+          <a
+            href={friendReferralUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-dark referral-wa-btn"
+          >
+            <span>Share SPPMT on WhatsApp</span>
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
 
         <div className="success-action-row">
@@ -194,7 +254,7 @@ export default function ReceiptClaimForm({
             rel="noopener noreferrer"
             className="wa-pill-link"
           >
-            Optional: Keep copy on WhatsApp (+91 99723 66933) ↗
+            Send instant copy to Trust WhatsApp (+91 99723 66933) ↗
           </a>
         </div>
       </div>
@@ -307,7 +367,19 @@ export default function ReceiptClaimForm({
               className="input-text with-prefix"
             />
           </div>
-          <small>Exact amount transferred to trust account</small>
+          <small>
+            {numericAmount > 0 ? (
+              <>
+                Qualifies for{" "}
+                <strong style={{ color: "var(--forest)" }}>
+                  ₹{taxSummary.eligibleDeduction.toLocaleString("en-IN")}
+                </strong>{" "}
+                (50% Sec 80G deduction) · {impactSummary.title}
+              </>
+            ) : (
+              "Exact amount transferred to trust account"
+            )}
+          </small>
         </div>
 
         {/* Payment Mode */}

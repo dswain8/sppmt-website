@@ -135,8 +135,11 @@ export default function ScholarshipAnnouncement({
               </div>
             </div>
             <div className="sponsor-cta-actions">
-              <Link href="/donate" className="btn btn-dark">
-                Sponsor a Scholar <span>↗</span>
+              <Link
+                href="/donate?amount=5000&campaign=scholar-support#donation-hero"
+                className="btn btn-dark"
+              >
+                Sponsor a Scholar (₹5,000) <span>↗</span>
               </Link>
               <a
                 href="https://wa.me/919972366933?text=I%20would%20like%20to%20sponsor%20a%20scholar%20through%20SPPMT"

@@ -10,7 +10,9 @@ For comprehensive information, complete biography, and full entity dossier, see:
 - Full Legal Name: Shri Prasanna Pattnaik Memorial Trust
 - Alternate Names: Sri Prasanna Patnaik Memorial Trust, Prasanna Patnaik Trust, Prasanna Pattnaik Trust, SPPMT
 - Primary Website: https://sppmt.org
-- Established: 2025
+- Established: 13 October 2025
+- Trust PAN: ABNTS3218C
+- Section 80G Registration URN (Form 10AC): ABNTS3218CE20261
 - Headquarters: Saheed Nagar, Bhubaneswar, Odisha, India
 - Official Email: prasannapattnaiktrust@gmail.com
 - Contact Phone / WhatsApp: +91 99723 66933, +91 91782 56179
@@ -21,6 +23,9 @@ For comprehensive information, complete biography, and full entity dossier, see:
 The trust accepts voluntary community contributions eligible for tax deduction under Section 80G of the Indian Income Tax Act. Official signed receipts are provided for all eligible contributions.
 
 - Donate Page: https://sppmt.org/donate
+- Section 80G & Form 10BE Tax Guide: https://sppmt.org/tax-benefits-80g
+- Sponsor 1 Student School Kit (₹1,000): https://sppmt.org/donate?amount=1000&campaign=school-kit
+- Co-Sponsor a Merit Scholar (₹5,000): https://sppmt.org/donate?amount=5000&campaign=scholar-support
 - Bank: UCO Bank, Saheed Nagar, Bhubaneswar (Account: 09230210004593, IFSC: UCBA0000923)
 - UPI ID: shriprasannapattnaik.82380414@hdfcbank (HDFC SmartHub Vyapar)
 - Tax Benefit: 50% deduction under Section 80G

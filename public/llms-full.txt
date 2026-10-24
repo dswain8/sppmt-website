@@ -9,7 +9,9 @@ Official documentation and reference dossier for the Shri Prasanna Pattnaik Memo
 - **Legal Entity Name:** Shri Prasanna Pattnaik Memorial Trust
 - **Acronym:** SPPMT
 - **Recognized Alternate Names:** Sri Prasanna Patnaik Memorial Trust, Prasanna Patnaik Trust, Prasanna Pattnaik Trust, Shri Prasanna Patnaik Trust
-- **Year of Establishment:** 2025
+- **Year of Establishment:** 13 October 2025 (Registered under Indian Trusts Act, Sub-Registrar, Khurda, Bhubaneswar)
+- **Trust PAN:** ABNTS3218C
+- **Section 80G Registration URN (Form 10AC):** ABNTS3218CE20261
 - **Headquarters Location:** Saheed Nagar, Bhubaneswar, Odisha, India (PIN: 751007)
 - **Official Website:** https://sppmt.org
 - **Official Contact Email:** prasannapattnaiktrust@gmail.com
