@@ -47,6 +47,7 @@ export default function DonationQrCode({
   const [activeTab, setActiveTab] = useState<"smart" | "standee">("smart");
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [activeCampaignLabel, setActiveCampaignLabel] = useState<string | null>(null);
+  const [showSaveTip, setShowSaveTip] = useState<boolean>(false);
   const customInputId = useId();
 
   const activeAmount = selectedAmount !== null ? selectedAmount : (Number(customAmount) || 0);
@@ -154,6 +155,7 @@ export default function DonationQrCode({
   };
 
   const handleDownloadQr = async () => {
+    setShowSaveTip(true);
     const isSmartTab = activeTab === "smart" && qrDataUrl;
     const filename =
       isSmartTab && activeAmount > 0
@@ -397,6 +399,9 @@ export default function DonationQrCode({
                 <span className="payee-tag">{payeeName}</span>
               </span>
             </div>
+            <span className="qr-touch-hint">
+              📱 Touch &amp; hold QR image above to &ldquo;Save Image&rdquo; directly to Photos
+            </span>
 
             {/* Save QR to Gallery + Share Smart Link Utility Row */}
             <div className="qr-utility-actions">
@@ -417,8 +422,34 @@ export default function DonationQrCode({
                   : `🔗 Copy ₹${activeAmount > 0 ? activeAmount.toLocaleString("en-IN") : ""} Donate Link`}
               </button>
             </div>
+
+            {/* In-page guide when user clicks save */}
+            {showSaveTip && (
+              <div className="save-qr-guide-toast" role="alert">
+                <div className="guide-toast-header">
+                  <span>📸 How to save directly to your Photos / Gallery:</span>
+                  <button
+                    type="button"
+                    onClick={() => setShowSaveTip(false)}
+                    className="guide-toast-close"
+                    aria-label="Close"
+                  >
+                    ×
+                  </button>
+                </div>
+                <p>
+                  <strong>Chrome on iPhone / Android:</strong> If Chrome downloads to a file rather than your Photos album, simply <strong>press &amp; hold the QR image above for 1 second</strong>, then tap <strong>&ldquo;Save Image&rdquo;</strong> (or &ldquo;Add to Photos&rdquo;). It will appear right in your Photos app!
+                </p>
+                <div className="guide-toast-actions">
+                  <a href={upiUri} className="guide-toast-btn">
+                    Or Tap to Pay via UPI App directly (No QR needed) ↗
+                  </a>
+                </div>
+              </div>
+            )}
+
             <small className="single-phone-tip">
-              <strong>Using one phone?</strong> Tap <em>Save QR to Photos / Gallery</em> (on iPhone, select <strong>&ldquo;Save Image&rdquo;</strong> in the share menu, or press &amp; hold the QR image to save). Then open Google Pay / PhonePe / Paytm and tap <strong>Scan QR → Upload from Gallery</strong>, or copy the UPI ID below.
+              <strong>Using one phone?</strong> Tap <em>Save QR to Photos / Gallery</em> (on Chrome / iPhone, press &amp; hold the QR image to tap <strong>&ldquo;Save Image&rdquo;</strong>). Then in Google Pay / PhonePe / Paytm, tap <strong>Scan QR → Upload from Gallery</strong>, or copy the UPI ID below.
             </small>
           </div>
 
@@ -606,6 +637,9 @@ export default function DonationQrCode({
                 : "Scan with any UPI app"}
             </strong>
           </div>
+          <span className="qr-touch-hint" style={{ fontSize: 11.5, margin: "6px 0 2px" }}>
+            📱 Touch &amp; hold QR to &ldquo;Save Image&rdquo;
+          </span>
 
           <button
             type="button"
