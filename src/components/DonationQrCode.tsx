@@ -118,18 +118,21 @@ export default function DonationQrCode({
     }
   }, [activeAmount, impactInfo.title]);
 
-  // Standard NPCI UPI payment URI for QR code generation
+  // Standard NPCI-compliant UPI payment URI for QR code generation
+  // Follows NPCI specifications: literal '@' in VPA, %20 for spaces (never '+'), and 2-decimal amount
   const upiUri = (() => {
-    const params = new URLSearchParams({
-      pa: upiId,
-      pn: payeeName,
-      cu: "INR",
-      tn: impactInfo.upiNote || "Donation to SPPMT (80G Tax Benefit)",
-    });
+    const cleanPayee = encodeURIComponent(payeeName);
+    const cleanNote = encodeURIComponent(impactInfo.upiNote || "Donation to SPPMT (80G)");
+    const parts = [
+      `pa=${upiId}`, // Keep literal @ for VPA per NPCI standards
+      `pn=${cleanPayee}`,
+      `cu=INR`,
+      `tn=${cleanNote}`,
+    ];
     if (activeAmount > 0) {
-      params.set("am", activeAmount.toString());
+      parts.push(`am=${activeAmount.toFixed(2)}`); // Standard 2-decimal format e.g. 1000.00
     }
-    return `upi://pay?${params.toString()}`;
+    return `upi://pay?${parts.join("&")}`;
   })();
 
   useEffect(() => {
@@ -137,7 +140,7 @@ export default function DonationQrCode({
       width: heroMode ? 360 : 280,
       margin: 2,
       color: {
-        dark: "#183b30", // Forest green
+        dark: "#000000", // Pure black for maximum optical scanner contrast
         light: "#ffffff",
       },
       errorCorrectionLevel: "M",
